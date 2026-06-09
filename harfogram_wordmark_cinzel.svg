@@ -1,0 +1,91 @@
+<svg viewBox="0 0 860 250" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>Harfogram</title>
+  <defs>
+    <style>
+      <![CDATA[
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@900&display=swap');
+  .L{font-family:'Cinzel',Georgia,serif;font-weight:900;fill:#141043;}
+  .P{font-family:'Cinzel',Georgia,serif;font-weight:900;fill:#141043;opacity:.5;}
+]]>
+    </style>
+    <filter id="ds" x="-40%" y="-40%" width="180%" height="190%">
+      <feDropShadow dx="0" dy="7" stdDeviation="11" flood-color="#1a0f3a" flood-opacity=".4"/>
+    </filter>
+  </defs>
+  <circle cx="40" cy="60" r="6" fill="#ff3d8b"/>
+  <circle cx="430" cy="32" r="5" fill="#b6f24a"/>
+  <circle cx="820" cy="70" r="6" fill="#2bd6e6"/>
+  <circle cx="60" cy="210" r="5" fill="#ffc24b"/>
+  <circle cx="610" cy="222" r="6" fill="#2bd6e6"/>
+  <g transform="translate(250,30) rotate(18)">
+    <rect x="-4" y="-12" width="8" height="24" rx="3" fill="#2bd6e6"/>
+    <rect x="-12" y="-4" width="24" height="8" rx="3" fill="#2bd6e6"/>
+  </g>
+  <g transform="translate(560,36) rotate(-14)">
+    <rect x="-4" y="-12" width="8" height="24" rx="3" fill="#ff3d8b"/>
+    <rect x="-12" y="-4" width="24" height="8" rx="3" fill="#ff3d8b"/>
+  </g>
+  <g transform="translate(360,218) rotate(-10)">
+    <rect x="-4" y="-12" width="8" height="24" rx="3" fill="#b6f24a"/>
+    <rect x="-12" y="-4" width="24" height="8" rx="3" fill="#b6f24a"/>
+  </g>
+  <path d="M700,28 L704,40 L716,36 L706,44 L700,56 L694,44 L684,36 L696,40 Z" fill="#ffc24b"/>
+  <path d="M150,210 L154,222 L166,218 L156,226 L150,238 L144,226 L134,218 L146,222 Z" fill="#ff3d8b"/>
+  <g transform="translate(70,138) rotate(-8)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#d12068"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#ff3d8b" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">H</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">5</text>
+  </g>
+  <g transform="translate(158,108) rotate(7)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#c2a96e"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#f6edda" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">A</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">1</text>
+  </g>
+  <g transform="translate(246,126) rotate(-12)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#1aa7b5"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#2bd6e6" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">R</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">1</text>
+  </g>
+  <g transform="translate(334,104) rotate(6)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#d68a1f"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#ffc24b" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">F</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">7</text>
+  </g>
+  <g transform="translate(422,134) rotate(-10)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#c2a96e"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#f6edda" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">O</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">2</text>
+  </g>
+  <g transform="translate(510,110) rotate(12)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#d12068"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#ff3d8b" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">G</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">5</text>
+  </g>
+  <g transform="translate(598,122) rotate(-7)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#8fc91f"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#b6f24a" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">R</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">1</text>
+  </g>
+  <g transform="translate(686,106) rotate(9)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#1aa7b5"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#2bd6e6" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">A</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">1</text>
+  </g>
+  <g transform="translate(774,130) rotate(-11)">
+    <rect x="-40" y="-37" width="80" height="92" rx="14" fill="#d68a1f"/>
+    <rect x="-40" y="-46" width="80" height="92" rx="14" fill="#ffc24b" filter="url(#ds)"/>
+    <text class="L" x="0" y="16" text-anchor="middle" font-size="48">M</text>
+    <text class="P" x="30" y="37" text-anchor="end" font-size="17">3</text>
+  </g>
+<text x="430" y="224" text-anchor="middle"
+  style="font-family:'Cinzel',Georgia,serif;font-weight:900;font-optical-sizing:none;font-variation-settings:'opsz' 32;letter-spacing:6px;"
+  fill="#141043">WORD PARTY</text>
+</svg>

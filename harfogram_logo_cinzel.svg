@@ -1,0 +1,40 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Harfogram</title>
+<defs>
+<style><![CDATA[
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@00&display=swap');
+  .L{font-family:'Cinzel',Georgia,serif;font-weight:900;fill:#141043;}
+  .P{font-family:'Cinzel',Georgia,serif;font-weight:900;fill:#141043;opacity:.5;}
+]]></style>
+  <clipPath id="c"><rect width="512" height="512" rx="108"/></clipPath>
+  <linearGradient id="bg" x1="0" y1="0" x2=".55" y2="1"><stop offset="0%" stop-color="#141043"/><stop offset="100%" stop-color="#3a1466"/></linearGradient>
+  <radialGradient id="gp" cx="84%" cy="12%" r="55%"><stop offset="0%" stop-color="#ff3d8b" stop-opacity=".5"/><stop offset="100%" stop-color="#ff3d8b" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gc" cx="10%" cy="90%" r="46%"><stop offset="0%" stop-color="#2bd6e6" stop-opacity=".34"/><stop offset="100%" stop-color="#2bd6e6" stop-opacity="0"/></radialGradient>
+  <filter id="ds" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="12" stdDeviation="20" flood-color="#000" flood-opacity=".42"/></filter>
+</defs>
+<g clip-path="url(#c)">
+  <rect width="512" height="512" fill="url(#bg)"/>
+  <rect width="512" height="512" fill="url(#gp)"/>
+  <rect width="512" height="512" fill="url(#gc)"/>
+  <circle cx="96" cy="86" r="13" fill="#ffc24b"/>
+  <circle cx="430" cy="420" r="12" fill="#b6f24a"/>
+  <circle cx="66" cy="300" r="9" fill="#2bd6e6"/>
+  <g transform="translate(150,440) rotate(18)"><rect x="-7" y="-20" width="14" height="40" rx="4" fill="#2bd6e6"/><rect x="-20" y="-7" width="40" height="14" rx="4" fill="#2bd6e6"/></g>
+  <g transform="translate(420,120) rotate(-14)"><rect x="-7" y="-20" width="14" height="40" rx="4" fill="#b6f24a"/><rect x="-20" y="-7" width="40" height="14" rx="4" fill="#b6f24a"/></g>
+  <path d="M404,96 L412,122 L438,114 L416,130 L404,156 L392,130 L370,114 L396,122 Z" fill="#ffc24b"/>
+  <path d="M110,378 L117,400 L139,393 L120,408 L110,430 L100,408 L78,393 L100,400 Z" fill="#ff3d8b"/>
+  <g transform="translate(335,205) rotate(16)">
+    <rect x="-90" y="-80" width="180" height="200" rx="38" fill="#1aa7b5"/>
+    <rect x="-90" y="-100" width="180" height="200" rx="38" fill="#2bd6e6" filter="url(#ds)"/>
+    <text class="L" x="0" y="38" text-anchor="middle" font-size="108">A</text>
+    <text class="P" x="66" y="85" text-anchor="end" font-size="43">1</text>
+  </g>
+  <g transform="translate(214,292) rotate(-9)">
+    <rect x="-125" y="-113" width="250" height="282" rx="52" fill="#d12068"/>
+    <rect x="-125" y="-141" width="250" height="282" rx="52" fill="#ff3d8b" filter="url(#ds)"/>
+    <text class="L" x="0" y="52" text-anchor="middle" font-size="160">H</text>
+    <text class="P" x="96" y="116" text-anchor="end" font-size="50">5</text>
+  </g>
+  <path d="M120,150 L127,172 L149,165 L130,180 L120,202 L110,180 L88,165 L110,172 Z" fill="#ffc24b"/>
+</g>
+</svg>
