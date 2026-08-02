@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.gurcanstudio.harfogram",
+      "sha256_cert_fingerprints": ["3E:1B:46:E7:1F:B8:C1:21:94:CB:1D:C7:3C:E7:E0:61:1D:D3:75:D4:DE:7B:1C:16:4D:C0:C2:93:7B:7D:E9:1F"]
+    }
+  }
+]
