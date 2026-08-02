@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CL447F3YTA.com.gurcanstudio.harfogram",
+        "paths": ["/join", "/join/*"]
+      }
+    ]
+  }
+}
