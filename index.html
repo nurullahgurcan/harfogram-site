@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Harfogram — Çok Oyunculu Kelime Tahtası</title>
-<meta name="description" content="Türkçe ve İngilizce çok oyunculu kelime tahtası. Birçok harita, birçok mod, sonsuz kelime. App Store ve Google Play'de." />
+<meta name="description" content="10 dilde oynanan çok oyunculu kelime tahtası. 7 farklı harita, güçlü yetenekler, Battle Pass ve günlük bulmaca. App Store ve Google Play'de." />
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect x='8' y='8' width='84' height='84' rx='16' fill='%23f6edda'/%3E%3Ctext x='50' y='68' font-family='Georgia,serif' font-size='58' font-weight='900' text-anchor='middle' fill='%231b1556'%3EH%3C/text%3E%3C/svg%3E" />
 
@@ -81,9 +81,13 @@ nav{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-
 .navlinks a{color:var(--cream-dim);transition:color .2s}
 .navlinks a:hover{color:var(--cream)}
 .navtools{display:flex;align-items:center;gap:14px}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:800}
-.lang button{background:none;border:none;color:var(--cream-dim);padding:6px 12px;cursor:pointer;font-family:var(--body);font-weight:800;transition:.2s}
-.lang button.active{background:var(--pink);color:#fff}
+.lang select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);border-radius:999px;color:var(--cream);font-family:var(--body);
+  font-weight:800;font-size:.78rem;padding:7px 30px 7px 14px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cabfe6' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;background-size:14px;transition:border-color .2s}
+.lang select:hover{border-color:var(--pink)}
+.lang select option{background:var(--navy);color:var(--cream)}
 .menu-btn{display:none;background:none;border:none;color:var(--cream);cursor:pointer}
 
 /* decorative floating tiles */
@@ -234,16 +238,26 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
         style="height:34px;width:auto;border-radius:9px;" />
     </a>
     <div class="navlinks" id="navlinks">
-      <a href="#features" data-tr="Özellikler" data-en="Features">Özellikler</a>
-      <a href="#how" data-tr="Nasıl Oynanır" data-en="How to Play">Nasıl Oynanır</a>
-      <a href="#modes" data-tr="Modlar" data-en="Modes">Modlar</a>
-      <a href="#daily" data-tr="Günlük Bulmaca" data-en="Daily Puzzle">Günlük Bulmaca</a>
-      <a href="#faq" data-tr="SSS" data-en="FAQ">SSS</a>
+      <a href="#features" data-i18n="nav_features">Özellikler</a>
+      <a href="#how" data-i18n="nav_how">Nasıl Oynanır</a>
+      <a href="#modes" data-i18n="nav_modes">Modlar</a>
+      <a href="#daily" data-i18n="nav_daily">Günlük Bulmaca</a>
+      <a href="#faq" data-i18n="nav_faq">SSS</a>
     </div>
     <div class="navtools">
       <div class="lang">
-        <button id="tr-btn" class="active" onclick="setLang('tr')">TR</button>
-        <button id="en-btn" onclick="setLang('en')">EN</button>
+        <select id="lang-select" onchange="setLang(this.value)" aria-label="Language">
+          <option value="tr">TR · Türkçe</option>
+          <option value="en">EN · English</option>
+          <option value="de">DE · Deutsch</option>
+          <option value="fr">FR · Français</option>
+          <option value="es">ES · Español</option>
+          <option value="pt">PT · Português</option>
+          <option value="ru">RU · Русский</option>
+          <option value="it">IT · Italiano</option>
+          <option value="pl">PL · Polski</option>
+          <option value="id">ID · Bahasa Indonesia</option>
+        </select>
       </div>
       <button class="menu-btn" onclick="document.getElementById('navlinks').classList.toggle('open')" aria-label="Menu">
         <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
@@ -263,36 +277,37 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
       <img id="logoImg" src="harfogram_wordmark_cinzel.svg" alt="Harfogram" />
       <div class="logo-tiles" id="logoTiles"></div>
     </div>
-    <h1 data-tr="Türkçe ve İngilizce <span class='grad'>çok oyunculu</span> kelime tahtası." data-en="The bilingual <span class='grad'>multiplayer</span> word board game.">Türkçe ve İngilizce <span class="grad">çok oyunculu</span> kelime tahtası.</h1>
-    <p class="lead" data-tr="Birçok harita, birçok mod, sonsuz kelime. Arkadaşlarınla aynı masada ya da çevrimiçi — harfleri birleştir, puanı kap, kazan." data-en="Many boards, many modes, endless words. Play with friends on the same device or online — connect the letters, grab the points, win.">Birçok harita, birçok mod, sonsuz kelime. Arkadaşlarınla aynı masada ya da çevrimiçi — harfleri birleştir, puanı kap, kazan.</p>
+    <h1 data-i18n="hero_title">10 dilde <span class="grad">çok oyunculu</span> kelime savaşı.</h1>
+    <p class="lead" data-i18n="hero_lead">7 farklı harita, güçlü yetenekler, sezonluk Battle Pass. Arkadaşlarınla aynı cihazda, çevrimiçi ya da yapay zekaya karşı — harfleri birleştir, puanı kap, kazan.</p>
     <div class="cta-row">
-      <!-- TODO: App Store linkini buraya ekle -->
-      <a href="#" class="store" aria-label="App Store">
+      <a href="https://apps.apple.com/app/harfogram/id6776008958" class="store" aria-label="App Store">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.42-.14-2.76.83-3.48.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.85 2.3 1.14-.05 1.57-.74 2.95-.74 1.38 0 1.77.74 2.98.71 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.77 5.5c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.09 1.76-.96 2.79 1.02.08 2.06-.52 2.69-1.26z"/></svg>
-        <span><small data-tr="İndir" data-en="Download on the">İndir</small><b>App Store</b></span>
+        <span><small data-i18n="store_dl_1">İndir</small><b>App Store</b></span>
       </a>
-      <!-- TODO: Google Play linkini buraya ekle -->
-      <a href="#" class="store" aria-label="Google Play">
+      <a href="https://play.google.com/store/apps/details?id=com.gurcanstudio.harfogram" class="store" aria-label="Google Play">
         <svg viewBox="0 0 24 24"><path fill="#2bd6e6" d="M3.6 2.4 13 11.8 3.6 21.2c-.36-.2-.6-.6-.6-1.1V3.5c0-.5.24-.9.6-1.1z"/><path fill="#ff3d8b" d="M16.3 8.7 13 11.8 3.9 2.1c.1 0 .2.05.3.1l12.1 6.5z"/><path fill="#ffc24b" d="M20.4 11c.6.34.6 1.66 0 2L16.3 15.3 13 11.8l3.3-3.5L20.4 11z"/><path fill="#b6f24a" d="M16.3 15.3 4.2 21.8c-.1.05-.2.1-.3.1L13 11.8l3.3 3.5z"/></svg>
-        <span><small data-tr="İndir" data-en="Get it on">İndir</small><b>Google Play</b></span>
+        <span><small data-i18n="store_dl_2">İndir</small><b>Google Play</b></span>
       </a>
     </div>
-    <p class="note" data-tr="Ücretsiz indir · iOS &amp; Android · Türkçe &amp; İngilizce" data-en="Free download · iOS &amp; Android · Turkish &amp; English">Ücretsiz indir · iOS &amp; Android · Türkçe &amp; İngilizce</p>
+    <p class="note" data-i18n="hero_note">Ücretsiz indir · iOS &amp; Android · 10 Dilde</p>
   </div>
 </section>
 
 <!-- FEATURES -->
 <section id="features">
   <div class="wrap">
-    <span class="eyebrow" data-tr="Özellikler" data-en="Features">Özellikler</span>
-    <h2 data-tr="Tek oyun, <span class='grad-c'>sayısız olasılık</span>" data-en="One game, <span class='grad-c'>countless possibilities</span>">Tek oyun, <span class="grad-c">sayısız olasılık</span></h2>
+    <span class="eyebrow" data-i18n="nav_features">Özellikler</span>
+    <h2 data-i18n="feat_h2">Tek oyun, <span class="grad-c">sayısız olasılık</span></h2>
     <div class="grid">
-      <div class="card reveal"><div class="ic">👥</div><h3 data-tr="Çok Oyunculu" data-en="Multiplayer">Çok Oyunculu</h3><p data-tr="Aynı cihazda sırayla ya da çevrimiçi rakiplerle oyna. Parti gecelerinin yeni klasiği." data-en="Pass-and-play on one device or take on online opponents. Your new game-night staple.">Aynı cihazda sırayla ya da çevrimiçi rakiplerle oyna. Parti gecelerinin yeni klasiği.</p></div>
-      <div class="card reveal"><div class="ic">🗺️</div><h3 data-tr="Birçok Harita &amp; Mod" data-en="Many Boards &amp; Modes">Birçok Harita &amp; Mod</h3><p data-tr="Klasik kare tahtadan altıgen petek moduna kadar farklı haritalar. Her oyun yeni bir his." data-en="From the classic square board to hexagon honeycomb mode. Every match feels brand new.">Klasik kare tahtadan altıgen petek moduna kadar farklı haritalar. Her oyun yeni bir his.</p></div>
-      <div class="card reveal"><div class="ic">🌍</div><h3 data-tr="Türkçe + İngilizce" data-en="Turkish + English">Türkçe + İngilizce</h3><p data-tr="İki dilde tam sözlük desteği. Dilediğin dilde oyna, kelime dağarcığını büyüt." data-en="Full dictionary support in two languages. Play in either and grow your vocabulary.">İki dilde tam sözlük desteği. Dilediğin dilde oyna, kelime dağarcığını büyüt.</p></div>
-      <div class="card reveal"><div class="ic">📅</div><h3 data-tr="Günlük Bulmaca" data-en="Daily Puzzle">Günlük Bulmaca</h3><p data-tr="Her gün yeni bir tahta. En yüksek puanı yap, skor tablosunda yerini al." data-en="A fresh board every day. Score high and climb the leaderboard.">Her gün yeni bir tahta. En yüksek puanı yap, skor tablosunda yerini al.</p></div>
-      <div class="card reveal"><div class="ic">🌀</div><h3 data-tr="Kaos Modu" data-en="Chaos Mode">Kaos Modu</h3><p data-tr="Beklenmedik kurallar, sürpriz bonuslar. Rutini bozmak isteyenler için." data-en="Unexpected rules and surprise bonuses for those who like to shake things up.">Beklenmedik kurallar, sürpriz bonuslar. Rutini bozmak isteyenler için.</p></div>
-      <div class="card reveal"><div class="ic">⭐</div><h3 data-tr="Bingo Bonusu" data-en="Bingo Bonus">Bingo Bonusu</h3><p data-tr="Tüm harflerini tek hamlede kullan, ekstra puanı kap. Ustalar bunu sever." data-en="Use all your tiles in a single move and grab the bonus. Pros live for this.">Tüm harflerini tek hamlede kullan, ekstra puanı kap. Ustalar bunu sever.</p></div>
+      <div class="card reveal"><div class="ic">👥</div><h3 data-i18n="feat1_h3">Çok Oyunculu</h3><p data-i18n="feat1_p">Hızlı maçla rastgele rakip bul, özel oda kurup arkadaşını davet et, aynı cihazda sırayla oyna ya da yapay zekaya meydan oku.</p></div>
+      <div class="card reveal"><div class="ic">🗺️</div><h3 data-i18n="feat2_h3">7 Farklı Harita</h3><p data-i18n="feat2_p">Klasik'ten Mayın Tarlası'na, her tahta kendi stratejisini dayatıyor. Hangisi favorin olacak?</p></div>
+      <div class="card reveal"><div class="ic">🌍</div><h3 data-i18n="feat3_h3">10 Dilde Oyna</h3><p data-i18n="feat3_p">Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, Rusça, İtalyanca, Lehçe, Endonezce — tam sözlük desteğiyle.</p></div>
+      <div class="card reveal"><div class="ic">⚡</div><h3 data-i18n="feat4_h3">Güçlü Yetenekler</h3><p data-i18n="feat4_p">Bomba, Hırsız, Premium Takas ve dahası. Doğru anda doğru yeteneği kullan, oyunu çevir.</p></div>
+      <div class="card reveal"><div class="ic">🏆</div><h3>Battle Pass</h3><p data-i18n="feat5_p">Sezonluk ödüller, özel kozmetik unvanlar. Oynadıkça ilerle, sezonu tamamla.</p></div>
+      <div class="card reveal"><div class="ic">⭐</div><h3 data-i18n="feat6_h3">Başarımlar &amp; Liderlik</h3><p data-i18n="feat6_p">20'den fazla başarım, global liderlik tablosu, oyuncu seviyesi. Her maç seni bir adım öteye taşır.</p></div>
+      <div class="card reveal"><div class="ic">📅</div><h3 data-i18n="nav_daily">Günlük Bulmaca</h3><p data-i18n="feat7_p">Her gün yeni bir tahta. En yüksek puanı yap, skor tablosunda yerini al.</p></div>
+      <div class="card reveal"><div class="ic">📚</div><h3 data-i18n="feat8_h3">Adil Sözlük</h3><p data-i18n="feat8_p">Yalnızca gerçek kelimeler kabul edilir — özel isim yok, uydurma yok. Kazanırsan gerçekten kazanmış olursun.</p></div>
+      <div class="card reveal"><div class="ic">🎨</div><h3 data-i18n="feat9_h3">Kendini İfade Et</h3><p data-i18n="feat9_p">Onlarca tema, özel tahta görünüşleri, taş kaplamaları. Battle Pass'e özel kozmetikler de cabası.</p></div>
     </div>
   </div>
 </section>
@@ -300,12 +315,12 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
 <!-- HOW -->
 <section class="how" id="how">
   <div class="wrap">
-    <span class="eyebrow" data-tr="Nasıl Oynanır" data-en="How to Play">Nasıl Oynanır</span>
-    <h2 data-tr="Öğrenmesi dakikalar, ustalaşması ömür" data-en="Minutes to learn, a lifetime to master">Öğrenmesi dakikalar, ustalaşması ömür</h2>
+    <span class="eyebrow" data-i18n="nav_how">Nasıl Oynanır</span>
+    <h2 data-i18n="how_h2">Öğrenmesi dakikalar, ustalaşması ömür</h2>
     <div class="steps">
-      <div class="step reveal"><div class="num">1</div><h3 data-tr="Harflerini diz" data-en="Place your tiles">Harflerini diz</h3><p data-tr="Elindeki harflerle tahtada geçerli kelimeler oluştur. Türkçe ya da İngilizce, sen seç." data-en="Form valid words on the board with the tiles in your rack. Turkish or English — your call.">Elindeki harflerle tahtada geçerli kelimeler oluştur. Türkçe ya da İngilizce, sen seç.</p></div>
-      <div class="step reveal"><div class="num">2</div><h3 data-tr="Puanları topla" data-en="Rack up points">Puanları topla</h3><p data-tr="Harf değerleri ve bonus kareler ile puanını katla. Doğru kareyi yakala, puanı uçur." data-en="Stack up points with letter values and bonus squares. Hit the right square and watch the score soar.">Harf değerleri ve bonus kareler ile puanını katla. Doğru kareyi yakala, puanı uçur.</p></div>
-      <div class="step reveal"><div class="num">3</div><h3 data-tr="Rakibini geç" data-en="Beat your rival">Rakibini geç</h3><p data-tr="Sıra sırayla döner. Harfler bitince en yüksek toplam puanın sahibi kazanır." data-en="Turns rotate. When the tiles run out, the highest total score takes the win.">Sıra sırayla döner. Harfler bitince en yüksek toplam puanın sahibi kazanır.</p></div>
+      <div class="step reveal"><div class="num">1</div><h3 data-i18n="step1_h3">Harflerini diz</h3><p data-i18n="step1_p">Elindeki harflerle tahtada geçerli kelimeler oluştur. Hangi dilde oynayacağın sana kalmış.</p></div>
+      <div class="step reveal"><div class="num">2</div><h3 data-i18n="step2_h3">Puanları topla</h3><p data-i18n="step2_p">Harf değerleri ve bonus kareler ile puanını katla. Doğru kareyi yakala, puanı uçur.</p></div>
+      <div class="step reveal"><div class="num">3</div><h3 data-i18n="step3_h3">Rakibini geç</h3><p data-i18n="step3_p">Sıra sırayla döner. Harfler bitince en yüksek toplam puanın sahibi kazanır.</p></div>
     </div>
   </div>
 </section>
@@ -313,8 +328,8 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
 <!-- MODES -->
 <section class="modes" id="modes">
   <div class="wrap">
-    <span class="eyebrow" data-tr="Modlar &amp; Haritalar" data-en="Modes &amp; Boards">Modlar &amp; Haritalar</span>
-    <h2 data-tr="Aynı oyun, <span class='grad'>sürekli yeni</span>" data-en="Same game, <span class='grad'>always new</span>">Aynı oyun, <span class="grad">sürekli yeni</span></h2>
+    <span class="eyebrow" data-i18n="modes_eyebrow">Modlar &amp; Haritalar</span>
+    <h2 data-i18n="modes_h2">Aynı oyun, <span class="grad">sürekli yeni</span></h2>
     <div class="split">
       <div class="phone reveal">
         <div class="screen">
@@ -324,12 +339,15 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
         </div>
       </div>
       <div>
-        <p class="lead" data-tr="Harita çeşitliliği Harfogram'ın DNA'sında. Her tahta farklı bonus düzeni, farklı strateji demek. Bir favorin olacak — sonra hepsini denemek isteyeceksin." data-en="Board variety is in Harfogram's DNA. Each board means a different bonus layout and a different strategy. You'll pick a favorite — then want to try them all.">Harita çeşitliliği Harfogram'ın DNA'sında. Her tahta farklı bonus düzeni, farklı strateji demek. Bir favorin olacak — sonra hepsini denemek isteyeceksin.</p>
+        <p class="lead" data-i18n="modes_lead">Harita çeşitliliği Harfogram'ın DNA'sında. Her tahta farklı bonus düzeni, farklı strateji demek. Bir favorin olacak — sonra hepsini denemek isteyeceksin.</p>
         <div class="map-list">
-          <div class="map-row reveal"><span class="dot"></span><b data-tr="Klasik Kare" data-en="Classic Square">Klasik Kare</b><span data-tr="— dengeli ve tanıdık" data-en="— balanced &amp; familiar">— dengeli ve tanıdık</span></div>
-          <div class="map-row reveal"><span class="dot" style="background:var(--gold)"></span><b data-tr="Altıgen Petek" data-en="Hexagon Honeycomb">Altıgen Petek</b><span data-tr="— yakında, yepyeni geometri" data-en="— coming soon, fresh geometry">— yakında, yepyeni geometri</span></div>
-          <div class="map-row reveal"><span class="dot" style="background:var(--cyan)"></span><b data-tr="Bonus Haritalar" data-en="Bonus Boards">Bonus Haritalar</b><span data-tr="— yoğun çarpan düzenleri" data-en="— dense multiplier layouts">— yoğun çarpan düzenleri</span></div>
-          <div class="map-row reveal"><span class="dot" style="background:var(--lime)"></span><b data-tr="Kaos Modu" data-en="Chaos Mode">Kaos Modu</b><span data-tr="— her oyun sürpriz kural" data-en="— a surprise rule every game">— her oyun sürpriz kural</span></div>
+          <div class="map-row reveal"><span class="dot"></span><b data-i18n="map1_name">Klasik</b><span data-i18n="map1_desc">— dengeli bonus dağılımı, 15×15</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--gold)"></span><b data-i18n="map2_name">Hızlı Oyun</b><span data-i18n="map2_desc">— küçük tahta, hızlı maç, 11×11</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--cyan)"></span><b data-i18n="map3_name">Bol Bonus</b><span data-i18n="map3_desc">— her köşe bir fırsat</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--lime)"></span><b data-i18n="map4_name">Donut</b><span data-i18n="map4_desc">— ortası boş halka tahta</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--pink-deep)"></span><b data-i18n="map5_name">Donmuş</b><span data-i18n="map5_desc">— donmuş kareler, sürpriz bonus puan</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--gold)"></span><b data-i18n="map6_name">Labirent</b><span data-i18n="map6_desc">— duvarlarla dolu, yolunu bul</span></div>
+          <div class="map-row reveal"><span class="dot" style="background:var(--cyan)"></span><b data-i18n="map7_name">Mayın Tarlası</b><span data-i18n="map7_desc">— gizli mayınlar, dikkatli ol</span></div>
         </div>
       </div>
     </div>
@@ -339,19 +357,19 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
 <!-- DAILY -->
 <section class="daily" id="daily">
   <div class="wrap">
-    <span class="eyebrow" data-tr="Günlük Bulmaca" data-en="Daily Puzzle">Günlük Bulmaca</span>
+    <span class="eyebrow" data-i18n="nav_daily">Günlük Bulmaca</span>
     <div class="panel">
       <div class="copy">
-        <h2 data-tr="Her gün tek tahta. <span class='grad-c'>Herkes aynı harfler.</span>" data-en="One board a day. <span class='grad-c'>Everyone, same tiles.</span>">Her gün tek tahta. <span class="grad-c">Herkes aynı harfler.</span></h2>
-        <p data-tr="Aynı harf setiyle herkes yarışır — fark senin bulduğun kelimelerde. Türkçe ve İngilizce ayrı skor tabloları, her gün sıfırlanır. Serini koru, zirveye tırman." data-en="Everyone competes with the same letter set — the difference is in the words you find. Separate Turkish and English leaderboards, reset daily. Keep your streak, climb to the top.">Aynı harf setiyle herkes yarışır — fark senin bulduğun kelimelerde. Türkçe ve İngilizce ayrı skor tabloları, her gün sıfırlanır. Serini koru, zirveye tırman.</p>
-        <a href="#top" class="store" style="width:fit-content"><span><small data-tr="Bugünün tahtası" data-en="Today's board">Bugünün tahtası</small><b data-tr="Hemen Oyna" data-en="Play Now">Hemen Oyna</b></span></a>
+        <h2 data-i18n="daily_h2">Her gün tek tahta. <span class="grad-c">Herkes aynı harfler.</span></h2>
+        <p data-i18n="daily_p">Aynı harf setiyle herkes yarışır — fark senin bulduğun kelimelerde. Her dilin kendi skor tablosu var, her gün sıfırlanır. Serini koru, zirveye tırman.</p>
+        <a href="#top" class="store" style="width:fit-content"><span><small data-i18n="daily_cta_small">Bugünün tahtası</small><b data-i18n="daily_cta_big">Hemen Oyna</b></span></a>
       </div>
       <div class="lb">
-        <div class="lb-title">🏆 <span data-tr="Günün En İyileri" data-en="Today's Top Players">Günün En İyileri</span></div>
+        <div class="lb-title">🏆 <span data-i18n="daily_lb_title">Günün En İyileri</span></div>
         <div class="lb-row"><span class="rank">1</span><span class="who">elif_k</span><span class="pts">412</span></div>
         <div class="lb-row"><span class="rank">2</span><span class="who">mertcan</span><span class="pts">389</span></div>
         <div class="lb-row"><span class="rank">3</span><span class="who">wordsmith</span><span class="pts">377</span></div>
-        <div class="lb-row me"><span class="rank">7</span><span class="who" data-tr="sen" data-en="you">sen</span><span class="pts">331</span></div>
+        <div class="lb-row me"><span class="rank">7</span><span class="who" data-i18n="daily_you">sen</span><span class="pts">331</span></div>
       </div>
     </div>
   </div>
@@ -360,14 +378,15 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
 <!-- FAQ -->
 <section id="faq">
   <div class="wrap">
-    <span class="eyebrow" data-tr="Sık Sorulan Sorular" data-en="FAQ">Sık Sorulan Sorular</span>
-    <h2 data-tr="Merak edilenler" data-en="Good to know">Merak edilenler</h2>
+    <span class="eyebrow" data-i18n="faq_eyebrow">Sık Sorulan Sorular</span>
+    <h2 data-i18n="faq_h2">Merak edilenler</h2>
     <div class="faq-list" id="faqList">
-      <div class="faq-item"><button class="faq-q" data-tr="Harfogram ücretsiz mi?" data-en="Is Harfogram free?">Harfogram ücretsiz mi?</button><div class="faq-a"><p data-tr="Evet. Harfogram'ı ücretsiz indirip oynayabilirsin. İsteğe bağlı reklamlar ve bonus içerikler bulunur." data-en="Yes. Harfogram is free to download and play. It includes optional ads and bonus content.">Evet. Harfogram'ı ücretsiz indirip oynayabilirsin. İsteğe bağlı reklamlar ve bonus içerikler bulunur.</p></div></div>
-      <div class="faq-item"><button class="faq-q" data-tr="İnternetsiz oynayabilir miyim?" data-en="Can I play offline?">İnternetsiz oynayabilir miyim?</button><div class="faq-a"><p data-tr="Evet. Aynı cihazda sırayla (pass-and-play) modunu internet bağlantısı olmadan oynayabilirsin. Çevrimiçi rakipler için bağlantı gerekir." data-en="Yes. The pass-and-play mode on a single device works without an internet connection. Online opponents require a connection.">Evet. Aynı cihazda sırayla (pass-and-play) modunu internet bağlantısı olmadan oynayabilirsin. Çevrimiçi rakipler için bağlantı gerekir.</p></div></div>
-      <div class="faq-item"><button class="faq-q" data-tr="Hangi dilleri destekliyor?" data-en="Which languages are supported?">Hangi dilleri destekliyor?</button><div class="faq-a"><p data-tr="Türkçe ve İngilizce. Her iki dilde de tam sözlük desteğiyle oynayabilirsin." data-en="Turkish and English, each with full dictionary support.">Türkçe ve İngilizce. Her iki dilde de tam sözlük desteğiyle oynayabilirsin.</p></div></div>
-      <div class="faq-item"><button class="faq-q" data-tr="Altıgen petek modu ne zaman gelecek?" data-en="When is hexagon mode coming?">Altıgen petek modu ne zaman gelecek?</button><div class="faq-a"><p data-tr="Altıgen petek modu yeni bir harita olarak yakında bir güncellemeyle ekleniyor. Gelişmeler için bizi sosyal medyada takip et." data-en="Hexagon honeycomb mode is arriving soon as a new board in an upcoming update. Follow us on social media for news.">Altıgen petek modu yeni bir harita olarak yakında bir güncellemeyle ekleniyor. Gelişmeler için bizi sosyal medyada takip et.</p></div></div>
-      <div class="faq-item"><button class="faq-q" data-tr="Hangi cihazlarda çalışıyor?" data-en="What devices does it run on?">Hangi cihazlarda çalışıyor?</button><div class="faq-a"><p data-tr="iOS ve Android. App Store ve Google Play üzerinden indirebilirsin." data-en="iOS and Android. Download it from the App Store and Google Play.">iOS ve Android. App Store ve Google Play üzerinden indirebilirsin.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq1_q">Harfogram ücretsiz mi?</button><div class="faq-a"><p data-i18n="faq1_a">Evet. Harfogram'ı ücretsiz indirip oynayabilirsin. İsteğe bağlı reklamlar ve bonus içerikler bulunur.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq2_q">İnternetsiz oynayabilir miyim?</button><div class="faq-a"><p data-i18n="faq2_a">Evet. Aynı cihazda sırayla (pass-and-play) modunu internet bağlantısı olmadan oynayabilirsin. Çevrimiçi rakipler için bağlantı gerekir.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq3_q">Hangi dilleri destekliyor?</button><div class="faq-a"><p data-i18n="faq3_a">Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, Rusça, İtalyanca, Lehçe ve Endonezce — hepsinde tam sözlük desteğiyle oynayabilirsin.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq4_q">Arkadaşımı nasıl davet ederim?</button><div class="faq-a"><p data-i18n="faq4_a">Özel oda kurup davet linkini paylaşabilir ya da menüdeki 'Arkadaşını Davet Et' ile davet koduna sahip olabilirsin. Arkadaşın ilk maçını bitirdiğinde ikiniz de altın kazanırsınız.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq5_q">Güçlü yetenekleri nasıl kazanırım?</button><div class="faq-a"><p data-i18n="faq5_a">Oyun içi altınla satın alabilir ya da Battle Pass ödülü olarak ücretsiz kazanabilirsin. Bomba, Hırsız, Premium Takas ve dahası seni bekliyor.</p></div></div>
+      <div class="faq-item"><button class="faq-q" data-i18n="faq6_q">Hangi cihazlarda çalışıyor?</button><div class="faq-a"><p data-i18n="faq6_a">iOS ve Android. App Store ve Google Play üzerinden indirebilirsin.</p></div></div>
     </div>
   </div>
 </section>
@@ -376,11 +395,11 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
 <section class="download">
   <div class="wrap">
     <div class="banner reveal">
-      <h2 data-tr="Sıra sende. Harfleri diz." data-en="Your turn. Place the tiles.">Sıra sende. Harfleri diz.</h2>
-      <p data-tr="Harfogram'ı bugün indir, arkadaşlarına meydan oku." data-en="Download Harfogram today and challenge your friends.">Harfogram'ı bugün indir, arkadaşlarına meydan oku.</p>
+      <h2 data-i18n="dl_h2">Sıra sende. Harfleri diz.</h2>
+      <p data-i18n="dl_p">Harfogram'ı bugün indir, arkadaşlarına meydan oku.</p>
       <div class="cta-row">
-        <a href="#" class="store" aria-label="App Store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.42-.14-2.76.83-3.48.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.85 2.3 1.14-.05 1.57-.74 2.95-.74 1.38 0 1.77.74 2.98.71 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.77 5.5c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.09 1.76-.96 2.79 1.02.08 2.06-.52 2.69-1.26z"/></svg><span><small data-tr="İndir" data-en="Download on the">İndir</small><b>App Store</b></span></a>
-        <a href="#" class="store" aria-label="Google Play"><svg viewBox="0 0 24 24"><path fill="#2bd6e6" d="M3.6 2.4 13 11.8 3.6 21.2c-.36-.2-.6-.6-.6-1.1V3.5c0-.5.24-.9.6-1.1z"/><path fill="#ff3d8b" d="M16.3 8.7 13 11.8 3.9 2.1c.1 0 .2.05.3.1l12.1 6.5z"/><path fill="#ffc24b" d="M20.4 11c.6.34.6 1.66 0 2L16.3 15.3 13 11.8l3.3-3.5L20.4 11z"/><path fill="#b6f24a" d="M16.3 15.3 4.2 21.8c-.1.05-.2.1-.3.1L13 11.8l3.3 3.5z"/></svg><span><small data-tr="İndir" data-en="Get it on">İndir</small><b>Google Play</b></span></a>
+        <a href="https://apps.apple.com/app/harfogram/id6776008958" class="store" aria-label="App Store"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 12.54c-.02-2.3 1.88-3.4 1.96-3.46-1.07-1.56-2.73-1.78-3.32-1.8-1.42-.14-2.76.83-3.48.83-.71 0-1.82-.81-2.99-.79-1.54.02-2.96.9-3.75 2.27-1.6 2.78-.41 6.9 1.15 9.16.76 1.1 1.67 2.34 2.85 2.3 1.14-.05 1.57-.74 2.95-.74 1.38 0 1.77.74 2.98.71 1.23-.02 2.01-1.12 2.76-2.23.87-1.28 1.23-2.52 1.25-2.58-.03-.01-2.4-.92-2.42-3.65zM14.77 5.5c.63-.77 1.06-1.83.94-2.9-.91.04-2.02.61-2.67 1.37-.58.67-1.09 1.76-.96 2.79 1.02.08 2.06-.52 2.69-1.26z"/></svg><span><small data-i18n="store_dl_1">İndir</small><b>App Store</b></span></a>
+        <a href="https://play.google.com/store/apps/details?id=com.gurcanstudio.harfogram" class="store" aria-label="Google Play"><svg viewBox="0 0 24 24"><path fill="#2bd6e6" d="M3.6 2.4 13 11.8 3.6 21.2c-.36-.2-.6-.6-.6-1.1V3.5c0-.5.24-.9.6-1.1z"/><path fill="#ff3d8b" d="M16.3 8.7 13 11.8 3.9 2.1c.1 0 .2.05.3.1l12.1 6.5z"/><path fill="#ffc24b" d="M20.4 11c.6.34.6 1.66 0 2L16.3 15.3 13 11.8l3.3-3.5L20.4 11z"/><path fill="#b6f24a" d="M16.3 15.3 4.2 21.8c-.1.05-.2.1-.3.1L13 11.8l3.3 3.5z"/></svg><span><small data-i18n="store_dl_2">İndir</small><b>Google Play</b></span></a>
       </div>
     </div>
   </div>
@@ -394,7 +413,7 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
         <img src="harfogram_logo_cinzel.svg" alt="Harfogram"
           style="height:34px;width:auto;border-radius:9px;" />
       </a>
-      <p data-tr="Türkçe ve İngilizce çok oyunculu kelime tahtası. Gurcan Studio tarafından sevgiyle yapıldı." data-en="The bilingual multiplayer word board game. Made with love by Gurcan Studio.">Türkçe ve İngilizce çok oyunculu kelime tahtası. Gurcan Studio tarafından sevgiyle yapıldı.</p>
+      <p data-i18n="footer_tagline">10 dilde çok oyunculu kelime tahtası. Gurcan Studio tarafından sevgiyle yapıldı.</p>
       <div class="socials">
         <a href="https://instagram.com/harfogram" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
         <a href="https://x.com/harfogram" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -403,32 +422,486 @@ footer{padding:70px 24px 40px;border-top:1px solid var(--line-soft);background:r
       </div>
     </div>
     <div>
-      <h4 data-tr="Oyun" data-en="Game">Oyun</h4>
+      <h4 data-i18n="footer_game_h4">Oyun</h4>
       <ul>
-        <li><a href="#features" data-tr="Özellikler" data-en="Features">Özellikler</a></li>
-        <li><a href="#how" data-tr="Nasıl Oynanır" data-en="How to Play">Nasıl Oynanır</a></li>
-        <li><a href="#modes" data-tr="Modlar &amp; Haritalar" data-en="Modes &amp; Boards">Modlar &amp; Haritalar</a></li>
-        <li><a href="#daily" data-tr="Günlük Bulmaca" data-en="Daily Puzzle">Günlük Bulmaca</a></li>
+        <li><a href="#features" data-i18n="nav_features">Özellikler</a></li>
+        <li><a href="#how" data-i18n="nav_how">Nasıl Oynanır</a></li>
+        <li><a href="#modes" data-i18n="modes_eyebrow">Modlar &amp; Haritalar</a></li>
+        <li><a href="#daily" data-i18n="nav_daily">Günlük Bulmaca</a></li>
       </ul>
     </div>
     <div>
-      <h4 data-tr="Yasal &amp; Destek" data-en="Legal &amp; Support">Yasal &amp; Destek</h4>
+      <h4 data-i18n="footer_legal_h4">Yasal &amp; Destek</h4>
       <ul>
-        <li><a href="#faq" data-tr="SSS" data-en="FAQ">SSS</a></li>
-        <li><a href="mailto:hello@harfogram.com" data-tr="İletişim" data-en="Contact">İletişim</a></li>
-        <li><a href="/privacy" data-tr="Gizlilik Politikası" data-en="Privacy Policy">Gizlilik Politikası</a></li>
-        <li><a href="/terms" data-tr="Kullanım Koşulları" data-en="Terms of Use">Kullanım Koşulları</a></li>
+        <li><a href="#faq" data-i18n="nav_faq">SSS</a></li>
+        <li><a href="mailto:hello@harfogram.com" data-i18n="footer_contact">İletişim</a></li>
+        <li><a href="/privacy" data-i18n="footer_privacy">Gizlilik Politikası</a></li>
+        <li><a href="/terms" data-i18n="footer_terms">Kullanım Koşulları</a></li>
       </ul>
     </div>
   </div>
   <div class="legal">
     <span>© <span id="year"></span> Gurcan Studio · Harfogram</span>
-    <span data-tr="App Store, Apple Inc.'in; Google Play, Google LLC'nin ticari markalarıdır." data-en="App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC.">App Store, Apple Inc.'in; Google Play, Google LLC'nin ticari markalarıdır.</span>
+    <span data-i18n="footer_trademark">App Store, Apple Inc.'in; Google Play, Google LLC'nin ticari markalarıdır.</span>
   </div>
 </footer>
 
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
+
+const I18N = {
+tr:{
+nav_features:"Özellikler", nav_how:"Nasıl Oynanır", nav_modes:"Modlar", nav_daily:"Günlük Bulmaca", nav_faq:"SSS",
+hero_title:"10 dilde <span class='grad'>çok oyunculu</span> kelime savaşı.",
+hero_lead:"7 farklı harita, güçlü yetenekler, sezonluk Battle Pass. Arkadaşlarınla aynı cihazda, çevrimiçi ya da yapay zekaya karşı — harfleri birleştir, puanı kap, kazan.",
+store_dl_1:"İndir", store_dl_2:"İndir",
+hero_note:"Ücretsiz indir · iOS &amp; Android · 10 Dilde",
+feat_h2:"Tek oyun, <span class='grad-c'>sayısız olasılık</span>",
+feat1_h3:"Çok Oyunculu", feat1_p:"Hızlı maçla rastgele rakip bul, özel oda kurup arkadaşını davet et, aynı cihazda sırayla oyna ya da yapay zekaya meydan oku.",
+feat2_h3:"7 Farklı Harita", feat2_p:"Klasik'ten Mayın Tarlası'na, her tahta kendi stratejisini dayatıyor. Hangisi favorin olacak?",
+feat3_h3:"10 Dilde Oyna", feat3_p:"Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, Rusça, İtalyanca, Lehçe, Endonezce — tam sözlük desteğiyle.",
+feat4_h3:"Güçlü Yetenekler", feat4_p:"Bomba, Hırsız, Premium Takas ve dahası. Doğru anda doğru yeteneği kullan, oyunu çevir.",
+feat5_p:"Sezonluk ödüller, özel kozmetik unvanlar. Oynadıkça ilerle, sezonu tamamla.",
+feat6_h3:"Başarımlar &amp; Liderlik", feat6_p:"20'den fazla başarım, global liderlik tablosu, oyuncu seviyesi. Her maç seni bir adım öteye taşır.",
+feat7_p:"Her gün yeni bir tahta. En yüksek puanı yap, skor tablosunda yerini al.",
+feat8_h3:"Adil Sözlük", feat8_p:"Yalnızca gerçek kelimeler kabul edilir — özel isim yok, uydurma yok. Kazanırsan gerçekten kazanmış olursun.",
+feat9_h3:"Kendini İfade Et", feat9_p:"Onlarca tema, özel tahta görünüşleri, taş kaplamaları. Battle Pass'e özel kozmetikler de cabası.",
+how_h2:"Öğrenmesi dakikalar, ustalaşması ömür",
+step1_h3:"Harflerini diz", step1_p:"Elindeki harflerle tahtada geçerli kelimeler oluştur. Hangi dilde oynayacağın sana kalmış.",
+step2_h3:"Puanları topla", step2_p:"Harf değerleri ve bonus kareler ile puanını katla. Doğru kareyi yakala, puanı uçur.",
+step3_h3:"Rakibini geç", step3_p:"Sıra sırayla döner. Harfler bitince en yüksek toplam puanın sahibi kazanır.",
+modes_eyebrow:"Modlar &amp; Haritalar", modes_h2:"Aynı oyun, <span class='grad'>sürekli yeni</span>",
+modes_lead:"Harita çeşitliliği Harfogram'ın DNA'sında. Her tahta farklı bonus düzeni, farklı strateji demek. Bir favorin olacak — sonra hepsini denemek isteyeceksin.",
+map1_name:"Klasik", map1_desc:"— dengeli bonus dağılımı, 15×15",
+map2_name:"Hızlı Oyun", map2_desc:"— küçük tahta, hızlı maç, 11×11",
+map3_name:"Bol Bonus", map3_desc:"— her köşe bir fırsat",
+map4_name:"Donut", map4_desc:"— ortası boş halka tahta",
+map5_name:"Donmuş", map5_desc:"— donmuş kareler, sürpriz bonus puan",
+map6_name:"Labirent", map6_desc:"— duvarlarla dolu, yolunu bul",
+map7_name:"Mayın Tarlası", map7_desc:"— gizli mayınlar, dikkatli ol",
+daily_h2:"Her gün tek tahta. <span class='grad-c'>Herkes aynı harfler.</span>",
+daily_p:"Aynı harf setiyle herkes yarışır — fark senin bulduğun kelimelerde. Her dilin kendi skor tablosu var, her gün sıfırlanır. Serini koru, zirveye tırman.",
+daily_cta_small:"Bugünün tahtası", daily_cta_big:"Hemen Oyna", daily_lb_title:"Günün En İyileri", daily_you:"sen",
+faq_eyebrow:"Sık Sorulan Sorular", faq_h2:"Merak edilenler",
+faq1_q:"Harfogram ücretsiz mi?", faq1_a:"Evet. Harfogram'ı ücretsiz indirip oynayabilirsin. İsteğe bağlı reklamlar ve bonus içerikler bulunur.",
+faq2_q:"İnternetsiz oynayabilir miyim?", faq2_a:"Evet. Aynı cihazda sırayla (pass-and-play) modunu internet bağlantısı olmadan oynayabilirsin. Çevrimiçi rakipler için bağlantı gerekir.",
+faq3_q:"Hangi dilleri destekliyor?", faq3_a:"Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, Portekizce, Rusça, İtalyanca, Lehçe ve Endonezce — hepsinde tam sözlük desteğiyle oynayabilirsin.",
+faq4_q:"Arkadaşımı nasıl davet ederim?", faq4_a:"Özel oda kurup davet linkini paylaşabilir ya da menüdeki 'Arkadaşını Davet Et' ile davet koduna sahip olabilirsin. Arkadaşın ilk maçını bitirdiğinde ikiniz de altın kazanırsınız.",
+faq5_q:"Güçlü yetenekleri nasıl kazanırım?", faq5_a:"Oyun içi altınla satın alabilir ya da Battle Pass ödülü olarak ücretsiz kazanabilirsin. Bomba, Hırsız, Premium Takas ve dahası seni bekliyor.",
+faq6_q:"Hangi cihazlarda çalışıyor?", faq6_a:"iOS ve Android. App Store ve Google Play üzerinden indirebilirsin.",
+dl_h2:"Sıra sende. Harfleri diz.", dl_p:"Harfogram'ı bugün indir, arkadaşlarına meydan oku.",
+footer_tagline:"10 dilde çok oyunculu kelime tahtası. Gurcan Studio tarafından sevgiyle yapıldı.",
+footer_game_h4:"Oyun", footer_legal_h4:"Yasal &amp; Destek", footer_contact:"İletişim",
+footer_privacy:"Gizlilik Politikası", footer_terms:"Kullanım Koşulları",
+footer_trademark:"App Store, Apple Inc.'in; Google Play, Google LLC'nin ticari markalarıdır."
+},
+en:{
+nav_features:"Features", nav_how:"How to Play", nav_modes:"Modes", nav_daily:"Daily Puzzle", nav_faq:"FAQ",
+hero_title:"The <span class='grad'>multiplayer</span> word battle — in 10 languages.",
+hero_lead:"7 unique boards, powerful boosts, a seasonal Battle Pass. Play with friends on one device, online, or against AI — connect the letters, grab the points, win.",
+store_dl_1:"Download on the", store_dl_2:"Get it on",
+hero_note:"Free download · iOS &amp; Android · 10 Languages",
+feat_h2:"One game, <span class='grad-c'>countless possibilities</span>",
+feat1_h3:"Multiplayer", feat1_p:"Find a random opponent with Quick Match, invite a friend to a private room, pass-and-play on one device, or challenge the AI.",
+feat2_h3:"7 Unique Boards", feat2_p:"From Classic to Minefield, every board forces a new game plan. Which one will be your favorite?",
+feat3_h3:"Play in 10 Languages", feat3_p:"Turkish, English, German, French, Spanish, Portuguese, Russian, Italian, Polish, Indonesian — each with full dictionary support.",
+feat4_h3:"Powerful Boosts", feat4_p:"Bomb, Steal, Premium Swap, and more. Use the right boost at the right moment and flip the game.",
+feat5_p:"Seasonal rewards and exclusive cosmetic titles. Progress as you play and complete the season.",
+feat6_h3:"Achievements &amp; Leaderboards", feat6_p:"20+ achievements, global leaderboards, player levels. Every match pushes you further.",
+feat7_p:"A fresh board every day. Score high and climb the leaderboard.",
+feat8_h3:"Fair Dictionary", feat8_p:"Only real words count — no proper nouns, no made-up words. When you win, you've really won.",
+feat9_h3:"Make It Yours", feat9_p:"Dozens of themes, custom board looks, tile skins — plus Battle Pass exclusive cosmetics.",
+how_h2:"Minutes to learn, a lifetime to master",
+step1_h3:"Place your tiles", step1_p:"Form valid words on the board with the tiles in your rack. Play in whichever language you like.",
+step2_h3:"Rack up points", step2_p:"Stack up points with letter values and bonus squares. Hit the right square and watch the score soar.",
+step3_h3:"Beat your rival", step3_p:"Turns rotate. When the tiles run out, the highest total score takes the win.",
+modes_eyebrow:"Modes &amp; Boards", modes_h2:"Same game, <span class='grad'>always new</span>",
+modes_lead:"Board variety is in Harfogram's DNA. Each board means a different bonus layout and a different strategy. You'll pick a favorite — then want to try them all.",
+map1_name:"Classic", map1_desc:"— balanced bonus layout, 15×15",
+map2_name:"Fast", map2_desc:"— small board, quick match, 11×11",
+map3_name:"Bonus-Rich", map3_desc:"— every corner is an opportunity",
+map4_name:"Donut", map4_desc:"— a hollow-center ring board",
+map5_name:"Frozen", map5_desc:"— frozen tiles, a surprise bonus score",
+map6_name:"Labyrinth", map6_desc:"— walled paths, find your way",
+map7_name:"Minefield", map7_desc:"— hidden mines, tread carefully",
+daily_h2:"One board a day. <span class='grad-c'>Everyone, same tiles.</span>",
+daily_p:"Everyone competes with the same letter set — the difference is in the words you find. Every language has its own leaderboard, reset daily. Keep your streak, climb to the top.",
+daily_cta_small:"Today's board", daily_cta_big:"Play Now", daily_lb_title:"Today's Top Players", daily_you:"you",
+faq_eyebrow:"FAQ", faq_h2:"Good to know",
+faq1_q:"Is Harfogram free?", faq1_a:"Yes. Harfogram is free to download and play. It includes optional ads and bonus content.",
+faq2_q:"Can I play offline?", faq2_a:"Yes. The pass-and-play mode on a single device works without an internet connection. Online opponents require a connection.",
+faq3_q:"Which languages are supported?", faq3_a:"Turkish, English, German, French, Spanish, Portuguese, Russian, Italian, Polish, and Indonesian — each with full dictionary support.",
+faq4_q:"How do I invite a friend?", faq4_a:"Create a private room and share the invite link, or use 'Invite a Friend' in the menu to get your own invite code. When your friend finishes their first match, you both earn gold.",
+faq5_q:"How do I get powerful boosts?", faq5_a:"Buy them with in-game gold, or earn them for free as Battle Pass rewards. Bomb, Steal, Premium Swap, and more are waiting for you.",
+faq6_q:"What devices does it run on?", faq6_a:"iOS and Android. Download it from the App Store and Google Play.",
+dl_h2:"Your turn. Place the tiles.", dl_p:"Download Harfogram today and challenge your friends.",
+footer_tagline:"The multiplayer word board game, in 10 languages. Made with love by Gurcan Studio.",
+footer_game_h4:"Game", footer_legal_h4:"Legal &amp; Support", footer_contact:"Contact",
+footer_privacy:"Privacy Policy", footer_terms:"Terms of Use",
+footer_trademark:"App Store is a trademark of Apple Inc. Google Play is a trademark of Google LLC."
+},
+de:{
+nav_features:"Funktionen", nav_how:"Spielanleitung", nav_modes:"Modi", nav_daily:"Tägliches Rätsel", nav_faq:"FAQ",
+hero_title:"Der <span class='grad'>Mehrspieler</span>-Wortkampf — in 10 Sprachen.",
+hero_lead:"7 einzigartige Spielbretter, starke Boosts, ein saisonaler Battle Pass. Spiele mit Freunden auf einem Gerät, online oder gegen die KI — verbinde die Buchstaben, sammle Punkte, gewinne.",
+store_dl_1:"Laden im", store_dl_2:"Jetzt bei",
+hero_note:"Kostenloser Download · iOS &amp; Android · 10 Sprachen",
+feat_h2:"Ein Spiel, <span class='grad-c'>unzählige Möglichkeiten</span>",
+feat1_h3:"Mehrspieler", feat1_p:"Finde per Schnellspiel einen zufälligen Gegner, lade einen Freund in einen privaten Raum ein, spiele abwechselnd auf einem Gerät oder fordere die KI heraus.",
+feat2_h3:"7 einzigartige Spielbretter", feat2_p:"Von Klassisch bis Minenfeld – jedes Spielbrett verlangt eine neue Strategie. Welches wird dein Favorit?",
+feat3_h3:"Spiele in 10 Sprachen", feat3_p:"Türkisch, Englisch, Deutsch, Französisch, Spanisch, Portugiesisch, Russisch, Italienisch, Polnisch, Indonesisch — jeweils mit vollständiger Wörterbuchunterstützung.",
+feat4_h3:"Starke Boosts", feat4_p:"Bombe, Diebstahl, Premium-Tausch und mehr. Setze den richtigen Boost im richtigen Moment ein und dreh das Spiel.",
+feat5_p:"Saisonale Belohnungen und exklusive kosmetische Titel. Spiele, um voranzukommen, und schließe die Saison ab.",
+feat6_h3:"Erfolge &amp; Bestenlisten", feat6_p:"20+ Erfolge, globale Bestenlisten, Spielerstufen. Jedes Match bringt dich weiter.",
+feat7_p:"Jeden Tag ein neues Spielbrett. Erziele die höchste Punktzahl und klettere in der Bestenliste.",
+feat8_h3:"Faires Wörterbuch", feat8_p:"Nur echte Wörter zählen — keine Eigennamen, keine erfundenen Wörter. Wenn du gewinnst, hast du wirklich gewonnen.",
+feat9_h3:"Mach es zu deinem", feat9_p:"Dutzende Themen, individuelle Spielbrett-Looks, Steinskins – plus exklusive Battle-Pass-Kosmetika.",
+how_h2:"In Minuten gelernt, ein Leben lang gemeistert",
+step1_h3:"Lege deine Buchstaben", step1_p:"Bilde gültige Wörter auf dem Spielbrett mit den Steinen in deinem Rack. In welcher Sprache du spielst, bleibt dir überlassen.",
+step2_h3:"Sammle Punkte", step2_p:"Steigere deine Punktzahl mit Buchstabenwerten und Bonusfeldern. Triff das richtige Feld und lass die Punktzahl steigen.",
+step3_h3:"Schlage deinen Rivalen", step3_p:"Die Runden wechseln sich ab. Wenn die Steine ausgehen, gewinnt die höchste Gesamtpunktzahl.",
+modes_eyebrow:"Modi &amp; Spielbretter", modes_h2:"Dasselbe Spiel, <span class='grad'>immer neu</span>",
+modes_lead:"Die Vielfalt der Spielbretter liegt in der DNA von Harfogram. Jedes Spielbrett bedeutet ein anderes Bonuslayout und eine andere Strategie. Du wirst einen Favoriten finden — und dann alle ausprobieren wollen.",
+map1_name:"Klassisch", map1_desc:"— ausgewogenes Bonuslayout, 15×15",
+map2_name:"Schnell", map2_desc:"— kleines Spielbrett, schnelles Match, 11×11",
+map3_name:"Bonusreich", map3_desc:"— jede Ecke eine Chance",
+map4_name:"Donut", map4_desc:"— ein Ringspielbrett mit leerer Mitte",
+map5_name:"Gefroren", map5_desc:"— gefrorene Felder, ein überraschender Bonuspunkt",
+map6_name:"Labyrinth", map6_desc:"— verwinkelte Wege, finde deinen Weg",
+map7_name:"Minenfeld", map7_desc:"— versteckte Minen, sei vorsichtig",
+daily_h2:"Ein Spielbrett pro Tag. <span class='grad-c'>Alle mit denselben Steinen.</span>",
+daily_p:"Alle treten mit demselben Buchstabensatz an — der Unterschied liegt in den Wörtern, die du findest. Jede Sprache hat ihre eigene Bestenliste, die täglich zurückgesetzt wird. Halte deine Serie, erklimme die Spitze.",
+daily_cta_small:"Heutiges Spielbrett", daily_cta_big:"Jetzt spielen", daily_lb_title:"Die Besten des Tages", daily_you:"du",
+faq_eyebrow:"Häufig gestellte Fragen", faq_h2:"Wissenswertes",
+faq1_q:"Ist Harfogram kostenlos?", faq1_a:"Ja. Du kannst Harfogram kostenlos herunterladen und spielen. Es enthält optionale Werbung und Bonusinhalte.",
+faq2_q:"Kann ich offline spielen?", faq2_a:"Ja. Der Pass-and-Play-Modus auf einem einzelnen Gerät funktioniert ohne Internetverbindung. Für Online-Gegner ist eine Verbindung erforderlich.",
+faq3_q:"Welche Sprachen werden unterstützt?", faq3_a:"Türkisch, Englisch, Deutsch, Französisch, Spanisch, Portugiesisch, Russisch, Italienisch, Polnisch und Indonesisch — jeweils mit vollständiger Wörterbuchunterstützung.",
+faq4_q:"Wie lade ich einen Freund ein?", faq4_a:"Erstelle einen privaten Raum und teile den Einladungslink, oder nutze „Freund einladen“ im Menü, um deinen eigenen Einladungscode zu erhalten. Wenn dein Freund sein erstes Match beendet, erhaltet ihr beide Gold.",
+faq5_q:"Wie bekomme ich starke Boosts?", faq5_a:"Kaufe sie mit Gold im Spiel oder verdiene sie kostenlos als Battle-Pass-Belohnungen. Bombe, Diebstahl, Premium-Tausch und mehr warten auf dich.",
+faq6_q:"Auf welchen Geräten läuft es?", faq6_a:"iOS und Android. Du kannst es im App Store und bei Google Play herunterladen.",
+dl_h2:"Du bist dran. Lege die Steine.", dl_p:"Lade Harfogram noch heute herunter und fordere deine Freunde heraus.",
+footer_tagline:"Das Mehrspieler-Wortspiel, in 10 Sprachen. Mit Liebe gemacht von Gurcan Studio.",
+footer_game_h4:"Spiel", footer_legal_h4:"Rechtliches &amp; Support", footer_contact:"Kontakt",
+footer_privacy:"Datenschutzerklärung", footer_terms:"Nutzungsbedingungen",
+footer_trademark:"App Store ist eine Marke von Apple Inc. Google Play ist eine Marke von Google LLC."
+},
+fr:{
+nav_features:"Fonctionnalités", nav_how:"Comment jouer", nav_modes:"Modes", nav_daily:"Défi quotidien", nav_faq:"FAQ",
+hero_title:"La bataille de mots <span class='grad'>multijoueur</span> — en 10 langues.",
+hero_lead:"7 plateaux uniques, des bonus puissants, un Battle Pass saisonnier. Joue avec des amis sur un même appareil, en ligne ou contre l'IA — relie les lettres, marque des points, gagne.",
+store_dl_1:"Télécharger sur", store_dl_2:"Disponible sur",
+hero_note:"Téléchargement gratuit · iOS &amp; Android · 10 langues",
+feat_h2:"Un seul jeu, <span class='grad-c'>d'innombrables possibilités</span>",
+feat1_h3:"Multijoueur", feat1_p:"Trouve un adversaire aléatoire avec le Match Rapide, invite un ami dans une salle privée, joue à tour de rôle sur un même appareil ou défie l'IA.",
+feat2_h3:"7 plateaux uniques", feat2_p:"Du Classique au Champ de mines, chaque plateau impose une nouvelle stratégie. Lequel sera ton favori ?",
+feat3_h3:"Joue en 10 langues", feat3_p:"Turc, anglais, allemand, français, espagnol, portugais, russe, italien, polonais, indonésien — chacun avec un dictionnaire complet.",
+feat4_h3:"Bonus puissants", feat4_p:"Bombe, Vol, Échange Premium et plus encore. Utilise le bon bonus au bon moment et retourne la partie.",
+feat5_p:"Récompenses saisonnières et titres cosmétiques exclusifs. Progresse en jouant et termine la saison.",
+feat6_h3:"Succès &amp; classements", feat6_p:"Plus de 20 succès, classements mondiaux, niveaux de joueur. Chaque partie te fait progresser.",
+feat7_p:"Un nouveau plateau chaque jour. Fais le meilleur score et grimpe dans le classement.",
+feat8_h3:"Dictionnaire équitable", feat8_p:"Seuls les vrais mots comptent — pas de noms propres, pas de mots inventés. Si tu gagnes, tu as vraiment gagné.",
+feat9_h3:"Personnalise ton style", feat9_p:"Des dizaines de thèmes, des styles de plateau personnalisés, des skins de tuiles — plus des cosmétiques exclusifs au Battle Pass.",
+how_h2:"Quelques minutes pour apprendre, toute une vie pour maîtriser",
+step1_h3:"Place tes lettres", step1_p:"Forme des mots valides sur le plateau avec les lettres de ton chevalet. La langue dans laquelle tu joues, c'est toi qui choisis.",
+step2_h3:"Accumule des points", step2_p:"Multiplie tes points grâce aux valeurs des lettres et aux cases bonus. Vise la bonne case et fais grimper ton score.",
+step3_h3:"Bats ton rival", step3_p:"Les tours tournent. Quand les lettres sont épuisées, le score total le plus élevé remporte la victoire.",
+modes_eyebrow:"Modes &amp; plateaux", modes_h2:"Le même jeu, <span class='grad'>toujours renouvelé</span>",
+modes_lead:"La diversité des plateaux fait partie de l'ADN de Harfogram. Chaque plateau signifie une disposition de bonus et une stratégie différentes. Tu auras un favori — puis tu voudras tous les essayer.",
+map1_name:"Classique", map1_desc:"— disposition de bonus équilibrée, 15×15",
+map2_name:"Rapide", map2_desc:"— petit plateau, partie rapide, 11×11",
+map3_name:"Riche en bonus", map3_desc:"— chaque coin est une opportunité",
+map4_name:"Donut", map4_desc:"— un plateau en anneau avec un centre vide",
+map5_name:"Gelé", map5_desc:"— cases gelées, un bonus de score surprise",
+map6_name:"Labyrinthe", map6_desc:"— chemins avec des murs, trouve ta voie",
+map7_name:"Champ de mines", map7_desc:"— mines cachées, avance prudemment",
+daily_h2:"Un plateau par jour. <span class='grad-c'>Les mêmes lettres pour tous.</span>",
+daily_p:"Tout le monde s'affronte avec le même jeu de lettres — la différence se joue dans les mots que tu trouves. Chaque langue a son propre classement, réinitialisé chaque jour. Garde ta série, grimpe au sommet.",
+daily_cta_small:"Le plateau du jour", daily_cta_big:"Jouer maintenant", daily_lb_title:"Meilleurs joueurs du jour", daily_you:"toi",
+faq_eyebrow:"Questions fréquentes", faq_h2:"Bon à savoir",
+faq1_q:"Harfogram est-il gratuit ?", faq1_a:"Oui. Tu peux télécharger et jouer à Harfogram gratuitement. Il comprend des publicités optionnelles et du contenu bonus.",
+faq2_q:"Puis-je jouer hors ligne ?", faq2_a:"Oui. Le mode à tour de rôle sur un seul appareil fonctionne sans connexion internet. Les adversaires en ligne nécessitent une connexion.",
+faq3_q:"Quelles langues sont prises en charge ?", faq3_a:"Turc, anglais, allemand, français, espagnol, portugais, russe, italien, polonais et indonésien — chacun avec un dictionnaire complet.",
+faq4_q:"Comment inviter un ami ?", faq4_a:"Crée une salle privée et partage le lien d'invitation, ou utilise « Inviter un ami » dans le menu pour obtenir ton propre code d'invitation. Quand ton ami termine sa première partie, vous gagnez tous les deux de l'or.",
+faq5_q:"Comment obtenir des bonus puissants ?", faq5_a:"Achète-les avec de l'or en jeu, ou gagne-les gratuitement en tant que récompenses du Battle Pass. Bombe, Vol, Échange Premium et plus encore t'attendent.",
+faq6_q:"Sur quels appareils fonctionne-t-il ?", faq6_a:"iOS et Android. Tu peux le télécharger depuis l'App Store et Google Play.",
+dl_h2:"À toi de jouer. Place les lettres.", dl_p:"Télécharge Harfogram dès aujourd'hui et défie tes amis.",
+footer_tagline:"Le jeu de plateau de mots multijoueur, en 10 langues. Conçu avec passion par Gurcan Studio.",
+footer_game_h4:"Jeu", footer_legal_h4:"Mentions légales &amp; assistance", footer_contact:"Contact",
+footer_privacy:"Politique de confidentialité", footer_terms:"Conditions d'utilisation",
+footer_trademark:"App Store est une marque déposée d'Apple Inc. Google Play est une marque déposée de Google LLC."
+},
+es:{
+nav_features:"Características", nav_how:"Cómo jugar", nav_modes:"Modos", nav_daily:"Reto diario", nav_faq:"FAQ",
+hero_title:"La batalla de palabras <span class='grad'>multijugador</span> — en 10 idiomas.",
+hero_lead:"7 tableros únicos, potenciadores poderosos, un Battle Pass de temporada. Juega con amigos en un mismo dispositivo, en línea o contra la IA — conecta las letras, consigue puntos, gana.",
+store_dl_1:"Descárgalo en", store_dl_2:"Disponible en",
+hero_note:"Descarga gratis · iOS &amp; Android · 10 idiomas",
+feat_h2:"Un solo juego, <span class='grad-c'>infinitas posibilidades</span>",
+feat1_h3:"Multijugador", feat1_p:"Encuentra un rival aleatorio con Partida Rápida, invita a un amigo a una sala privada, juega por turnos en un mismo dispositivo o desafía a la IA.",
+feat2_h3:"7 tableros únicos", feat2_p:"Desde el Clásico hasta el Campo Minado, cada tablero exige una nueva estrategia. ¿Cuál será tu favorito?",
+feat3_h3:"Juega en 10 idiomas", feat3_p:"Turco, inglés, alemán, francés, español, portugués, ruso, italiano, polaco, indonesio — cada uno con diccionario completo.",
+feat4_h3:"Potenciadores poderosos", feat4_p:"Bomba, Robo, Intercambio Premium y más. Usa el potenciador adecuado en el momento justo y da la vuelta a la partida.",
+feat5_p:"Recompensas de temporada y títulos cosméticos exclusivos. Avanza jugando y completa la temporada.",
+feat6_h3:"Logros &amp; clasificaciones", feat6_p:"Más de 20 logros, clasificaciones globales, niveles de jugador. Cada partida te hace avanzar más.",
+feat7_p:"Un tablero nuevo cada día. Consigue la puntuación más alta y sube en la clasificación.",
+feat8_h3:"Diccionario justo", feat8_p:"Solo cuentan las palabras reales — sin nombres propios, sin palabras inventadas. Si ganas, ganaste de verdad.",
+feat9_h3:"Hazlo tuyo", feat9_p:"Decenas de temas, aspectos de tablero personalizados, skins de fichas — además de cosméticos exclusivos del Battle Pass.",
+how_h2:"Minutos para aprender, toda una vida para dominar",
+step1_h3:"Coloca tus fichas", step1_p:"Forma palabras válidas en el tablero con las fichas de tu atril. En qué idioma juegas depende de ti.",
+step2_h3:"Acumula puntos", step2_p:"Multiplica tus puntos con los valores de las letras y las casillas bonus. Acierta la casilla correcta y haz que tu puntuación se dispare.",
+step3_h3:"Supera a tu rival", step3_p:"Los turnos rotan. Cuando se agotan las fichas, gana quien tenga la puntuación total más alta.",
+modes_eyebrow:"Modos &amp; tableros", modes_h2:"El mismo juego, <span class='grad'>siempre renovado</span>",
+modes_lead:"La variedad de tableros está en el ADN de Harfogram. Cada tablero significa una disposición de bonus y una estrategia diferentes. Elegirás un favorito — y luego querrás probarlos todos.",
+map1_name:"Clásico", map1_desc:"— disposición de bonus equilibrada, 15×15",
+map2_name:"Rápido", map2_desc:"— tablero pequeño, partida rápida, 11×11",
+map3_name:"Rico en bonus", map3_desc:"— cada esquina es una oportunidad",
+map4_name:"Donut", map4_desc:"— un tablero anular con el centro vacío",
+map5_name:"Congelado", map5_desc:"— casillas congeladas, un bonus de puntos sorpresa",
+map6_name:"Laberinto", map6_desc:"— caminos con muros, encuentra tu ruta",
+map7_name:"Campo Minado", map7_desc:"— minas ocultas, ten cuidado",
+daily_h2:"Un tablero al día. <span class='grad-c'>Las mismas letras para todos.</span>",
+daily_p:"Todos compiten con el mismo conjunto de letras — la diferencia está en las palabras que encuentres. Cada idioma tiene su propia clasificación, que se reinicia cada día. Mantén tu racha, sube a la cima.",
+daily_cta_small:"El tablero de hoy", daily_cta_big:"Jugar ahora", daily_lb_title:"Los mejores del día", daily_you:"tú",
+faq_eyebrow:"Preguntas frecuentes", faq_h2:"Cosas útiles",
+faq1_q:"¿Harfogram es gratis?", faq1_a:"Sí. Puedes descargar y jugar a Harfogram gratis. Incluye anuncios opcionales y contenido adicional.",
+faq2_q:"¿Puedo jugar sin conexión?", faq2_a:"Sí. El modo por turnos en un solo dispositivo funciona sin conexión a internet. Los rivales en línea requieren conexión.",
+faq3_q:"¿Qué idiomas admite?", faq3_a:"Turco, inglés, alemán, francés, español, portugués, ruso, italiano, polaco e indonesio — cada uno con diccionario completo.",
+faq4_q:"¿Cómo invito a un amigo?", faq4_a:"Crea una sala privada y comparte el enlace de invitación, o usa 'Invita a un amigo' en el menú para obtener tu propio código de invitación. Cuando tu amigo termine su primera partida, ambos ganaréis oro.",
+faq5_q:"¿Cómo consigo potenciadores poderosos?", faq5_a:"Cómpralos con oro del juego, o gánalos gratis como recompensas del Battle Pass. Bomba, Robo, Intercambio Premium y más te esperan.",
+faq6_q:"¿En qué dispositivos funciona?", faq6_a:"iOS y Android. Puedes descargarlo desde App Store y Google Play.",
+dl_h2:"Es tu turno. Coloca las fichas.", dl_p:"Descarga Harfogram hoy mismo y desafía a tus amigos.",
+footer_tagline:"El juego de mesa de palabras multijugador, en 10 idiomas. Hecho con cariño por Gurcan Studio.",
+footer_game_h4:"Juego", footer_legal_h4:"Legal &amp; soporte", footer_contact:"Contacto",
+footer_privacy:"Política de privacidad", footer_terms:"Términos de uso",
+footer_trademark:"App Store es una marca comercial de Apple Inc. Google Play es una marca comercial de Google LLC."
+},
+pt:{
+nav_features:"Funcionalidades", nav_how:"Como Jogar", nav_modes:"Modos", nav_daily:"Desafio Diário", nav_faq:"FAQ",
+hero_title:"A batalha de palavras <span class='grad'>multijogador</span> — em 10 idiomas.",
+hero_lead:"7 tabuleiros únicos, poderes fortes, um Battle Pass sazonal. Joga com amigos no mesmo dispositivo, online ou contra a IA — liga as letras, ganha pontos, vence.",
+store_dl_1:"Transferir na", store_dl_2:"Disponível no",
+hero_note:"Transferência grátis · iOS &amp; Android · 10 Idiomas",
+feat_h2:"Um jogo, <span class='grad-c'>infinitas possibilidades</span>",
+feat1_h3:"Multijogador", feat1_p:"Encontra um adversário aleatório com a Partida Rápida, convida um amigo para uma sala privada, joga à vez no mesmo dispositivo ou desafia a IA.",
+feat2_h3:"7 Tabuleiros Únicos", feat2_p:"Do Clássico ao Campo Minado, cada tabuleiro impõe uma nova estratégia. Qual será o teu favorito?",
+feat3_h3:"Joga em 10 Idiomas", feat3_p:"Turco, inglês, alemão, francês, espanhol, português, russo, italiano, polaco, indonésio — cada um com suporte total de dicionário.",
+feat4_h3:"Poderes Fortes", feat4_p:"Bomba, Roubo, Troca Premium e mais. Usa o poder certo no momento certo e vira o jogo.",
+feat5_p:"Recompensas sazonais e títulos cosméticos exclusivos. Progride enquanto jogas e completa a temporada.",
+feat6_h3:"Conquistas &amp; Classificações", feat6_p:"Mais de 20 conquistas, classificações globais, níveis de jogador. Cada partida leva-te mais longe.",
+feat7_p:"Um tabuleiro novo todos os dias. Faz a pontuação mais alta e sobe na tabela de classificação.",
+feat8_h3:"Dicionário Justo", feat8_p:"Só contam palavras reais — sem nomes próprios, sem palavras inventadas. Se ganhas, ganhaste mesmo.",
+feat9_h3:"Torna-o Teu", feat9_p:"Dezenas de temas, aparências de tabuleiro personalizadas, skins de peças — além de cosméticos exclusivos do Battle Pass.",
+how_h2:"Minutos para aprender, uma vida para dominar",
+step1_h3:"Coloca as tuas peças", step1_p:"Forma palavras válidas no tabuleiro com as peças do teu suporte. Em que idioma jogas depende de ti.",
+step2_h3:"Acumula pontos", step2_p:"Multiplica os teus pontos com os valores das letras e as casas de bónus. Acerta na casa certa e vê a pontuação disparar.",
+step3_h3:"Vence o teu rival", step3_p:"Os turnos alternam. Quando as peças acabam, quem tiver a pontuação total mais alta vence.",
+modes_eyebrow:"Modos &amp; Tabuleiros", modes_h2:"O mesmo jogo, <span class='grad'>sempre novo</span>",
+modes_lead:"A variedade de tabuleiros está no ADN do Harfogram. Cada tabuleiro significa uma disposição de bónus e uma estratégia diferentes. Vais escolher um favorito — e depois vais querer experimentar todos.",
+map1_name:"Clássico", map1_desc:"— disposição de bónus equilibrada, 15×15",
+map2_name:"Rápido", map2_desc:"— tabuleiro pequeno, partida rápida, 11×11",
+map3_name:"Rico em Bónus", map3_desc:"— cada canto é uma oportunidade",
+map4_name:"Donut", map4_desc:"— tabuleiro em anel com o centro vazio",
+map5_name:"Congelado", map5_desc:"— casas congeladas, um bónus de pontos surpresa",
+map6_name:"Labirinto", map6_desc:"— caminhos com paredes, encontra o teu percurso",
+map7_name:"Campo Minado", map7_desc:"— minas escondidas, tem cuidado",
+daily_h2:"Um tabuleiro por dia. <span class='grad-c'>As mesmas peças para todos.</span>",
+daily_p:"Todos competem com o mesmo conjunto de letras — a diferença está nas palavras que encontras. Cada idioma tem a sua própria tabela de classificação, reiniciada diariamente. Mantém a tua sequência, sobe ao topo.",
+daily_cta_small:"O tabuleiro de hoje", daily_cta_big:"Jogar Agora", daily_lb_title:"Melhores do Dia", daily_you:"tu",
+faq_eyebrow:"Perguntas Frequentes", faq_h2:"Boa saber",
+faq1_q:"O Harfogram é grátis?", faq1_a:"Sim. Podes transferir e jogar Harfogram gratuitamente. Inclui anúncios opcionais e conteúdo bónus.",
+faq2_q:"Posso jogar sem internet?", faq2_a:"Sim. O modo à vez num único dispositivo funciona sem ligação à internet. Adversários online requerem ligação.",
+faq3_q:"Que idiomas são suportados?", faq3_a:"Turco, inglês, alemão, francês, espanhol, português, russo, italiano, polaco e indonésio — cada um com suporte total de dicionário.",
+faq4_q:"Como convido um amigo?", faq4_a:"Cria uma sala privada e partilha o link de convite, ou usa 'Convidar um Amigo' no menu para obteres o teu próprio código de convite. Quando o teu amigo terminar a primeira partida, ambos ganham ouro.",
+faq5_q:"Como consigo poderes fortes?", faq5_a:"Compra-os com ouro do jogo, ou ganha-os gratuitamente como recompensas do Battle Pass. Bomba, Roubo, Troca Premium e mais esperam por ti.",
+faq6_q:"Em que dispositivos funciona?", faq6_a:"iOS e Android. Podes transferi-lo na App Store e Google Play.",
+dl_h2:"É a tua vez. Coloca as peças.", dl_p:"Transfere o Harfogram hoje e desafia os teus amigos.",
+footer_tagline:"O jogo de tabuleiro de palavras multijogador, em 10 idiomas. Feito com carinho pela Gurcan Studio.",
+footer_game_h4:"Jogo", footer_legal_h4:"Legal &amp; Suporte", footer_contact:"Contacto",
+footer_privacy:"Política de Privacidade", footer_terms:"Termos de Utilização",
+footer_trademark:"App Store é uma marca registada da Apple Inc. Google Play é uma marca registada da Google LLC."
+},
+ru:{
+nav_features:"Возможности", nav_how:"Как играть", nav_modes:"Режимы", nav_daily:"Ежедневная головоломка", nav_faq:"Вопросы",
+hero_title:"<span class='grad'>Многопользовательская</span> словесная битва — на 10 языках.",
+hero_lead:"7 уникальных полей, мощные усиления, сезонный Battle Pass. Играй с друзьями на одном устройстве, онлайн или против ИИ — соединяй буквы, набирай очки, побеждай.",
+store_dl_1:"Загрузить в", store_dl_2:"Доступно в",
+hero_note:"Бесплатная загрузка · iOS &amp; Android · 10 языков",
+feat_h2:"Одна игра, <span class='grad-c'>бесконечные возможности</span>",
+feat1_h3:"Мультиплеер", feat1_p:"Найди случайного соперника в быстром матче, пригласи друга в приватную комнату, играй по очереди на одном устройстве или брось вызов ИИ.",
+feat2_h3:"7 уникальных полей", feat2_p:"От Классического до Минного поля — каждое поле требует новой стратегии. Какое станет твоим любимым?",
+feat3_h3:"Играй на 10 языках", feat3_p:"Турецкий, английский, немецкий, французский, испанский, португальский, русский, итальянский, польский, индонезийский — с полной поддержкой словаря.",
+feat4_h3:"Мощные усиления", feat4_p:"Бомба, Кража, Премиум-обмен и другие. Используй нужное усиление в нужный момент и переверни игру.",
+feat5_p:"Сезонные награды и эксклюзивные косметические титулы. Играй, чтобы прогрессировать, и заверши сезон.",
+feat6_h3:"Достижения и таблицы лидеров", feat6_p:"Более 20 достижений, глобальные таблицы лидеров, уровни игрока. Каждый матч продвигает тебя вперёд.",
+feat7_p:"Каждый день новое поле. Набери самый высокий счёт и поднимись в таблице лидеров.",
+feat8_h3:"Честный словарь", feat8_p:"Засчитываются только настоящие слова — без имён собственных, без выдуманных слов. Если ты выиграл, значит выиграл по-настоящему.",
+feat9_h3:"Сделай это своим", feat9_p:"Десятки тем, индивидуальный внешний вид поля, скины плиток — плюс эксклюзивная косметика Battle Pass.",
+how_h2:"Минуты на изучение, вся жизнь на совершенствование",
+step1_h3:"Расставь буквы", step1_p:"Составляй допустимые слова на поле буквами из своего лотка. На каком языке играть — решаешь ты.",
+step2_h3:"Набирай очки", step2_p:"Умножай очки с помощью значений букв и бонусных клеток. Попади в нужную клетку и наблюдай, как растёт счёт.",
+step3_h3:"Обыграй соперника", step3_p:"Ходы чередуются. Когда буквы заканчиваются, побеждает игрок с наибольшим общим счётом.",
+modes_eyebrow:"Режимы и поля", modes_h2:"Та же игра, <span class='grad'>всегда новая</span>",
+modes_lead:"Разнообразие полей — в ДНК Harfogram. Каждое поле означает другое расположение бонусов и другую стратегию. У тебя появится любимое — а потом захочется попробовать все.",
+map1_name:"Классическое", map1_desc:"— сбалансированное расположение бонусов, 15×15",
+map2_name:"Быстрое", map2_desc:"— маленькое поле, быстрый матч, 11×11",
+map3_name:"Богатое бонусами", map3_desc:"— каждый угол — это возможность",
+map4_name:"Пончик", map4_desc:"— кольцевое поле с пустым центром",
+map5_name:"Замороженное", map5_desc:"— замороженные клетки, неожиданный бонусный балл",
+map6_name:"Лабиринт", map6_desc:"— проходы со стенами, найди свой путь",
+map7_name:"Минное поле", map7_desc:"— скрытые мины, будь осторожен",
+daily_h2:"Одно поле в день. <span class='grad-c'>У всех одинаковые буквы.</span>",
+daily_p:"Все соревнуются с одним и тем же набором букв — разница в словах, которые ты находишь. У каждого языка своя таблица лидеров, обновляемая ежедневно. Сохраняй серию, поднимайся на вершину.",
+daily_cta_small:"Сегодняшнее поле", daily_cta_big:"Играть сейчас", daily_lb_title:"Лучшие игроки дня", daily_you:"ты",
+faq_eyebrow:"Часто задаваемые вопросы", faq_h2:"Полезно знать",
+faq1_q:"Harfogram бесплатна?", faq1_a:"Да. Ты можешь бесплатно скачать и играть в Harfogram. Есть необязательная реклама и бонусный контент.",
+faq2_q:"Можно ли играть офлайн?", faq2_a:"Да. Режим по очереди на одном устройстве работает без подключения к интернету. Для онлайн-соперников требуется подключение.",
+faq3_q:"Какие языки поддерживаются?", faq3_a:"Турецкий, английский, немецкий, французский, испанский, португальский, русский, итальянский, польский и индонезийский — с полной поддержкой словаря.",
+faq4_q:"Как пригласить друга?", faq4_a:"Создай приватную комнату и поделись ссылкой-приглашением, или используй «Пригласить друга» в меню, чтобы получить свой код приглашения. Когда твой друг завершит первый матч, вы оба получите золото.",
+faq5_q:"Как получить мощные усиления?", faq5_a:"Купи их за золото в игре или получи бесплатно в качестве наград Battle Pass. Бомба, Кража, Премиум-обмен и другие ждут тебя.",
+faq6_q:"На каких устройствах это работает?", faq6_a:"iOS и Android. Скачать можно в App Store и Google Play.",
+dl_h2:"Твой ход. Расставь буквы.", dl_p:"Скачай Harfogram сегодня и брось вызов друзьям.",
+footer_tagline:"Многопользовательская настольная словесная игра на 10 языках. Сделано с любовью в Gurcan Studio.",
+footer_game_h4:"Игра", footer_legal_h4:"Правовая информация и поддержка", footer_contact:"Контакты",
+footer_privacy:"Политика конфиденциальности", footer_terms:"Условия использования",
+footer_trademark:"App Store — товарный знак Apple Inc. Google Play — товарный знак Google LLC."
+},
+it:{
+nav_features:"Caratteristiche", nav_how:"Come Giocare", nav_modes:"Modalità", nav_daily:"Sfida Giornaliera", nav_faq:"FAQ",
+hero_title:"La battaglia di parole <span class='grad'>multigiocatore</span> — in 10 lingue.",
+hero_lead:"7 tabelloni unici, potenziamenti potenti, un Battle Pass stagionale. Gioca con gli amici su un dispositivo, online o contro l'IA — collega le lettere, conquista i punti, vinci.",
+store_dl_1:"Scarica su", store_dl_2:"Disponibile su",
+hero_note:"Download gratuito · iOS &amp; Android · 10 lingue",
+feat_h2:"Un gioco, <span class='grad-c'>infinite possibilità</span>",
+feat1_h3:"Multigiocatore", feat1_p:"Trova un avversario casuale con la Partita Rapida, invita un amico in una stanza privata, gioca a turni su un dispositivo o sfida l'IA.",
+feat2_h3:"7 Tabelloni Unici", feat2_p:"Dal Classico al Campo Minato, ogni tabellone impone una nuova strategia. Quale sarà il tuo preferito?",
+feat3_h3:"Gioca in 10 Lingue", feat3_p:"Turco, inglese, tedesco, francese, spagnolo, portoghese, russo, italiano, polacco, indonesiano — ciascuno con dizionario completo.",
+feat4_h3:"Potenziamenti Potenti", feat4_p:"Bomba, Furto, Scambio Premium e altro. Usa il potenziamento giusto al momento giusto e ribalta la partita.",
+feat5_p:"Ricompense stagionali e titoli cosmetici esclusivi. Progredisci giocando e completa la stagione.",
+feat6_h3:"Obiettivi &amp; Classifiche", feat6_p:"Più di 20 obiettivi, classifiche globali, livelli giocatore. Ogni partita ti fa avanzare.",
+feat7_p:"Un nuovo tabellone ogni giorno. Fai il punteggio più alto e scala la classifica.",
+feat8_h3:"Dizionario Equo", feat8_p:"Contano solo le parole reali — niente nomi propri, niente parole inventate. Se vinci, hai vinto davvero.",
+feat9_h3:"Rendilo Tuo", feat9_p:"Decine di temi, aspetti del tabellone personalizzati, skin delle tessere — più cosmetici esclusivi del Battle Pass.",
+how_h2:"Pochi minuti per imparare, una vita per padroneggiarlo",
+step1_h3:"Disponi le tue lettere", step1_p:"Forma parole valide sul tabellone con le tessere nel tuo leggio. In quale lingua giocare dipende da te.",
+step2_h3:"Accumula punti", step2_p:"Moltiplica i punti con i valori delle lettere e le caselle bonus. Colpisci la casella giusta e guarda il punteggio salire.",
+step3_h3:"Batti il tuo rivale", step3_p:"I turni si alternano. Quando le tessere finiscono, vince il punteggio totale più alto.",
+modes_eyebrow:"Modalità &amp; Tabelloni", modes_h2:"Lo stesso gioco, <span class='grad'>sempre nuovo</span>",
+modes_lead:"La varietà dei tabelloni è nel DNA di Harfogram. Ogni tabellone significa una disposizione di bonus e una strategia diverse. Ne sceglierai uno preferito — e poi vorrai provarli tutti.",
+map1_name:"Classico", map1_desc:"— disposizione di bonus equilibrata, 15×15",
+map2_name:"Veloce", map2_desc:"— tabellone piccolo, partita rapida, 11×11",
+map3_name:"Ricco di Bonus", map3_desc:"— ogni angolo è un'opportunità",
+map4_name:"Donut", map4_desc:"— tabellone ad anello con centro vuoto",
+map5_name:"Ghiacciato", map5_desc:"— caselle ghiacciate, un bonus punti a sorpresa",
+map6_name:"Labirinto", map6_desc:"— percorsi con muri, trova la tua strada",
+map7_name:"Campo Minato", map7_desc:"— mine nascoste, fai attenzione",
+daily_h2:"Un tabellone al giorno. <span class='grad-c'>Le stesse lettere per tutti.</span>",
+daily_p:"Tutti competono con lo stesso set di lettere — la differenza sta nelle parole che trovi. Ogni lingua ha la propria classifica, azzerata ogni giorno. Mantieni la tua serie, scala la vetta.",
+daily_cta_small:"Il tabellone di oggi", daily_cta_big:"Gioca Ora", daily_lb_title:"I Migliori di Oggi", daily_you:"tu",
+faq_eyebrow:"Domande Frequenti", faq_h2:"Da sapere",
+faq1_q:"Harfogram è gratis?", faq1_a:"Sì. Puoi scaricare e giocare a Harfogram gratuitamente. Include annunci facoltativi e contenuti bonus.",
+faq2_q:"Posso giocare offline?", faq2_a:"Sì. La modalità a turni su un singolo dispositivo funziona senza connessione internet. Gli avversari online richiedono una connessione.",
+faq3_q:"Quali lingue sono supportate?", faq3_a:"Turco, inglese, tedesco, francese, spagnolo, portoghese, russo, italiano, polacco e indonesiano — ciascuno con dizionario completo.",
+faq4_q:"Come invito un amico?", faq4_a:"Crea una stanza privata e condividi il link di invito, oppure usa 'Invita un Amico' nel menu per ottenere il tuo codice invito. Quando il tuo amico completa la prima partita, guadagnate entrambi oro.",
+faq5_q:"Come ottengo potenziamenti potenti?", faq5_a:"Acquistali con l'oro di gioco, oppure guadagnali gratuitamente come ricompense del Battle Pass. Bomba, Furto, Scambio Premium e altro ti aspettano.",
+faq6_q:"Su quali dispositivi funziona?", faq6_a:"iOS e Android. Puoi scaricarlo da App Store e Google Play.",
+dl_h2:"Tocca a te. Disponi le tessere.", dl_p:"Scarica Harfogram oggi stesso e sfida i tuoi amici.",
+footer_tagline:"Il gioco da tavolo di parole multigiocatore, in 10 lingue. Realizzato con amore da Gurcan Studio.",
+footer_game_h4:"Gioco", footer_legal_h4:"Legale &amp; Supporto", footer_contact:"Contatti",
+footer_privacy:"Informativa sulla Privacy", footer_terms:"Termini di Utilizzo",
+footer_trademark:"App Store è un marchio di Apple Inc. Google Play è un marchio di Google LLC."
+},
+pl:{
+nav_features:"Funkcje", nav_how:"Jak Grać", nav_modes:"Tryby", nav_daily:"Codzienne Wyzwanie", nav_faq:"FAQ",
+hero_title:"<span class='grad'>Wieloosobowa</span> bitwa na słowa — w 10 językach.",
+hero_lead:"7 unikalnych plansz, potężne wzmocnienia, sezonowy Battle Pass. Graj ze znajomymi na jednym urządzeniu, online lub przeciwko SI — łącz litery, zdobywaj punkty, wygrywaj.",
+store_dl_1:"Pobierz w", store_dl_2:"Dostępne w",
+hero_note:"Darmowe pobieranie · iOS &amp; Android · 10 Języków",
+feat_h2:"Jedna gra, <span class='grad-c'>niezliczone możliwości</span>",
+feat1_h3:"Tryb wieloosobowy", feat1_p:"Znajdź losowego przeciwnika dzięki Szybkiemu Meczowi, zaproś znajomego do prywatnego pokoju, graj na zmianę na jednym urządzeniu lub rzuć wyzwanie SI.",
+feat2_h3:"7 Unikalnych Plansz", feat2_p:"Od Klasycznej po Pole Minowe, każda plansza wymusza nową strategię. Która stanie się Twoją ulubioną?",
+feat3_h3:"Graj w 10 Językach", feat3_p:"Turecki, angielski, niemiecki, francuski, hiszpański, portugalski, rosyjski, włoski, polski, indonezyjski — każdy z pełnym wsparciem słownika.",
+feat4_h3:"Potężne Wzmocnienia", feat4_p:"Bomba, Kradzież, Wymiana Premium i więcej. Użyj właściwego wzmocnienia we właściwym momencie i odwróć losy gry.",
+feat5_p:"Sezonowe nagrody i ekskluzywne tytuły kosmetyczne. Awansuj grając i ukończ sezon.",
+feat6_h3:"Osiągnięcia &amp; Rankingi", feat6_p:"Ponad 20 osiągnięć, globalne rankingi, poziomy gracza. Każdy mecz przybliża Cię do celu.",
+feat7_p:"Nowa plansza każdego dnia. Zdobądź najwyższy wynik i wspinaj się w rankingu.",
+feat8_h3:"Uczciwy Słownik", feat8_p:"Liczą się tylko prawdziwe słowa — bez nazw własnych, bez wymyślonych słów. Jeśli wygrasz, naprawdę wygrałeś.",
+feat9_h3:"Spersonalizuj Grę", feat9_p:"Dziesiątki motywów, spersonalizowany wygląd planszy, skórki płytek — plus ekskluzywne kosmetyki Battle Pass.",
+how_h2:"Minuty na naukę, całe życie na mistrzostwo",
+step1_h3:"Ułóż swoje litery", step1_p:"Twórz prawidłowe słowa na planszy z liter na swojej podstawce. To, w jakim języku grasz, zależy od Ciebie.",
+step2_h3:"Zbieraj punkty", step2_p:"Zwiększaj swój wynik dzięki wartościom liter i polom bonusowym. Trafiaj we właściwe pole i obserwuj, jak rośnie wynik.",
+step3_h3:"Pokonaj rywala", step3_p:"Kolejki się zmieniają. Gdy litery się skończą, wygrywa najwyższy łączny wynik.",
+modes_eyebrow:"Tryby &amp; Plansze", modes_h2:"Ta sama gra, <span class='grad'>zawsze nowa</span>",
+modes_lead:"Różnorodność plansz jest w DNA Harfogram. Każda plansza oznacza inny układ bonusów i inną strategię. Wybierzesz swoją ulubioną — a potem zechcesz wypróbować wszystkie.",
+map1_name:"Klasyczna", map1_desc:"— zrównoważony układ bonusów, 15×15",
+map2_name:"Szybka", map2_desc:"— mała plansza, szybki mecz, 11×11",
+map3_name:"Bogata w Bonusy", map3_desc:"— każdy róg to okazja",
+map4_name:"Donut", map4_desc:"— pierścieniowa plansza z pustym środkiem",
+map5_name:"Zamrożona", map5_desc:"— zamrożone pola, niespodziewany bonus punktowy",
+map6_name:"Labirynt", map6_desc:"— korytarze z murami, znajdź swoją drogę",
+map7_name:"Pole Minowe", map7_desc:"— ukryte miny, zachowaj ostrożność",
+daily_h2:"Jedna plansza dziennie. <span class='grad-c'>Te same litery dla wszystkich.</span>",
+daily_p:"Wszyscy rywalizują z tym samym zestawem liter — różnica polega na słowach, które znajdziesz. Każdy język ma swój własny ranking, resetowany codziennie. Utrzymaj serię, wspinaj się na szczyt.",
+daily_cta_small:"Dzisiejsza plansza", daily_cta_big:"Graj Teraz", daily_lb_title:"Najlepsi Dnia", daily_you:"Ty",
+faq_eyebrow:"Najczęściej Zadawane Pytania", faq_h2:"Warto wiedzieć",
+faq1_q:"Czy Harfogram jest darmowy?", faq1_a:"Tak. Możesz pobrać i grać w Harfogram za darmo. Zawiera opcjonalne reklamy i dodatkową zawartość.",
+faq2_q:"Czy mogę grać offline?", faq2_a:"Tak. Tryb na zmianę na jednym urządzeniu działa bez połączenia z internetem. Przeciwnicy online wymagają połączenia.",
+faq3_q:"Jakie języki są obsługiwane?", faq3_a:"Turecki, angielski, niemiecki, francuski, hiszpański, portugalski, rosyjski, włoski, polski i indonezyjski — każdy z pełnym wsparciem słownika.",
+faq4_q:"Jak zaprosić znajomego?", faq4_a:"Utwórz prywatny pokój i udostępnij link zaproszenia, lub użyj opcji 'Zaproś Znajomego' w menu, aby otrzymać własny kod zaproszenia. Gdy Twój znajomy ukończy pierwszy mecz, oboje otrzymacie złoto.",
+faq5_q:"Jak zdobyć potężne wzmocnienia?", faq5_a:"Kup je za złoto w grze lub zdobądź je za darmo jako nagrody Battle Pass. Bomba, Kradzież, Wymiana Premium i więcej czeka na Ciebie.",
+faq6_q:"Na jakich urządzeniach działa?", faq6_a:"iOS i Android. Możesz go pobrać z App Store i Google Play.",
+dl_h2:"Twoja kolej. Ułóż litery.", dl_p:"Pobierz Harfogram już dziś i rzuć wyzwanie znajomym.",
+footer_tagline:"Wieloosobowa gra planszowa ze słowami, w 10 językach. Stworzona z pasją przez Gurcan Studio.",
+footer_game_h4:"Gra", footer_legal_h4:"Informacje Prawne &amp; Wsparcie", footer_contact:"Kontakt",
+footer_privacy:"Polityka Prywatności", footer_terms:"Regulamin",
+footer_trademark:"App Store jest znakiem towarowym Apple Inc. Google Play jest znakiem towarowym Google LLC."
+},
+id:{
+nav_features:"Fitur", nav_how:"Cara Bermain", nav_modes:"Mode", nav_daily:"Tantangan Harian", nav_faq:"FAQ",
+hero_title:"Pertarungan kata <span class='grad'>multipemain</span> — dalam 10 bahasa.",
+hero_lead:"7 papan unik, boost yang kuat, Battle Pass musiman. Main bersama teman di satu perangkat, online, atau melawan AI — hubungkan huruf, raih poin, menang.",
+store_dl_1:"Unduh di", store_dl_2:"Tersedia di",
+hero_note:"Unduh gratis · iOS &amp; Android · 10 Bahasa",
+feat_h2:"Satu permainan, <span class='grad-c'>kemungkinan tak terbatas</span>",
+feat1_h3:"Multipemain", feat1_p:"Temukan lawan acak dengan Pertandingan Cepat, undang teman ke ruangan privat, bermain bergiliran di satu perangkat, atau tantang AI.",
+feat2_h3:"7 Papan Unik", feat2_p:"Dari Klasik hingga Ladang Ranjau, setiap papan menuntut strategi baru. Mana yang akan jadi favoritmu?",
+feat3_h3:"Main dalam 10 Bahasa", feat3_p:"Turki, Inggris, Jerman, Prancis, Spanyol, Portugis, Rusia, Italia, Polandia, Indonesia — masing-masing dengan dukungan kamus penuh.",
+feat4_h3:"Boost yang Kuat", feat4_p:"Bomb, Steal, Premium Swap, dan lainnya. Gunakan boost yang tepat di saat yang tepat dan balikkan keadaan permainan.",
+feat5_p:"Hadiah musiman dan gelar kosmetik eksklusif. Naik level saat bermain dan selesaikan musim.",
+feat6_h3:"Pencapaian &amp; Papan Peringkat", feat6_p:"20+ pencapaian, papan peringkat global, level pemain. Setiap pertandingan membawamu lebih maju.",
+feat7_p:"Papan baru setiap hari. Raih skor tertinggi dan naik di papan peringkat.",
+feat8_h3:"Kamus yang Adil", feat8_p:"Hanya kata asli yang dihitung — tanpa nama diri, tanpa kata buatan. Jika kamu menang, kamu benar-benar menang.",
+feat9_h3:"Jadikan Milikmu", feat9_p:"Puluhan tema, tampilan papan kustom, skin ubin — plus kosmetik eksklusif Battle Pass.",
+how_h2:"Butuh beberapa menit untuk belajar, seumur hidup untuk menguasai",
+step1_h3:"Susun ubinmu", step1_p:"Bentuk kata yang valid di papan dengan ubin di rakmu. Bahasa mana yang kamu mainkan terserah kamu.",
+step2_h3:"Kumpulkan poin", step2_p:"Tingkatkan poinmu dengan nilai huruf dan kotak bonus. Kenai kotak yang tepat dan lihat skor melonjak.",
+step3_h3:"Kalahkan rivalmu", step3_p:"Giliran bergantian. Saat ubin habis, skor total tertinggi yang menang.",
+modes_eyebrow:"Mode &amp; Papan", modes_h2:"Permainan yang sama, <span class='grad'>selalu baru</span>",
+modes_lead:"Variasi papan ada dalam DNA Harfogram. Setiap papan berarti tata letak bonus dan strategi yang berbeda. Kamu akan memilih favorit — lalu ingin mencoba semuanya.",
+map1_name:"Klasik", map1_desc:"— tata letak bonus seimbang, 15×15",
+map2_name:"Cepat", map2_desc:"— papan kecil, pertandingan cepat, 11×11",
+map3_name:"Kaya Bonus", map3_desc:"— setiap sudut adalah peluang",
+map4_name:"Donat", map4_desc:"— papan cincin dengan pusat kosong",
+map5_name:"Beku", map5_desc:"— ubin beku, bonus skor kejutan",
+map6_name:"Labirin", map6_desc:"— jalur berdinding, temukan jalanmu",
+map7_name:"Ladang Ranjau", map7_desc:"— ranjau tersembunyi, berhati-hatilah",
+daily_h2:"Satu papan sehari. <span class='grad-c'>Huruf yang sama untuk semua.</span>",
+daily_p:"Semua orang bersaing dengan set huruf yang sama — perbedaannya ada pada kata yang kamu temukan. Setiap bahasa punya papan peringkatnya sendiri, direset setiap hari. Jaga rentetan kemenanganmu, naik ke puncak.",
+daily_cta_small:"Papan hari ini", daily_cta_big:"Main Sekarang", daily_lb_title:"Pemain Terbaik Hari Ini", daily_you:"kamu",
+faq_eyebrow:"Pertanyaan yang Sering Diajukan", faq_h2:"Perlu diketahui",
+faq1_q:"Apakah Harfogram gratis?", faq1_a:"Ya. Kamu bisa mengunduh dan bermain Harfogram secara gratis. Termasuk iklan opsional dan konten bonus.",
+faq2_q:"Bisakah saya bermain offline?", faq2_a:"Ya. Mode bermain bergiliran di satu perangkat berfungsi tanpa koneksi internet. Lawan online memerlukan koneksi.",
+faq3_q:"Bahasa apa saja yang didukung?", faq3_a:"Turki, Inggris, Jerman, Prancis, Spanyol, Portugis, Rusia, Italia, Polandia, dan Indonesia — masing-masing dengan dukungan kamus penuh.",
+faq4_q:"Bagaimana cara mengundang teman?", faq4_a:"Buat ruangan privat dan bagikan tautan undangan, atau gunakan 'Undang Teman' di menu untuk mendapatkan kode undanganmu sendiri. Saat temanmu menyelesaikan pertandingan pertamanya, kalian berdua mendapatkan emas.",
+faq5_q:"Bagaimana cara mendapatkan boost yang kuat?", faq5_a:"Beli dengan emas dalam game, atau dapatkan gratis sebagai hadiah Battle Pass. Bomb, Steal, Premium Swap, dan lainnya menantimu.",
+faq6_q:"Berjalan di perangkat apa saja?", faq6_a:"iOS dan Android. Kamu bisa mengunduhnya dari App Store dan Google Play.",
+dl_h2:"Giliranmu. Susun ubin.", dl_p:"Unduh Harfogram hari ini dan tantang teman-temanmu.",
+footer_tagline:"Permainan papan kata multipemain, dalam 10 bahasa. Dibuat dengan cinta oleh Gurcan Studio.",
+footer_game_h4:"Permainan", footer_legal_h4:"Legal &amp; Dukungan", footer_contact:"Kontak",
+footer_privacy:"Kebijakan Privasi", footer_terms:"Ketentuan Penggunaan",
+footer_trademark:"App Store adalah merek dagang Apple Inc. Google Play adalah merek dagang Google LLC."
+}
+};
+
 const PTS={H:5,A:1,R:1,F:7,O:2,G:5,M:3,E:1,S:2,T:1,K:1,L:1,I:1,N:1,B:3,U:2,Y:3,Z:4,'Ö':7,'Ü':3};
 function pt(ch){return PTS[ch] ?? 1;}
 
@@ -484,15 +957,27 @@ const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){
 document.querySelectorAll('.reveal').forEach((el,i)=>{el.dataset.d=(i%3)*90;io.observe(el);});
 
 /* language */
+const LANGS=['tr','en','de','fr','es','pt','ru','it','pl','id'];
 function setLang(lang){
+  if(!LANGS.includes(lang)) lang='tr';
   document.documentElement.lang=lang;
-  document.querySelectorAll('[data-tr]').forEach(el=>{
-    const v=lang==='tr'?el.getAttribute('data-tr'):el.getAttribute('data-en');
-    if(v!=null) el.innerHTML=v;});
-  document.getElementById('tr-btn').classList.toggle('active',lang==='tr');
-  document.getElementById('en-btn').classList.toggle('active',lang==='en');
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    const dict=I18N[lang]||{};
+    const v=dict[key] ?? (I18N.en[key]) ?? (I18N.tr[key]);
+    if(v!=null) el.innerHTML=v;
+  });
+  document.getElementById('lang-select').value=lang;
+  localStorage.setItem('harfogram_lang',lang);
   document.querySelectorAll('.faq-item.open .faq-a').forEach(a=>a.style.maxHeight=a.scrollHeight+'px');
 }
+function detectInitialLang(){
+  const saved=localStorage.getItem('harfogram_lang');
+  if(saved && LANGS.includes(saved)) return saved;
+  const nav=(navigator.language||'tr').slice(0,2).toLowerCase();
+  return LANGS.includes(nav) ? nav : 'tr';
+}
+setLang(detectInitialLang());
 </script>
 </body>
 </html>
