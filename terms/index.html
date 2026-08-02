@@ -24,9 +24,13 @@ nav{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-conten
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-size:1.25rem;color:var(--cream)}
 .brand .t{width:32px;height:32px;background:var(--cream);color:var(--navy);border-radius:8px;display:grid;place-items:center;
   font-family:var(--display);font-weight:900;box-shadow:0 3px 0 0 #c2a96e}
-.lang{display:flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;font-size:.78rem;font-weight:800}
-.lang button{background:none;border:none;color:var(--cream-dim);padding:6px 12px;cursor:pointer;font-family:var(--body);font-weight:800}
-.lang button.active{background:var(--pink);color:#fff}
+.lang select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);border-radius:999px;color:var(--cream);font-family:var(--body);
+  font-weight:800;font-size:.78rem;padding:7px 30px 7px 14px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cabfe6' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;background-size:14px;transition:border-color .2s}
+.lang select:hover{border-color:var(--pink)}
+.lang select option{background:var(--navy);color:var(--cream)}
 main{max-width:820px;margin:0 auto;padding:56px 24px 90px}
 h1{font-family:var(--display);font-weight:900;font-size:clamp(2rem,5vw,2.8rem);letter-spacing:-.02em;margin-bottom:8px}
 .updated{color:var(--cream-dim);font-size:.9rem;margin-bottom:14px}
@@ -35,7 +39,8 @@ h2{font-family:var(--display);font-weight:600;font-size:1.4rem;margin:34px 0 10p
 p,li{color:#e9e3f6;font-size:1rem;margin-bottom:10px}
 ul{padding-left:22px;margin-bottom:10px}
 .back{display:inline-block;margin-top:40px;color:var(--cyan);font-weight:700}
-.lang-en{display:none}
+[class^="lang-"]{display:none}
+.lang-tr{display:block}
 footer{max-width:820px;margin:0 auto;padding:24px;border-top:1px solid var(--line);color:var(--cream-dim);font-size:.82rem}
 </style>
 </head>
@@ -44,8 +49,18 @@ footer{max-width:820px;margin:0 auto;padding:24px;border-top:1px solid var(--lin
   <nav>
     <a class="brand" href="/"><span class="t">H</span>Harfogram</a>
     <div class="lang">
-      <button id="tr-btn" class="active" onclick="setLang('tr')">TR</button>
-      <button id="en-btn" onclick="setLang('en')">EN</button>
+      <select id="lang-select" onchange="setLang(this.value)" aria-label="Language">
+        <option value="tr">TR · Türkçe</option>
+        <option value="en">EN · English</option>
+        <option value="de">DE · Deutsch</option>
+        <option value="fr">FR · Français</option>
+        <option value="es">ES · Español</option>
+        <option value="pt">PT · Português</option>
+        <option value="ru">RU · Русский</option>
+        <option value="it">IT · Italiano</option>
+        <option value="pl">PL · Polski</option>
+        <option value="id">ID · Bahasa Indonesia</option>
+      </select>
     </div>
   </nav>
 </header>
@@ -498,17 +513,817 @@ footer{max-width:820px;margin:0 auto;padding:24px;border-top:1px solid var(--lin
     <a class="back" href="/">← Back to home</a>
 </div>
 	
+<!-- ═══════════════════════ DEUTSCH ═══════════════════════ -->
+<div class="lang-de">
+    <h1>Nutzungsbedingungen</h1>
+    <p class="date">Zuletzt aktualisiert: Mai 2026</p>
+    <div class="note">Hinweis: Dieses Dokument wurde zur Erleichterung ins Deutsche übersetzt. Bei Widersprüchen zwischen dieser Übersetzung und der türkischen oder englischen Fassung sind die türkische und englische Fassung maßgeblich und rechtsverbindlich.</div>
+    <div class="notice"><p>Diese Nutzungsbedingungen und Endbenutzer-Lizenzvereinbarung ("Vereinbarung") gelten zwischen Ihnen und dem Entwickler, wenn Sie die mobile Anwendung Harfogram ("App") herunterladen, installieren oder nutzen. Durch die Nutzung der App stimmen Sie dieser Vereinbarung zu.</p></div>
+
+    <div class="section"><h2>1. Allgemeine Informationen</h2>
+        <p>Harfogram ("App") ist ein wortbasiertes mobiles Spiel. Diese Vereinbarung erläutert, unter welchen Bedingungen Sie die App nutzen dürfen, Ihre Lizenzrechte, Nutzungsbeschränkungen, Werbung, In-App-Käufe und Haftungsbeschränkungen.</p>
+        <p>Wenn Sie dieser Vereinbarung nicht zustimmen, sollten Sie die App nicht nutzen und von Ihrem Gerät löschen.</p>
+    </div>
+
+    <div class="section"><h2>2. Lizenzumfang</h2>
+        <p>Der Entwickler gewährt Ihnen eine beschränkte, nicht-exklusive, nicht übertragbare, widerrufliche Lizenz zur Nutzung der App ausschließlich für persönliche, nicht-kommerzielle Zwecke.</p>
+        <p>Diese Lizenz überträgt Ihnen kein Eigentum an der App. Die App wird lizenziert, nicht verkauft.</p>
+    </div>
+
+    <div class="section"><h2>3. Nutzungsbeschränkungen</h2>
+        <p>Sie dürfen nicht:</p>
+        <ul>
+            <li>die App für rechtswidrige, schädliche oder missbräuchliche Zwecke nutzen,</li>
+            <li>die App kopieren, verändern, verbreiten, verkaufen, vermieten oder unterlizenzieren,</li>
+            <li>versuchen, auf den Quellcode zuzugreifen, die App zurückzuentwickeln oder abgeleitete Werke zu erstellen,</li>
+            <li>Cheats, Bots, Automatisierung, Exploits oder Tools verwenden, die das Spielgleichgewicht stören,</li>
+            <li>andere Spieler belästigen, täuschen, bedrohen oder stören,</li>
+            <li>versuchen, die Server, Werbesysteme oder die Mehrspieler-Infrastruktur der App zu schädigen.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Spielername und Mehrspielernutzung</h2>
+        <p>Die App kann Ihnen erlauben, in Mehrspielermodi einen Spielernamen oder Spitznamen zu verwenden. Ihr Spielername darf keine unangemessenen, irreführenden, beleidigenden, diskriminierenden, obszönen oder rechtsverletzenden Inhalte enthalten.</p>
+        <p>Der Entwickler behält sich das Recht vor, unangemessene Spielernamen, Spielsitzungen oder den Zugriff bei Bedarf einzuschränken.</p>
+    </div>
+
+    <div class="section"><h2>5. Werbung</h2>
+        <p>Die App kann über Werbenetzwerke Dritter Werbung anzeigen, um die App kostenlos anbieten zu können. Anzeigen können personalisiert oder nicht personalisiert sein.</p>
+        <p>Sie können Ihre Werbepräferenz über den Einwilligungsbildschirm in der App verwalten. Weitere Informationen zu Anzeigen und Werbepartnern finden Sie in unserer Datenschutzerklärung.</p>
+    </div>
+
+    <div class="section"><h2>6. In-App-Käufe</h2>
+        <p>Die App kann In-App-Käufe für Spielwährung, Belohnungen, Funktionen oder ähnliche digitale Inhalte anbieten.</p>
+        <p>Käufe werden von Google Play oder Apple App Store abgewickelt. Zahlungs-, Abrechnungs-, Stornierungs- und Rückerstattungsprozesse unterliegen den Regeln der jeweiligen Plattform.</p>
+        <p>Digitale Inhalte haben keinen realen Geldwert. Spielwährung oder virtuelle Gegenstände können nur innerhalb der App verwendet werden.</p>
+    </div>
+
+    <div class="section"><h2>7. Geistiges Eigentum</h2>
+        <p>Die App und alle darin enthaltene Software, Designs, Benutzeroberfläche, Texte, Grafiken, Logos, Töne, Musik, Spielmechaniken und andere Inhalte sind Eigentum des Entwicklers oder seiner Lizenzgeber.</p>
+        <p>Diese Vereinbarung überträgt Ihnen keine Urheberrechte, Markenrechte oder sonstigen Rechte am geistigen Eigentum der App oder ihrer Inhalte.</p>
+    </div>
+
+    <div class="section"><h2>8. Datenschutz und personenbezogene Daten</h2>
+        <p>Bitte lesen Sie unsere Datenschutzerklärung, um zu verstehen, wie personenbezogene Daten erhoben, verwendet, gespeichert und geschützt werden:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Datenschutzerklärung</a></p>
+    </div>
+
+    <div class="section"><h2>9. Dienste Dritter</h2>
+        <p>Die App kann Dienste Dritter für Werbung, Mehrspieler-Infrastruktur, Analysen, Absturzberichte oder ähnliche Zwecke nutzen.</p>
+        <p>Ihre Nutzung solcher Dienste Dritter kann auch deren eigenen Nutzungsbedingungen und Datenschutzrichtlinien unterliegen.</p>
+    </div>
+
+    <div class="section"><h2>10. Aktualisierungen und Änderungen</h2>
+        <p>Der Entwickler kann die App von Zeit zu Zeit aktualisieren, ändern, Funktionen hinzufügen oder entfernen.</p>
+        <p>Auch diese Vereinbarung kann von Zeit zu Zeit aktualisiert werden. Bei wesentlichen Änderungen kann die App erneut Ihre Zustimmung anfordern oder einen entsprechenden Hinweis anzeigen.</p>
+    </div>
+
+    <div class="section"><h2>11. Gewährleistungsausschluss</h2>
+        <p>Die App wird "wie besehen" und "wie verfügbar" bereitgestellt. Der Entwickler garantiert nicht, dass die App unterbrechungsfrei, fehlerfrei, sicher oder jederzeit verfügbar ist.</p>
+        <p>Soweit gesetzlich zulässig, erfolgt Ihre Nutzung der App auf eigenes Risiko.</p>
+    </div>
+
+    <div class="section"><h2>12. Haftungsbeschränkung</h2>
+        <p>Soweit gesetzlich zulässig, haftet der Entwickler nicht für indirekte, zufällige, besondere, strafende oder Folgeschäden, die aus der Nutzung oder Nichtnutzbarkeit der App entstehen.</p>
+    </div>
+
+    <div class="section"><h2>13. Aussetzung und Kündigung</h2>
+        <p>Sie können diese Vereinbarung jederzeit beenden, indem Sie die App von Ihrem Gerät löschen.</p>
+        <p>Der Entwickler behält sich das Recht vor, Ihren Zugriff auszusetzen oder zu beenden, wenn Sie gegen diese Vereinbarung verstoßen, betrügen, anderen Nutzern schaden oder die App missbrauchen.</p>
+    </div>
+
+    <div class="section"><h2>14. Zusätzliche Bestimmungen für den Apple App Store</h2>
+        <p>Wenn Sie die App über den Apple App Store heruntergeladen haben, erkennen Sie an, dass diese Vereinbarung zwischen Ihnen und dem Entwickler besteht und nicht mit Apple. Apple ist nicht verantwortlich für die App, ihre Inhalte, Wartung, Support oder Ansprüche im Rahmen dieser Vereinbarung.</p>
+        <p>Apple und seine Tochtergesellschaften sind Drittbegünstigte dieser Vereinbarung und können diese gegebenenfalls gegen Sie durchsetzen.</p>
+    </div>
+
+    <div class="section"><h2>15. Zusätzliche Bestimmungen für Google Play</h2>
+        <p>Wenn Sie die App über Google Play heruntergeladen haben, kann Ihre Nutzung auch den Google Play-Bedingungen und den geltenden Google Play-Richtlinien unterliegen. In-App-Käufe können über das Google Play-Abrechnungssystem abgewickelt werden.</p>
+    </div>
+
+    <div class="section"><h2>16. Anwendbares Recht</h2>
+        <p>Diese Vereinbarung unterliegt dem Recht der Republik Türkei, mit Ausnahme der Kollisionsnormen. Ihre zwingenden Verbraucherrechte bleiben unberührt.</p>
+    </div>
+
+    <div class="section"><h2>17. Kontakt</h2>
+        <div class="contact"><p><strong>E-Mail:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Entwickler:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Zurück zur Startseite</a>
+</div>
+
+<!-- ═══════════════════════ FRANÇAIS ═══════════════════════ -->
+<div class="lang-fr">
+    <h1>Conditions d'utilisation</h1>
+    <p class="date">Dernière mise à jour : mai 2026</p>
+    <div class="note">Remarque : ce document a été traduit en français par souci de commodité. En cas de divergence entre cette traduction et les versions turque ou anglaise, les versions turque et anglaise font foi et sont juridiquement contraignantes.</div>
+    <div class="notice"><p>Les présentes Conditions d'utilisation et Contrat de licence utilisateur final (« Contrat ») s'appliquent entre vous et le développeur lorsque vous téléchargez, installez ou utilisez l'application mobile Harfogram (« Application »). En utilisant l'Application, vous acceptez ce Contrat.</p></div>
+
+    <div class="section"><h2>1. Informations générales</h2>
+        <p>Harfogram (« Application ») est un jeu mobile basé sur les mots. Ce Contrat explique les conditions dans lesquelles vous pouvez utiliser l'Application, vos droits de licence, les restrictions d'utilisation, la publicité, les achats intégrés et les limitations de responsabilité.</p>
+        <p>Si vous n'acceptez pas ce Contrat, vous ne devez pas utiliser l'Application et devez la supprimer de votre appareil.</p>
+    </div>
+
+    <div class="section"><h2>2. Portée de la licence</h2>
+        <p>Le développeur vous accorde une licence limitée, non exclusive, incessible et révocable pour utiliser l'Application à des fins personnelles et non commerciales uniquement.</p>
+        <p>Cette licence ne vous transfère aucun droit de propriété sur l'Application. L'Application est concédée sous licence, pas vendue.</p>
+    </div>
+
+    <div class="section"><h2>3. Restrictions d'utilisation</h2>
+        <p>Vous ne pouvez pas :</p>
+        <ul>
+            <li>utiliser l'Application à des fins illégales, nuisibles ou abusives,</li>
+            <li>copier, modifier, distribuer, vendre, louer ou sous-licencier l'Application,</li>
+            <li>tenter d'accéder au code source, décompiler l'Application ou créer des œuvres dérivées,</li>
+            <li>utiliser des triches, des bots, des automatisations, des exploits ou des outils perturbant l'équilibre du jeu,</li>
+            <li>harceler, tromper, menacer ou perturber d'autres joueurs,</li>
+            <li>tenter d'endommager les serveurs, systèmes publicitaires ou l'infrastructure multijoueur de l'Application.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nom de joueur et utilisation multijoueur</h2>
+        <p>L'Application peut vous permettre d'utiliser un nom de joueur ou pseudo dans les modes multijoueurs. Votre nom de joueur ne doit contenir aucun contenu inapproprié, trompeur, offensant, discriminatoire, obscène ou portant atteinte aux droits de tiers.</p>
+        <p>Le développeur se réserve le droit de restreindre les noms de joueurs inappropriés, les sessions de jeu ou l'accès si nécessaire.</p>
+    </div>
+
+    <div class="section"><h2>5. Publicité</h2>
+        <p>L'Application peut afficher des publicités via des réseaux publicitaires tiers afin de rester disponible gratuitement. Les publicités peuvent être personnalisées ou non personnalisées.</p>
+        <p>Vous pouvez gérer votre préférence publicitaire via l'écran de consentement dans l'Application. Pour en savoir plus sur les publicités et les partenaires publicitaires, veuillez consulter notre Politique de confidentialité.</p>
+    </div>
+
+    <div class="section"><h2>6. Achats intégrés</h2>
+        <p>L'Application peut proposer des achats intégrés pour de la monnaie de jeu, des récompenses, des fonctionnalités ou un contenu numérique similaire.</p>
+        <p>Les achats sont traités par Google Play ou l'App Store d'Apple. Les processus de paiement, facturation, annulation et remboursement sont soumis aux règles de la plateforme concernée.</p>
+        <p>Le contenu numérique n'a aucune valeur monétaire réelle. La monnaie de jeu ou les objets virtuels ne peuvent être utilisés que dans l'Application.</p>
+    </div>
+
+    <div class="section"><h2>7. Propriété intellectuelle</h2>
+        <p>L'Application et l'ensemble des logiciels, designs, interface, textes, graphismes, logos, sons, musiques, mécaniques de jeu et autres contenus qu'elle contient appartiennent au développeur ou à ses concédants de licence.</p>
+        <p>Ce Contrat ne vous transfère aucun droit d'auteur, de marque ou autre droit de propriété intellectuelle sur l'Application ou son contenu.</p>
+    </div>
+
+    <div class="section"><h2>8. Confidentialité et données personnelles</h2>
+        <p>Veuillez consulter notre Politique de confidentialité pour comprendre comment les données personnelles sont collectées, utilisées, stockées et protégées :</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Politique de confidentialité</a></p>
+    </div>
+
+    <div class="section"><h2>9. Services tiers</h2>
+        <p>L'Application peut utiliser des services tiers pour la publicité, l'infrastructure multijoueur, l'analyse, les rapports de plantage ou des fins similaires.</p>
+        <p>Votre utilisation de ces services tiers peut également être soumise à leurs propres conditions et politiques de confidentialité.</p>
+    </div>
+
+    <div class="section"><h2>10. Mises à jour et modifications</h2>
+        <p>Le développeur peut mettre à jour, modifier, ajouter ou supprimer des fonctionnalités de l'Application de temps à autre.</p>
+        <p>Ce Contrat peut également être mis à jour de temps à autre. En cas de modifications importantes, l'Application peut demander à nouveau votre consentement ou afficher un avis approprié.</p>
+    </div>
+
+    <div class="section"><h2>11. Exclusion de garantie</h2>
+        <p>L'Application est fournie « telle quelle » et « selon disponibilité ». Le développeur ne garantit pas que l'Application sera ininterrompue, exempte d'erreurs, sécurisée ou toujours disponible.</p>
+        <p>Dans la mesure permise par la loi, votre utilisation de l'Application se fait à vos propres risques.</p>
+    </div>
+
+    <div class="section"><h2>12. Limitation de responsabilité</h2>
+        <p>Dans la mesure permise par la loi, le développeur ne sera pas responsable des dommages indirects, accessoires, spéciaux, punitifs ou consécutifs résultant de l'utilisation ou de l'impossibilité d'utiliser l'Application.</p>
+    </div>
+
+    <div class="section"><h2>13. Suspension et résiliation</h2>
+        <p>Vous pouvez résilier ce Contrat à tout moment en supprimant l'Application de votre appareil.</p>
+        <p>Le développeur se réserve le droit de suspendre ou de résilier votre accès si vous enfreignez ce Contrat, trichez, nuisez à d'autres utilisateurs ou utilisez l'Application de manière abusive.</p>
+    </div>
+
+    <div class="section"><h2>14. Conditions supplémentaires pour l'App Store d'Apple</h2>
+        <p>Si vous avez téléchargé l'Application depuis l'App Store d'Apple, vous reconnaissez que ce Contrat est conclu entre vous et le développeur, et non avec Apple. Apple n'est pas responsable de l'Application, de son contenu, de sa maintenance, de son support ou de toute réclamation relevant de ce Contrat.</p>
+        <p>Apple et ses filiales sont des tiers bénéficiaires de ce Contrat et peuvent le faire appliquer à votre encontre le cas échéant.</p>
+    </div>
+
+    <div class="section"><h2>15. Conditions supplémentaires pour Google Play</h2>
+        <p>Si vous avez téléchargé l'Application depuis Google Play, votre utilisation peut également être soumise aux conditions de Google Play et aux politiques applicables de Google Play. Les achats intégrés peuvent être traités via le système de facturation de Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Droit applicable</h2>
+        <p>Ce Contrat est régi par le droit de la République de Turquie, à l'exclusion des règles de conflit de lois. Vos droits impératifs en tant que consommateur restent inchangés.</p>
+    </div>
+
+    <div class="section"><h2>17. Contact</h2>
+        <div class="contact"><p><strong>E-mail :</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Développeur :</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Retour à l'accueil</a>
+</div>
+
+<!-- ═══════════════════════ ESPAÑOL ═══════════════════════ -->
+<div class="lang-es">
+    <h1>Términos de uso</h1>
+    <p class="date">Última actualización: mayo de 2026</p>
+    <div class="note">Nota: este documento se ha traducido al español por comodidad. En caso de discrepancia entre esta traducción y las versiones en turco o inglés, prevalecerán las versiones en turco e inglés, que son las jurídicamente vinculantes.</div>
+    <div class="notice"><p>Estos Términos de uso y Acuerdo de licencia de usuario final ("Acuerdo") se aplican entre tú y el desarrollador cuando descargas, instalas o usas la aplicación móvil Harfogram ("Aplicación"). Al usar la Aplicación, aceptas este Acuerdo.</p></div>
+
+    <div class="section"><h2>1. Información general</h2>
+        <p>Harfogram ("Aplicación") es un juego móvil basado en palabras. Este Acuerdo explica las condiciones bajo las cuales puedes usar la Aplicación, tus derechos de licencia, restricciones de uso, publicidad, compras dentro de la aplicación y limitaciones de responsabilidad.</p>
+        <p>Si no aceptas este Acuerdo, no debes usar la Aplicación y debes eliminarla de tu dispositivo.</p>
+    </div>
+
+    <div class="section"><h2>2. Alcance de la licencia</h2>
+        <p>El desarrollador te otorga una licencia limitada, no exclusiva, intransferible y revocable para usar la Aplicación únicamente con fines personales y no comerciales.</p>
+        <p>Esta licencia no te transfiere ninguna propiedad sobre la Aplicación. La Aplicación se licencia, no se vende.</p>
+    </div>
+
+    <div class="section"><h2>3. Restricciones de uso</h2>
+        <p>No puedes:</p>
+        <ul>
+            <li>usar la Aplicación con fines ilegales, dañinos o abusivos,</li>
+            <li>copiar, modificar, distribuir, vender, alquilar o sublicenciar la Aplicación,</li>
+            <li>intentar acceder al código fuente, aplicar ingeniería inversa a la Aplicación o crear obras derivadas,</li>
+            <li>usar trampas, bots, automatización, exploits o herramientas que alteren el equilibrio del juego,</li>
+            <li>acosar, engañar, amenazar o molestar a otros jugadores,</li>
+            <li>intentar dañar los servidores, sistemas publicitarios o la infraestructura multijugador de la Aplicación.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nombre de jugador y uso multijugador</h2>
+        <p>La Aplicación puede permitirte usar un nombre de jugador o apodo en modos multijugador. Tu nombre de jugador no debe contener contenido inapropiado, engañoso, ofensivo, discriminatorio, obsceno o que infrinja derechos de terceros.</p>
+        <p>El desarrollador se reserva el derecho de restringir nombres de jugador inapropiados, sesiones de juego o el acceso cuando sea necesario.</p>
+    </div>
+
+    <div class="section"><h2>5. Publicidad</h2>
+        <p>La Aplicación puede mostrar anuncios a través de redes publicitarias de terceros para mantenerse disponible de forma gratuita. Los anuncios pueden ser personalizados o no personalizados.</p>
+        <p>Puedes gestionar tu preferencia publicitaria a través de la pantalla de consentimiento dentro de la Aplicación. Para más información sobre anuncios y socios publicitarios, consulta nuestra Política de privacidad.</p>
+    </div>
+
+    <div class="section"><h2>6. Compras dentro de la aplicación</h2>
+        <p>La Aplicación puede ofrecer compras dentro de la aplicación de moneda de juego, recompensas, funciones u otro contenido digital similar.</p>
+        <p>Las compras son procesadas por Google Play o Apple App Store. Los procesos de pago, facturación, cancelación y reembolso están sujetos a las normas de la plataforma correspondiente.</p>
+        <p>El contenido digital no tiene ningún valor monetario real. La moneda de juego o los artículos virtuales solo pueden usarse dentro de la Aplicación.</p>
+    </div>
+
+    <div class="section"><h2>7. Propiedad intelectual</h2>
+        <p>La Aplicación y todo el software, diseño, interfaz, texto, gráficos, logotipos, sonidos, música, mecánicas de juego y demás contenido incluido en la Aplicación son propiedad del desarrollador o de sus licenciantes.</p>
+        <p>Este Acuerdo no te transfiere ningún derecho de autor, marca registrada u otro derecho de propiedad intelectual.</p>
+    </div>
+
+    <div class="section"><h2>8. Privacidad y datos personales</h2>
+        <p>Consulta nuestra Política de privacidad para entender cómo se recopilan, usan, almacenan y protegen los datos personales:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Política de privacidad</a></p>
+    </div>
+
+    <div class="section"><h2>9. Servicios de terceros</h2>
+        <p>La Aplicación puede utilizar servicios de terceros para publicidad, infraestructura multijugador, análisis, informes de fallos o fines similares.</p>
+        <p>Tu uso de dichos servicios de terceros también puede estar sujeto a sus propios términos y políticas de privacidad.</p>
+    </div>
+
+    <div class="section"><h2>10. Actualizaciones y cambios</h2>
+        <p>El desarrollador puede actualizar, modificar, añadir o eliminar funciones de la Aplicación periódicamente.</p>
+        <p>Este Acuerdo también puede actualizarse periódicamente. Ante cambios significativos, la Aplicación puede solicitar tu consentimiento nuevamente o mostrar un aviso adecuado.</p>
+    </div>
+
+    <div class="section"><h2>11. Renuncia de garantía</h2>
+        <p>La Aplicación se proporciona "tal cual" y "según disponibilidad". El desarrollador no garantiza que la Aplicación sea ininterrumpida, libre de errores, segura o esté siempre disponible.</p>
+        <p>En la medida permitida por la ley, el uso de la Aplicación es bajo tu propio riesgo.</p>
+    </div>
+
+    <div class="section"><h2>12. Limitación de responsabilidad</h2>
+        <p>En la medida permitida por la ley, el desarrollador no será responsable de daños indirectos, incidentales, especiales, punitivos o consecuentes derivados del uso o la imposibilidad de uso de la Aplicación.</p>
+    </div>
+
+    <div class="section"><h2>13. Suspensión y terminación</h2>
+        <p>Puedes finalizar este Acuerdo en cualquier momento eliminando la Aplicación de tu dispositivo.</p>
+        <p>El desarrollador se reserva el derecho de suspender o finalizar tu acceso si incumples este Acuerdo, haces trampa, perjudicas a otros usuarios o haces un uso indebido de la Aplicación.</p>
+    </div>
+
+    <div class="section"><h2>14. Términos adicionales para Apple App Store</h2>
+        <p>Si descargaste la Aplicación desde Apple App Store, reconoces que este Acuerdo es entre tú y el desarrollador, no con Apple. Apple no es responsable de la Aplicación, su contenido, mantenimiento, soporte ni reclamaciones bajo este Acuerdo.</p>
+        <p>Apple y sus filiales son terceros beneficiarios de este Acuerdo y pueden hacerlo valer en tu contra cuando corresponda.</p>
+    </div>
+
+    <div class="section"><h2>15. Términos adicionales para Google Play</h2>
+        <p>Si descargaste la Aplicación desde Google Play, tu uso también puede estar sujeto a los términos de Google Play y las políticas aplicables de Google Play. Las compras dentro de la aplicación pueden procesarse a través del sistema de facturación de Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Ley aplicable</h2>
+        <p>Este Acuerdo se rige por las leyes de la República de Turquía, excluyendo las normas de conflicto de leyes. Tus derechos obligatorios como consumidor no se ven afectados.</p>
+    </div>
+
+    <div class="section"><h2>17. Contacto</h2>
+        <div class="contact"><p><strong>Correo electrónico:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Desarrollador:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Volver al inicio</a>
+</div>
+
+<!-- ═══════════════════════ PORTUGUÊS ═══════════════════════ -->
+<div class="lang-pt">
+    <h1>Termos de Utilização</h1>
+    <p class="date">Última atualização: maio de 2026</p>
+    <div class="note">Nota: este documento foi traduzido para o português por conveniência. Em caso de divergência entre esta tradução e as versões em turco ou inglês, as versões em turco e inglês prevalecem e são juridicamente vinculativas.</div>
+    <div class="notice"><p>Estes Termos de Utilização e Contrato de Licença de Utilizador Final ("Contrato") aplicam-se entre si e o programador quando transfere, instala ou utiliza a aplicação móvel Harfogram ("Aplicação"). Ao utilizar a Aplicação, aceita este Contrato.</p></div>
+
+    <div class="section"><h2>1. Informações gerais</h2>
+        <p>Harfogram ("Aplicação") é um jogo móvel baseado em palavras. Este Contrato explica as condições em que pode utilizar a Aplicação, os seus direitos de licença, restrições de utilização, publicidade, compras dentro da aplicação e limitações de responsabilidade.</p>
+        <p>Se não concordar com este Contrato, não deve utilizar a Aplicação e deve eliminá-la do seu dispositivo.</p>
+    </div>
+
+    <div class="section"><h2>2. Âmbito da licença</h2>
+        <p>O programador concede-lhe uma licença limitada, não exclusiva, intransmissível e revogável para utilizar a Aplicação apenas para fins pessoais e não comerciais.</p>
+        <p>Esta licença não lhe transfere qualquer propriedade sobre a Aplicação. A Aplicação é licenciada, não vendida.</p>
+    </div>
+
+    <div class="section"><h2>3. Restrições de utilização</h2>
+        <p>Não pode:</p>
+        <ul>
+            <li>utilizar a Aplicação para fins ilegais, prejudiciais ou abusivos,</li>
+            <li>copiar, modificar, distribuir, vender, alugar ou sublicenciar a Aplicação,</li>
+            <li>tentar aceder ao código-fonte, fazer engenharia inversa da Aplicação ou criar obras derivadas,</li>
+            <li>utilizar batotas, bots, automação, exploits ou ferramentas que perturbem o equilíbrio do jogo,</li>
+            <li>assediar, enganar, ameaçar ou perturbar outros jogadores,</li>
+            <li>tentar prejudicar os servidores, sistemas publicitários ou a infraestrutura multijogador da Aplicação.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nome de jogador e utilização multijogador</h2>
+        <p>A Aplicação pode permitir-lhe utilizar um nome de jogador ou alcunha nos modos multijogador. O seu nome de jogador não deve conter conteúdo inadequado, enganoso, ofensivo, discriminatório, obsceno ou que viole direitos de terceiros.</p>
+        <p>O programador reserva-se o direito de restringir nomes de jogador inadequados, sessões de jogo ou o acesso quando necessário.</p>
+    </div>
+
+    <div class="section"><h2>5. Publicidade</h2>
+        <p>A Aplicação pode apresentar anúncios através de redes publicitárias de terceiros para se manter disponível gratuitamente. Os anúncios podem ser personalizados ou não personalizados.</p>
+        <p>Pode gerir a sua preferência publicitária através do ecrã de consentimento dentro da Aplicação. Para mais informações sobre anúncios e parceiros publicitários, consulte a nossa Política de Privacidade.</p>
+    </div>
+
+    <div class="section"><h2>6. Compras dentro da aplicação</h2>
+        <p>A Aplicação pode oferecer compras dentro da aplicação de moeda do jogo, recompensas, funcionalidades ou conteúdo digital semelhante.</p>
+        <p>As compras são processadas pela Google Play ou Apple App Store. Os processos de pagamento, faturação, cancelamento e reembolso estão sujeitos às regras da plataforma relevante.</p>
+        <p>O conteúdo digital não tem qualquer valor monetário real. A moeda do jogo ou os itens virtuais só podem ser utilizados dentro da Aplicação.</p>
+    </div>
+
+    <div class="section"><h2>7. Propriedade intelectual</h2>
+        <p>A Aplicação e todo o software, design, interface, texto, gráficos, logótipos, sons, música, mecânicas de jogo e outros conteúdos nela incluídos pertencem ao programador ou aos seus licenciadores.</p>
+        <p>Este Contrato não lhe transfere quaisquer direitos de autor, marca registada ou outros direitos de propriedade intelectual.</p>
+    </div>
+
+    <div class="section"><h2>8. Privacidade e dados pessoais</h2>
+        <p>Consulte a nossa Política de Privacidade para compreender como os dados pessoais são recolhidos, utilizados, armazenados e protegidos:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Política de Privacidade</a></p>
+    </div>
+
+    <div class="section"><h2>9. Serviços de terceiros</h2>
+        <p>A Aplicação pode utilizar serviços de terceiros para publicidade, infraestrutura multijogador, análise, relatórios de falhas ou fins semelhantes.</p>
+        <p>A sua utilização desses serviços de terceiros também pode estar sujeita aos respetivos termos e políticas de privacidade.</p>
+    </div>
+
+    <div class="section"><h2>10. Atualizações e alterações</h2>
+        <p>O programador pode atualizar, modificar, adicionar ou remover funcionalidades da Aplicação periodicamente.</p>
+        <p>Este Contrato também pode ser atualizado periodicamente. Para alterações significativas, a Aplicação pode solicitar novamente o seu consentimento ou apresentar um aviso adequado.</p>
+    </div>
+
+    <div class="section"><h2>11. Exclusão de garantia</h2>
+        <p>A Aplicação é fornecida "tal como está" e "conforme disponível". O programador não garante que a Aplicação será ininterrupta, isenta de erros, segura ou sempre disponível.</p>
+        <p>Na medida permitida por lei, a sua utilização da Aplicação é feita por sua conta e risco.</p>
+    </div>
+
+    <div class="section"><h2>12. Limitação de responsabilidade</h2>
+        <p>Na medida permitida por lei, o programador não será responsável por danos indiretos, incidentais, especiais, punitivos ou consequenciais resultantes da utilização ou impossibilidade de utilização da Aplicação.</p>
+    </div>
+
+    <div class="section"><h2>13. Suspensão e rescisão</h2>
+        <p>Pode rescindir este Contrato a qualquer momento eliminando a Aplicação do seu dispositivo.</p>
+        <p>O programador reserva-se o direito de suspender ou rescindir o seu acesso caso viole este Contrato, faça batota, prejudique outros utilizadores ou faça uso indevido da Aplicação.</p>
+    </div>
+
+    <div class="section"><h2>14. Termos adicionais para a Apple App Store</h2>
+        <p>Se transferiu a Aplicação através da Apple App Store, reconhece que este Contrato é entre si e o programador, e não com a Apple. A Apple não é responsável pela Aplicação, pelo seu conteúdo, manutenção, suporte ou quaisquer reclamações ao abrigo deste Contrato.</p>
+        <p>A Apple e as suas subsidiárias são terceiros beneficiários deste Contrato e podem fazê-lo cumprir contra si quando aplicável.</p>
+    </div>
+
+    <div class="section"><h2>15. Termos adicionais para o Google Play</h2>
+        <p>Se transferiu a Aplicação através do Google Play, a sua utilização também pode estar sujeita aos termos do Google Play e às políticas aplicáveis do Google Play. As compras dentro da aplicação podem ser processadas através do sistema de faturação do Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Lei aplicável</h2>
+        <p>Este Contrato rege-se pelas leis da República da Turquia, excluindo as normas de conflito de leis. Os seus direitos obrigatórios como consumidor permanecem inalterados.</p>
+    </div>
+
+    <div class="section"><h2>17. Contacto</h2>
+        <div class="contact"><p><strong>E-mail:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Programador:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Voltar ao início</a>
+</div>
+
+<!-- ═══════════════════════ РУССКИЙ ═══════════════════════ -->
+<div class="lang-ru">
+    <h1>Условия использования</h1>
+    <p class="date">Последнее обновление: май 2026</p>
+    <div class="note">Примечание: этот документ переведён на русский язык для удобства. В случае расхождений между этим переводом и версиями на турецком или английском языках, юридическую силу имеют турецкая и английская версии.</div>
+    <div class="notice"><p>Настоящие Условия использования и Лицензионное соглашение с конечным пользователем («Соглашение») действуют между вами и разработчиком при загрузке, установке или использовании мобильного приложения Harfogram («Приложение»). Используя Приложение, вы соглашаетесь с настоящим Соглашением.</p></div>
+
+    <div class="section"><h2>1. Общая информация</h2>
+        <p>Harfogram («Приложение») — мобильная игра на основе слов. Настоящее Соглашение разъясняет условия, на которых вы можете использовать Приложение, ваши лицензионные права, ограничения использования, рекламу, покупки внутри приложения и ограничения ответственности.</p>
+        <p>Если вы не согласны с настоящим Соглашением, вам не следует использовать Приложение, и вы должны удалить его со своего устройства.</p>
+    </div>
+
+    <div class="section"><h2>2. Объём лицензии</h2>
+        <p>Разработчик предоставляет вам ограниченную, неисключительную, непередаваемую, отзывную лицензию на использование Приложения исключительно в личных, некоммерческих целях.</p>
+        <p>Эта лицензия не передаёт вам права собственности на Приложение. Приложение лицензируется, а не продаётся.</p>
+    </div>
+
+    <div class="section"><h2>3. Ограничения использования</h2>
+        <p>Вы не можете:</p>
+        <ul>
+            <li>использовать Приложение в незаконных, вредоносных или недобросовестных целях,</li>
+            <li>копировать, изменять, распространять, продавать, сдавать в аренду или сублицензировать Приложение,</li>
+            <li>пытаться получить доступ к исходному коду, осуществлять обратную разработку Приложения или создавать производные работы,</li>
+            <li>использовать читы, ботов, автоматизацию, эксплойты или инструменты, нарушающие баланс игры,</li>
+            <li>беспокоить, вводить в заблуждение, угрожать или мешать другим игрокам,</li>
+            <li>пытаться нанести вред серверам, рекламным системам или многопользовательской инфраструктуре Приложения.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Имя игрока и многопользовательское использование</h2>
+        <p>Приложение может позволять вам использовать имя игрока или никнейм в многопользовательских режимах. Ваше имя игрока не должно содержать неуместный, вводящий в заблуждение, оскорбительный, дискриминационный, непристойный контент или нарушать права третьих лиц.</p>
+        <p>Разработчик оставляет за собой право ограничивать неуместные имена игроков, игровые сессии или доступ при необходимости.</p>
+    </div>
+
+    <div class="section"><h2>5. Реклама</h2>
+        <p>Приложение может показывать рекламу через сторонние рекламные сети, чтобы оставаться бесплатным. Реклама может быть персонализированной или неперсонализированной.</p>
+        <p>Вы можете управлять своими рекламными предпочтениями через экран согласия внутри Приложения. Для получения дополнительной информации о рекламе и рекламных партнёрах ознакомьтесь с нашей Политикой конфиденциальности.</p>
+    </div>
+
+    <div class="section"><h2>6. Покупки внутри приложения</h2>
+        <p>Приложение может предлагать покупки внутри приложения для игровой валюты, наград, функций или подобного цифрового контента.</p>
+        <p>Покупки обрабатываются Google Play или Apple App Store. Процессы оплаты, выставления счетов, отмены и возврата средств регулируются правилами соответствующей платформы.</p>
+        <p>Цифровой контент не имеет реальной денежной стоимости. Игровая валюта или виртуальные предметы могут использоваться только внутри Приложения.</p>
+    </div>
+
+    <div class="section"><h2>7. Интеллектуальная собственность</h2>
+        <p>Приложение и всё программное обеспечение, дизайн, интерфейс, тексты, графика, логотипы, звуки, музыка, игровая механика и прочий контент, включённый в Приложение, принадлежат разработчику или его лицензиарам.</p>
+        <p>Настоящее Соглашение не передаёт вам никаких авторских прав, прав на товарные знаки или иных прав интеллектуальной собственности.</p>
+    </div>
+
+    <div class="section"><h2>8. Конфиденциальность и персональные данные</h2>
+        <p>Ознакомьтесь с нашей Политикой конфиденциальности, чтобы узнать, как собираются, используются, хранятся и защищаются персональные данные:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Политика конфиденциальности</a></p>
+    </div>
+
+    <div class="section"><h2>9. Услуги третьих сторон</h2>
+        <p>Приложение может использовать сторонние сервисы для рекламы, многопользовательской инфраструктуры, аналитики, отчётов о сбоях или подобных целей.</p>
+        <p>Использование вами таких сторонних сервисов также может регулироваться их собственными условиями и политиками конфиденциальности.</p>
+    </div>
+
+    <div class="section"><h2>10. Обновления и изменения</h2>
+        <p>Разработчик может периодически обновлять, изменять, добавлять или удалять функции Приложения.</p>
+        <p>Настоящее Соглашение также может периодически обновляться. При существенных изменениях Приложение может снова запросить ваше согласие или отобразить соответствующее уведомление.</p>
+    </div>
+
+    <div class="section"><h2>11. Отказ от гарантий</h2>
+        <p>Приложение предоставляется «как есть» и «по мере доступности». Разработчик не гарантирует, что Приложение будет бесперебойным, безошибочным, безопасным или всегда доступным.</p>
+        <p>В максимальной степени, разрешённой законом, вы используете Приложение на свой страх и риск.</p>
+    </div>
+
+    <div class="section"><h2>12. Ограничение ответственности</h2>
+        <p>В максимальной степени, разрешённой законом, разработчик не несёт ответственности за косвенные, случайные, особые, штрафные или последующие убытки, возникшие в результате использования или невозможности использования Приложения.</p>
+    </div>
+
+    <div class="section"><h2>13. Приостановление и прекращение действия</h2>
+        <p>Вы можете прекратить действие настоящего Соглашения в любое время, удалив Приложение со своего устройства.</p>
+        <p>Разработчик оставляет за собой право приостановить или прекратить ваш доступ, если вы нарушаете настоящее Соглашение, читерите, причиняете вред другим пользователям или злоупотребляете Приложением.</p>
+    </div>
+
+    <div class="section"><h2>14. Дополнительные условия для Apple App Store</h2>
+        <p>Если вы загрузили Приложение из Apple App Store, вы подтверждаете, что настоящее Соглашение заключено между вами и разработчиком, а не с Apple. Apple не несёт ответственности за Приложение, его содержание, обслуживание, поддержку или любые претензии в рамках настоящего Соглашения.</p>
+        <p>Apple и её дочерние компании являются third-party выгодоприобретателями настоящего Соглашения и могут применять его в отношении вас в применимых случаях.</p>
+    </div>
+
+    <div class="section"><h2>15. Дополнительные условия для Google Play</h2>
+        <p>Если вы загрузили Приложение из Google Play, ваше использование также может регулироваться условиями Google Play и применимыми политиками Google Play. Покупки внутри приложения могут обрабатываться через систему выставления счетов Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Применимое право</h2>
+        <p>Настоящее Соглашение регулируется законодательством Турецкой Республики, за исключением коллизионных норм. Ваши обязательные права потребителя остаются неизменными.</p>
+    </div>
+
+    <div class="section"><h2>17. Контакты</h2>
+        <div class="contact"><p><strong>Эл. почта:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Разработчик:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Вернуться на главную</a>
+</div>
+
+<!-- ═══════════════════════ ITALIANO ═══════════════════════ -->
+<div class="lang-it">
+    <h1>Termini di utilizzo</h1>
+    <p class="date">Ultimo aggiornamento: maggio 2026</p>
+    <div class="note">Nota: questo documento è stato tradotto in italiano per comodità. In caso di discrepanza tra questa traduzione e le versioni in turco o inglese, prevalgono le versioni in turco e inglese, che sono giuridicamente vincolanti.</div>
+    <div class="notice"><p>I presenti Termini di utilizzo e Contratto di licenza con l'utente finale ("Contratto") si applicano tra te e lo sviluppatore quando scarichi, installi o utilizzi l'applicazione mobile Harfogram ("Applicazione"). Utilizzando l'Applicazione, accetti il presente Contratto.</p></div>
+
+    <div class="section"><h2>1. Informazioni generali</h2>
+        <p>Harfogram ("Applicazione") è un gioco mobile basato su parole. Il presente Contratto spiega le condizioni in base alle quali puoi utilizzare l'Applicazione, i tuoi diritti di licenza, le restrizioni d'uso, la pubblicità, gli acquisti in-app e le limitazioni di responsabilità.</p>
+        <p>Se non accetti il presente Contratto, non dovresti utilizzare l'Applicazione e dovresti eliminarla dal tuo dispositivo.</p>
+    </div>
+
+    <div class="section"><h2>2. Ambito della licenza</h2>
+        <p>Lo sviluppatore ti concede una licenza limitata, non esclusiva, non trasferibile e revocabile per utilizzare l'Applicazione esclusivamente per scopi personali e non commerciali.</p>
+        <p>Questa licenza non ti trasferisce alcuna proprietà sull'Applicazione. L'Applicazione è concessa in licenza, non venduta.</p>
+    </div>
+
+    <div class="section"><h2>3. Restrizioni d'uso</h2>
+        <p>Non puoi:</p>
+        <ul>
+            <li>utilizzare l'Applicazione per scopi illegali, dannosi o abusivi,</li>
+            <li>copiare, modificare, distribuire, vendere, noleggiare o concedere in sublicenza l'Applicazione,</li>
+            <li>tentare di accedere al codice sorgente, decompilare l'Applicazione o creare opere derivate,</li>
+            <li>utilizzare trucchi, bot, automazioni, exploit o strumenti che alterano l'equilibrio del gioco,</li>
+            <li>molestare, ingannare, minacciare o disturbare altri giocatori,</li>
+            <li>tentare di danneggiare i server, i sistemi pubblicitari o l'infrastruttura multigiocatore dell'Applicazione.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nome giocatore e utilizzo multigiocatore</h2>
+        <p>L'Applicazione potrebbe consentirti di utilizzare un nome giocatore o soprannome nelle modalità multigiocatore. Il tuo nome giocatore non deve contenere contenuti inappropriati, ingannevoli, offensivi, discriminatori, osceni o lesivi dei diritti di terzi.</p>
+        <p>Lo sviluppatore si riserva il diritto di limitare nomi giocatore inappropriati, sessioni di gioco o accesso ove necessario.</p>
+    </div>
+
+    <div class="section"><h2>5. Pubblicità</h2>
+        <p>L'Applicazione può mostrare annunci pubblicitari tramite reti pubblicitarie di terze parti per rimanere disponibile gratuitamente. Gli annunci possono essere personalizzati o non personalizzati.</p>
+        <p>Puoi gestire la tua preferenza pubblicitaria tramite la schermata di consenso all'interno dell'Applicazione. Per maggiori informazioni su annunci e partner pubblicitari, consulta la nostra Informativa sulla privacy.</p>
+    </div>
+
+    <div class="section"><h2>6. Acquisti in-app</h2>
+        <p>L'Applicazione può offrire acquisti in-app per valuta di gioco, ricompense, funzionalità o contenuti digitali simili.</p>
+        <p>Gli acquisti sono elaborati da Google Play o Apple App Store. I processi di pagamento, fatturazione, cancellazione e rimborso sono soggetti alle regole della piattaforma pertinente.</p>
+        <p>I contenuti digitali non hanno alcun valore monetario reale. La valuta di gioco o gli oggetti virtuali possono essere utilizzati solo all'interno dell'Applicazione.</p>
+    </div>
+
+    <div class="section"><h2>7. Proprietà intellettuale</h2>
+        <p>L'Applicazione e tutto il software, il design, l'interfaccia, i testi, la grafica, i loghi, i suoni, la musica, le meccaniche di gioco e altri contenuti inclusi nell'Applicazione sono di proprietà dello sviluppatore o dei suoi licenzianti.</p>
+        <p>Il presente Contratto non ti trasferisce alcun diritto d'autore, marchio o altro diritto di proprietà intellettuale.</p>
+    </div>
+
+    <div class="section"><h2>8. Privacy e dati personali</h2>
+        <p>Consulta la nostra Informativa sulla privacy per comprendere come i dati personali vengono raccolti, utilizzati, conservati e protetti:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Informativa sulla privacy</a></p>
+    </div>
+
+    <div class="section"><h2>9. Servizi di terze parti</h2>
+        <p>L'Applicazione può utilizzare servizi di terze parti per pubblicità, infrastruttura multigiocatore, analisi, rapporti sugli arresti anomali o scopi simili.</p>
+        <p>L'utilizzo di tali servizi di terze parti potrebbe anche essere soggetto ai loro termini e informative sulla privacy.</p>
+    </div>
+
+    <div class="section"><h2>10. Aggiornamenti e modifiche</h2>
+        <p>Lo sviluppatore può aggiornare, modificare, aggiungere o rimuovere funzionalità dall'Applicazione di tanto in tanto.</p>
+        <p>Anche il presente Contratto può essere aggiornato di tanto in tanto. Per modifiche significative, l'Applicazione potrebbe richiedere nuovamente il tuo consenso o mostrare un avviso appropriato.</p>
+    </div>
+
+    <div class="section"><h2>11. Esclusione di garanzia</h2>
+        <p>L'Applicazione è fornita "così com'è" e "come disponibile". Lo sviluppatore non garantisce che l'Applicazione sarà ininterrotta, priva di errori, sicura o sempre disponibile.</p>
+        <p>Nella misura massima consentita dalla legge, l'utilizzo dell'Applicazione avviene a tuo rischio.</p>
+    </div>
+
+    <div class="section"><h2>12. Limitazione di responsabilità</h2>
+        <p>Nella misura massima consentita dalla legge, lo sviluppatore non sarà responsabile per danni indiretti, incidentali, speciali, punitivi o consequenziali derivanti dall'uso o dall'impossibilità di utilizzare l'Applicazione.</p>
+    </div>
+
+    <div class="section"><h2>13. Sospensione e risoluzione</h2>
+        <p>Puoi risolvere il presente Contratto in qualsiasi momento eliminando l'Applicazione dal tuo dispositivo.</p>
+        <p>Lo sviluppatore si riserva il diritto di sospendere o risolvere il tuo accesso qualora tu violi il presente Contratto, bari, danneggi altri utenti o utilizzi impropriamente l'Applicazione.</p>
+    </div>
+
+    <div class="section"><h2>14. Termini aggiuntivi per l'Apple App Store</h2>
+        <p>Se hai scaricato l'Applicazione dall'Apple App Store, riconosci che il presente Contratto è stipulato tra te e lo sviluppatore, non con Apple. Apple non è responsabile dell'Applicazione, dei suoi contenuti, della manutenzione, del supporto o di eventuali reclami relativi al presente Contratto.</p>
+        <p>Apple e le sue affiliate sono terzi beneficiari del presente Contratto e possono farlo valere nei tuoi confronti ove applicabile.</p>
+    </div>
+
+    <div class="section"><h2>15. Termini aggiuntivi per Google Play</h2>
+        <p>Se hai scaricato l'Applicazione da Google Play, il tuo utilizzo potrebbe essere soggetto anche ai termini di Google Play e alle relative politiche applicabili. Gli acquisti in-app possono essere elaborati tramite il sistema di fatturazione di Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Legge applicabile</h2>
+        <p>Il presente Contratto è regolato dalle leggi della Repubblica di Turchia, escluse le norme sui conflitti di legge. I tuoi diritti obbligatori come consumatore rimangono impregiudicati.</p>
+    </div>
+
+    <div class="section"><h2>17. Contatti</h2>
+        <div class="contact"><p><strong>E-mail:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Sviluppatore:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Torna alla home</a>
+</div>
+
+<!-- ═══════════════════════ POLSKI ═══════════════════════ -->
+<div class="lang-pl">
+    <h1>Regulamin</h1>
+    <p class="date">Ostatnia aktualizacja: maj 2026</p>
+    <div class="note">Uwaga: niniejszy dokument został przetłumaczony na język polski dla wygody. W przypadku rozbieżności między niniejszym tłumaczeniem a wersją turecką lub angielską, wersje turecka i angielska są rozstrzygające i prawnie wiążące.</div>
+    <div class="notice"><p>Niniejszy Regulamin i Umowa licencyjna użytkownika końcowego ("Umowa") obowiązują między Tobą a deweloperem w momencie pobrania, zainstalowania lub korzystania z aplikacji mobilnej Harfogram ("Aplikacja"). Korzystając z Aplikacji, akceptujesz niniejszą Umowę.</p></div>
+
+    <div class="section"><h2>1. Informacje ogólne</h2>
+        <p>Harfogram ("Aplikacja") to mobilna gra słowna. Niniejsza Umowa wyjaśnia warunki, na jakich możesz korzystać z Aplikacji, Twoje prawa licencyjne, ograniczenia użytkowania, reklamy, zakupy w aplikacji oraz ograniczenia odpowiedzialności.</p>
+        <p>Jeśli nie zgadzasz się z niniejszą Umową, nie powinieneś korzystać z Aplikacji i powinieneś ją usunąć ze swojego urządzenia.</p>
+    </div>
+
+    <div class="section"><h2>2. Zakres licencji</h2>
+        <p>Deweloper udziela Ci ograniczonej, niewyłącznej, nieprzenoszalnej, odwołalnej licencji na korzystanie z Aplikacji wyłącznie w celach osobistych, niekomercyjnych.</p>
+        <p>Niniejsza licencja nie przenosi na Ciebie żadnej własności Aplikacji. Aplikacja jest licencjonowana, a nie sprzedawana.</p>
+    </div>
+
+    <div class="section"><h2>3. Ograniczenia użytkowania</h2>
+        <p>Nie możesz:</p>
+        <ul>
+            <li>korzystać z Aplikacji w celach niezgodnych z prawem, szkodliwych lub nadużywających,</li>
+            <li>kopiować, modyfikować, rozpowszechniać, sprzedawać, wynajmować ani udzielać dalszych licencji na Aplikację,</li>
+            <li>próbować uzyskać dostęp do kodu źródłowego, dokonywać inżynierii wstecznej Aplikacji ani tworzyć dzieł pochodnych,</li>
+            <li>używać oszustw, botów, automatyzacji, exploitów ani narzędzi zakłócających równowagę gry,</li>
+            <li>nękać, wprowadzać w błąd, grozić ani przeszkadzać innym graczom,</li>
+            <li>próbować szkodzić serwerom, systemom reklamowym ani infrastrukturze wieloosobowej Aplikacji.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nazwa gracza i korzystanie z trybu wieloosobowego</h2>
+        <p>Aplikacja może umożliwiać korzystanie z nazwy gracza lub pseudonimu w trybach wieloosobowych. Twoja nazwa gracza nie może zawierać treści nieodpowiednich, wprowadzających w błąd, obraźliwych, dyskryminujących, nieprzyzwoitych ani naruszających prawa osób trzecich.</p>
+        <p>Deweloper zastrzega sobie prawo do ograniczania nieodpowiednich nazw graczy, sesji gry lub dostępu, gdy jest to konieczne.</p>
+    </div>
+
+    <div class="section"><h2>5. Reklamy</h2>
+        <p>Aplikacja może wyświetlać reklamy za pośrednictwem sieci reklamowych stron trzecich, aby pozostać dostępna bezpłatnie. Reklamy mogą być spersonalizowane lub niespersonalizowane.</p>
+        <p>Możesz zarządzać swoją preferencją reklamową za pomocą ekranu zgody wyświetlanego w Aplikacji. Więcej informacji o reklamach i partnerach reklamowych znajdziesz w naszej Polityce prywatności.</p>
+    </div>
+
+    <div class="section"><h2>6. Zakupy w aplikacji</h2>
+        <p>Aplikacja może oferować zakupy w aplikacji dotyczące waluty gry, nagród, funkcji lub podobnych treści cyfrowych.</p>
+        <p>Zakupy są przetwarzane przez Google Play lub Apple App Store. Procesy płatności, rozliczeń, anulowania i zwrotów podlegają zasadom odpowiedniej platformy.</p>
+        <p>Treści cyfrowe nie mają żadnej rzeczywistej wartości pieniężnej. Waluta gry lub przedmioty wirtualne mogą być używane wyłącznie w Aplikacji.</p>
+    </div>
+
+    <div class="section"><h2>7. Własność intelektualna</h2>
+        <p>Aplikacja oraz całe oprogramowanie, projekt, interfejs, tekst, grafika, logotypy, dźwięki, muzyka, mechanika gry i inne treści zawarte w Aplikacji stanowią własność dewelopera lub jego licencjodawców.</p>
+        <p>Niniejsza Umowa nie przenosi na Ciebie żadnych praw autorskich, praw do znaków towarowych ani innych praw własności intelektualnej.</p>
+    </div>
+
+    <div class="section"><h2>8. Prywatność i dane osobowe</h2>
+        <p>Zapoznaj się z naszą Polityką prywatności, aby dowiedzieć się, w jaki sposób dane osobowe są zbierane, wykorzystywane, przechowywane i chronione:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Polityka prywatności</a></p>
+    </div>
+
+    <div class="section"><h2>9. Usługi stron trzecich</h2>
+        <p>Aplikacja może korzystać z usług stron trzecich do celów reklamowych, infrastruktury wieloosobowej, analiz, raportowania awarii lub podobnych celów.</p>
+        <p>Korzystanie z takich usług stron trzecich może również podlegać ich własnym warunkom i politykom prywatności.</p>
+    </div>
+
+    <div class="section"><h2>10. Aktualizacje i zmiany</h2>
+        <p>Deweloper może od czasu do czasu aktualizować, modyfikować, dodawać lub usuwać funkcje Aplikacji.</p>
+        <p>Niniejsza Umowa może być również od czasu do czasu aktualizowana. W przypadku istotnych zmian Aplikacja może ponownie poprosić o Twoją zgodę lub wyświetlić odpowiednie powiadomienie.</p>
+    </div>
+
+    <div class="section"><h2>11. Wyłączenie gwarancji</h2>
+        <p>Aplikacja jest dostarczana "tak jak jest" i "w miarę dostępności". Deweloper nie gwarantuje, że Aplikacja będzie działać nieprzerwanie, bezbłędnie, bezpiecznie lub zawsze będzie dostępna.</p>
+        <p>W zakresie dozwolonym przez prawo korzystasz z Aplikacji na własne ryzyko.</p>
+    </div>
+
+    <div class="section"><h2>12. Ograniczenie odpowiedzialności</h2>
+        <p>W zakresie dozwolonym przez prawo deweloper nie ponosi odpowiedzialności za pośrednie, przypadkowe, szczególne, karne lub wtórne szkody wynikające z korzystania lub niemożności korzystania z Aplikacji.</p>
+    </div>
+
+    <div class="section"><h2>13. Zawieszenie i rozwiązanie</h2>
+        <p>Możesz rozwiązać niniejszą Umowę w dowolnym momencie, usuwając Aplikację ze swojego urządzenia.</p>
+        <p>Deweloper zastrzega sobie prawo do zawieszenia lub rozwiązania Twojego dostępu, jeśli naruszysz niniejszą Umowę, oszukujesz, szkodzisz innym użytkownikom lub nadużywasz Aplikacji.</p>
+    </div>
+
+    <div class="section"><h2>14. Dodatkowe warunki dla Apple App Store</h2>
+        <p>Jeśli pobrałeś Aplikację z Apple App Store, przyjmujesz do wiadomości, że niniejsza Umowa obowiązuje między Tobą a deweloperem, a nie z Apple. Apple nie ponosi odpowiedzialności za Aplikację, jej treść, konserwację, wsparcie ani jakiekolwiek roszczenia wynikające z niniejszej Umowy.</p>
+        <p>Apple i jej podmioty zależne są stronami trzecimi będącymi beneficjentami niniejszej Umowy i mogą ją egzekwować wobec Ciebie, gdy ma to zastosowanie.</p>
+    </div>
+
+    <div class="section"><h2>15. Dodatkowe warunki dla Google Play</h2>
+        <p>Jeśli pobrałeś Aplikację z Google Play, Twoje korzystanie może również podlegać warunkom Google Play i odpowiednim politykom Google Play. Zakupy w aplikacji mogą być przetwarzane za pośrednictwem systemu rozliczeniowego Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Prawo właściwe</h2>
+        <p>Niniejsza Umowa podlega prawu Republiki Turcji, z wyłączeniem norm kolizyjnych. Twoje obowiązkowe prawa konsumenckie pozostają nienaruszone.</p>
+    </div>
+
+    <div class="section"><h2>17. Kontakt</h2>
+        <div class="contact"><p><strong>E-mail:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Deweloper:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Powrót do strony głównej</a>
+</div>
+
+<!-- ═══════════════════════ BAHASA INDONESIA ═══════════════════════ -->
+<div class="lang-id">
+    <h1>Ketentuan Penggunaan</h1>
+    <p class="date">Terakhir diperbarui: Mei 2026</p>
+    <div class="note">Catatan: dokumen ini diterjemahkan ke dalam Bahasa Indonesia demi kenyamanan Anda. Jika terdapat perbedaan antara terjemahan ini dengan versi Turki atau Inggris, versi Turki dan Inggris yang berlaku dan mengikat secara hukum.</div>
+    <div class="notice"><p>Ketentuan Penggunaan dan Perjanjian Lisensi Pengguna Akhir ("Perjanjian") ini berlaku antara Anda dan pengembang saat Anda mengunduh, memasang, atau menggunakan aplikasi seluler Harfogram ("Aplikasi"). Dengan menggunakan Aplikasi, Anda menyetujui Perjanjian ini.</p></div>
+
+    <div class="section"><h2>1. Informasi Umum</h2>
+        <p>Harfogram ("Aplikasi") adalah permainan seluler berbasis kata. Perjanjian ini menjelaskan ketentuan penggunaan Aplikasi, hak lisensi Anda, batasan penggunaan, iklan, pembelian dalam aplikasi, dan batasan tanggung jawab.</p>
+        <p>Jika Anda tidak menyetujui Perjanjian ini, Anda tidak boleh menggunakan Aplikasi dan harus menghapusnya dari perangkat Anda.</p>
+    </div>
+
+    <div class="section"><h2>2. Cakupan Lisensi</h2>
+        <p>Pengembang memberi Anda lisensi terbatas, non-eksklusif, tidak dapat dialihkan, dan dapat dicabut untuk menggunakan Aplikasi hanya untuk tujuan pribadi dan non-komersial.</p>
+        <p>Lisensi ini tidak mengalihkan kepemilikan Aplikasi kepada Anda. Aplikasi dilisensikan, bukan dijual.</p>
+    </div>
+
+    <div class="section"><h2>3. Batasan Penggunaan</h2>
+        <p>Anda tidak boleh:</p>
+        <ul>
+            <li>menggunakan Aplikasi untuk tujuan yang melanggar hukum, merugikan, atau menyalahgunakan,</li>
+            <li>menyalin, memodifikasi, mendistribusikan, menjual, menyewakan, atau mensublisensikan Aplikasi,</li>
+            <li>mencoba mengakses kode sumber, melakukan rekayasa balik terhadap Aplikasi, atau membuat karya turunan,</li>
+            <li>menggunakan kecurangan, bot, otomatisasi, eksploitasi, atau alat yang mengganggu keseimbangan permainan,</li>
+            <li>melecehkan, menyesatkan, mengancam, atau mengganggu pemain lain,</li>
+            <li>mencoba merusak server, sistem periklanan, atau infrastruktur multipemain Aplikasi.</li>
+        </ul>
+    </div>
+
+    <div class="section"><h2>4. Nama Pemain dan Penggunaan Multipemain</h2>
+        <p>Aplikasi dapat mengizinkan Anda menggunakan nama pemain atau nama panggilan dalam mode multipemain. Nama pemain Anda tidak boleh mengandung konten yang tidak pantas, menyesatkan, menyinggung, diskriminatif, cabul, atau melanggar hak pihak ketiga.</p>
+        <p>Pengembang berhak membatasi nama pemain yang tidak pantas, sesi permainan, atau akses bila diperlukan.</p>
+    </div>
+
+    <div class="section"><h2>5. Iklan</h2>
+        <p>Aplikasi dapat menampilkan iklan melalui jaringan iklan pihak ketiga agar Aplikasi tetap tersedia secara gratis. Iklan dapat dipersonalisasi atau tidak dipersonalisasi.</p>
+        <p>Anda dapat mengelola preferensi iklan Anda melalui layar persetujuan di dalam Aplikasi. Untuk informasi lebih lanjut tentang iklan dan mitra periklanan, silakan tinjau Kebijakan Privasi kami.</p>
+    </div>
+
+    <div class="section"><h2>6. Pembelian Dalam Aplikasi</h2>
+        <p>Aplikasi dapat menawarkan pembelian dalam aplikasi untuk mata uang permainan, hadiah, fitur, atau konten digital serupa.</p>
+        <p>Pembelian diproses oleh Google Play atau Apple App Store. Proses pembayaran, penagihan, pembatalan, dan pengembalian dana tunduk pada aturan platform terkait.</p>
+        <p>Konten digital tidak memiliki nilai moneter dunia nyata. Mata uang permainan atau item virtual hanya dapat digunakan di dalam Aplikasi.</p>
+    </div>
+
+    <div class="section"><h2>7. Kekayaan Intelektual</h2>
+        <p>Aplikasi dan semua perangkat lunak, desain, antarmuka, teks, grafik, logo, suara, musik, mekanika permainan, dan konten lain yang termasuk dalam Aplikasi dimiliki oleh pengembang atau pemberi lisensinya.</p>
+        <p>Perjanjian ini tidak mengalihkan hak cipta, merek dagang, atau hak kekayaan intelektual lainnya kepada Anda.</p>
+    </div>
+
+    <div class="section"><h2>8. Privasi dan Data Pribadi</h2>
+        <p>Silakan tinjau Kebijakan Privasi kami untuk memahami bagaimana data pribadi dikumpulkan, digunakan, disimpan, dan dilindungi:</p>
+        <p><a href="https://harfogram.com/privacy/" target="_blank" rel="noopener">Kebijakan Privasi</a></p>
+    </div>
+
+    <div class="section"><h2>9. Layanan Pihak Ketiga</h2>
+        <p>Aplikasi dapat menggunakan layanan pihak ketiga untuk iklan, infrastruktur multipemain, analitik, pelaporan crash, atau tujuan serupa.</p>
+        <p>Penggunaan Anda atas layanan pihak ketiga tersebut juga dapat tunduk pada ketentuan dan kebijakan privasi mereka sendiri.</p>
+    </div>
+
+    <div class="section"><h2>10. Pembaruan dan Perubahan</h2>
+        <p>Pengembang dapat memperbarui, memodifikasi, menambahkan, atau menghapus fitur dari Aplikasi dari waktu ke waktu.</p>
+        <p>Perjanjian ini juga dapat diperbarui dari waktu ke waktu. Untuk perubahan signifikan, Aplikasi dapat meminta persetujuan Anda kembali atau menampilkan pemberitahuan yang sesuai.</p>
+    </div>
+
+    <div class="section"><h2>11. Penafian Jaminan</h2>
+        <p>Aplikasi disediakan "sebagaimana adanya" dan "sebagaimana tersedia". Pengembang tidak menjamin bahwa Aplikasi akan berjalan tanpa gangguan, bebas dari kesalahan, aman, atau selalu tersedia.</p>
+        <p>Sejauh diizinkan oleh hukum, penggunaan Aplikasi oleh Anda menjadi risiko Anda sendiri.</p>
+    </div>
+
+    <div class="section"><h2>12. Batasan Tanggung Jawab</h2>
+        <p>Sejauh diizinkan oleh hukum, pengembang tidak bertanggung jawab atas kerugian tidak langsung, insidental, khusus, punitif, atau konsekuensial yang timbul dari penggunaan atau ketidakmampuan menggunakan Aplikasi.</p>
+    </div>
+
+    <div class="section"><h2>13. Penangguhan dan Penghentian</h2>
+        <p>Anda dapat mengakhiri Perjanjian ini kapan saja dengan menghapus Aplikasi dari perangkat Anda.</p>
+        <p>Pengembang berhak menangguhkan atau mengakhiri akses Anda jika Anda melanggar Perjanjian ini, melakukan kecurangan, merugikan pengguna lain, atau menyalahgunakan Aplikasi.</p>
+    </div>
+
+    <div class="section"><h2>14. Ketentuan Tambahan untuk Apple App Store</h2>
+        <p>Jika Anda mengunduh Aplikasi dari Apple App Store, Anda mengakui bahwa Perjanjian ini berlaku antara Anda dan pengembang, bukan dengan Apple. Apple tidak bertanggung jawab atas Aplikasi, kontennya, pemeliharaan, dukungan, atau klaim apa pun berdasarkan Perjanjian ini.</p>
+        <p>Apple dan afiliasinya adalah pihak ketiga penerima manfaat dari Perjanjian ini dan dapat menegakkan Perjanjian ini terhadap Anda bila berlaku.</p>
+    </div>
+
+    <div class="section"><h2>15. Ketentuan Tambahan untuk Google Play</h2>
+        <p>Jika Anda mengunduh Aplikasi dari Google Play, penggunaan Anda juga dapat tunduk pada ketentuan Google Play dan kebijakan Google Play yang berlaku. Pembelian dalam aplikasi dapat diproses melalui sistem penagihan Google Play.</p>
+    </div>
+
+    <div class="section"><h2>16. Hukum yang Berlaku</h2>
+        <p>Perjanjian ini diatur oleh hukum Republik Turki, tidak termasuk aturan konflik hukum. Hak konsumen wajib Anda tetap tidak terpengaruh.</p>
+    </div>
+
+    <div class="section"><h2>17. Kontak</h2>
+        <div class="contact"><p><strong>E-mail:</strong> <a href="mailto:info@harfogram.com">info@harfogram.com</a></p><p><strong>Pengembang:</strong> Gurcan Studio</p></div>
+    </div>
+
+    <a class="back" href="/">← Kembali ke beranda</a>
+</div>
+
 </main>
 <footer>© <span id="year"></span> Gurcan Studio · Harfogram</footer>
 <script>
 document.getElementById('year').textContent=new Date().getFullYear();
+const LANGS=['tr','en','de','fr','es','pt','ru','it','pl','id'];
 function setLang(l){
-  document.querySelector('.lang-tr').style.display = l==='tr'?'block':'none';
-  document.querySelector('.lang-en').style.display = l==='en'?'block':'none';
+  if(!LANGS.includes(l)) l='tr';
+  LANGS.forEach(x=>{const el=document.querySelector('.lang-'+x); if(el) el.style.display=(x===l?'block':'none');});
   document.documentElement.lang=l;
-  document.getElementById('tr-btn').classList.toggle('active',l==='tr');
-  document.getElementById('en-btn').classList.toggle('active',l==='en');
+  document.getElementById('lang-select').value=l;
+  localStorage.setItem('harfogram_lang',l);
 }
+function detectInitialLang(){
+  const saved=localStorage.getItem('harfogram_lang');
+  if(saved && LANGS.includes(saved)) return saved;
+  const nav=(navigator.language||'tr').slice(0,2).toLowerCase();
+  return LANGS.includes(nav) ? nav : 'tr';
+}
+setLang(detectInitialLang());
 </script>
 </body>
 </html>
