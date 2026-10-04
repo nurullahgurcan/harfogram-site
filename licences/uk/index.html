@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harfogram — Ukrainian word lists (MPL 1.1)</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #1d2433; background: #fff; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 2rem; }
+  pre { background: #f4f6fa; padding: 1rem; overflow-x: auto; font-size: .85rem; }
+  code { background: #f4f6fa; padding: 0 .25rem; }
+  @media (prefers-color-scheme: dark) { body { background: #121722; color: #e6e9ef; } pre, code { background: #1c2333; } a { color: #8cb4ff; } }
+</style>
+</head>
+<body>
+<h1>Harfogram — Ukrainian word lists</h1>
+
+<p>The Ukrainian word lists used in the game <strong>Harfogram</strong> are Modifications of the
+Hunspell <code>uk_UA</code> dictionary of the <a href="https://github.com/brown-uk/dict_uk">dict_uk</a> project,
+release <strong>v6.8.6</strong> (2026-09-19, <code>hunspell-uk_UA_6.8.6.zip</code>).
+That dictionary is licensed under GPL 3.0 or above, LGPL 2.1 or above and MPL 1.1; Harfogram uses it under the
+<strong>Mozilla Public License 1.1</strong> (<a href="MPL-1.1.txt">MPL-1.1.txt</a>).
+The files below are the Source Code form of these Modifications, made available as required by MPL 1.1 §3.2.
+The rest of the application is a separate work and is not covered by this license.</p>
+
+<h2>Files</h2>
+<ul>
+  <li><a href="dictionary_uk.txt">dictionary_uk.txt</a> — the word list the game uses to validate moves (503,460 words, lowercase).</li>
+  <li><a href="ai_words_uk.txt">ai_words_uk.txt</a> — the subset the computer opponent plays, most frequent first (70,000 words, uppercase).</li>
+  <li><a href="MPL-1.1.txt">MPL-1.1.txt</a> — license text.</li>
+</ul>
+
+<h2>Changes made (MPL 1.1 §3.3) — 2026-10-04</h2>
+<ol>
+  <li>Expanded <code>uk_UA.dic</code> with the suffix rules of <code>uk_UA.aff</code>.</li>
+  <li>Kept only entries whose stem starts with a lowercase letter (proper nouns and abbreviations removed) and that contain only Ukrainian letters and the apostrophe.</li>
+  <li>Kept every stem (lemma), plus the inflected forms that also occur in the
+      <a href="https://github.com/rspeer/wordfreq">wordfreq</a> frequency list (used offline for ranking only; no wordfreq data is included).</li>
+  <li>Removed the apostrophe from words (<code>м'ясо</code> → <code>мясо</code>), as the game has no apostrophe tile. Minimum length 2. Sorted in Ukrainian alphabetical order.</li>
+  <li><code>ai_words_uk.txt</code>: words of <code>dictionary_uk.txt</code> that occur in wordfreq, ordered by frequency, first 70,000, uppercase.</li>
+</ol>
+
+<h2>Original copyright notice</h2>
+<pre>This is Ukrainian spelling dictionary for myspell &amp; hunspell
+
+Copyright (C) 1999
+    Vladimir Yakovchuk
+    Oleg Podgurniy
+
+Copyright (C) 2001
+    Dmytro Kovalyov
+    Maksym Polyakov
+    Andriy Rysin
+
+Copyright (C) 2002
+    Valentyn Solomko
+    Volodymyr M. Lisivka
+
+Copyright (C) 2005
+    Andriy Rysin
+    Eugeniy Meshcheryakov
+    Dmytro Kovalyov
+
+Copyright (C) 2006-2023
+    Andriy Rysin
+    Vasyl Starko
+
+This dictionary is licensed under GPL 3.0 or above, LGPL 2.1 or above and MPL (Mozilla Public License) 1.1 licenses.</pre>
+
+<p>Modifications: Gurcan Studio — <a href="mailto:info@harfogram.com">info@harfogram.com</a></p>
+</body>
+</html>
