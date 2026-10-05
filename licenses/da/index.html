@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harfogram — Danish word lists (MPL 1.1)</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #1d2433; background: #fff; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 2rem; }
+  pre { background: #f4f6fa; padding: 1rem; overflow-x: auto; font-size: .85rem; white-space: pre-wrap; }
+  code { background: #f4f6fa; padding: 0 .25rem; }
+  @media (prefers-color-scheme: dark) { body { background: #121722; color: #e6e9ef; } pre, code { background: #1c2333; } a { color: #8cb4ff; } }
+</style>
+</head>
+<body>
+<h1>Harfogram — Danish word lists</h1>
+
+<p>The Danish word lists used in the game <strong>Harfogram</strong> are Modifications of the
+Hunspell <code>da_DK</code> dictionary of <a href="https://www.stavekontrolden.dk">Stavekontrolden</a>,
+version <strong>2.9.101</strong> (2026-06-07), as distributed in the
+<a href="https://github.com/LibreOffice/dictionaries/tree/cdaeab266e35c0f1ce367629c7f2079c64fe9351/da_DK">LibreOffice dictionaries repository</a>.
+That dictionary is published under GPL 2.0, LGPL 2.1 and MPL 1.1; Harfogram uses it under the
+<strong>Mozilla Public License 1.1</strong> (<a href="MPL-1.1.txt">MPL-1.1.txt</a>).
+The files below are the Source Code form of these Modifications, made available as required by MPL 1.1 §3.2.
+The rest of the application is a separate work and is not covered by this license.</p>
+
+<h2>Files</h2>
+<ul>
+  <li><a href="dictionary_da.txt">dictionary_da.txt</a> — the word list the game uses to validate moves (387,161 words, lowercase).</li>
+  <li><a href="ai_words_da.txt">ai_words_da.txt</a> — the subset the computer opponent plays, most frequent first (22,463 words, uppercase).</li>
+  <li><a href="MPL-1.1.txt">MPL-1.1.txt</a> — license text.</li>
+</ul>
+
+<h2>Changes made (MPL 1.1 §3.3) — 2026-10-05</h2>
+<ol>
+  <li>Expanded <code>da_DK.dic</code> with the prefix and suffix rules of <code>da_DK.aff</code> (two suffix levels via continuation classes) and added the irregular forms listed in the <code>al:</code> fields. No compounds were generated.</li>
+  <li>Removed entries flagged FORBIDDENWORD or ONLYINCOMPOUND, stems that start with an uppercase letter (proper nouns), and stems flagged NEEDAFFIX on their own.</li>
+  <li>Removed genitive forms: rules tagged <code>+GENITIV</code>; plural definite genitives ending in <code>-enes</code>; irregular forms that equal another form of the same lemma plus <code>-s</code>; and past participle + passive <code>-s</code>. The conjunction <code>mens</code> was kept.</li>
+  <li>Removed words without a vowel (abbreviations such as <code>tv</code>, <code>pc</code>, <code>kg</code>), except a few interjections. Removed diacritics other than æ, ø and å (<code>café</code> → <code>cafe</code>). Kept only words of letters a–z, æ, ø, å, minimum length 2. Sorted in Danish alphabetical order.</li>
+  <li><code>ai_words_da.txt</code>: words of <code>dictionary_da.txt</code> that occur in the
+      <a href="https://github.com/rspeer/wordfreq">wordfreq</a> frequency list (used offline for ranking only; no wordfreq data is included), ordered by frequency, uppercase.</li>
+</ol>
+
+<h2>Original copyright notice</h2>
+<pre>Stavekontrolden - Danish dictionary files for Hunspell and thesaurus files for MyThes
+Version 2.9.101 - 07-06-2026
+da_DK.dic, da_DK.aff, th_da_DK.dat, th_da_DK.idx: © 2020 Foreningen for frit tilgængelige sprogværktøjer - http://www.stavekontrolden.dk
+These files are published under the following open source licenses:
+
+GNU GPL version 2.0 - https://www.gnu.org/licenses/gpl-2.0.html
+GNU LGPL version 2.1 - https://www.gnu.org/licenses/lgpl-2.1.html
+Mozilla MPL version 1.1 - https://www.mozilla.org/en-US/MPL/1.1/
+
+This dictionary is based on data from Det Danske Sprog- og Litteraturselskab
+(The Danish Society for Language and Literature), https://dsl.dk.</pre>
+
+<p>Modifications: Gurcan Studio — <a href="mailto:info@harfogram.com">info@harfogram.com</a></p>
+</body>
+</html>
