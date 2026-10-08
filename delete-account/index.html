@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hesap ve Veri Silme — Harfogram</title>
+<meta name="description" content="Harfogram — hesap ve veri silme / account and data deletion" />
+<link rel="icon" type="image/svg+xml" href="../harfogram_logo_cinzel.svg" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,900&family=Hanken+Grotesk:wght@400;500;700;800&display=swap" rel="stylesheet" />
+<style>
+:root{--navy:#141043;--purple:#3a1466;--cream:#f6edda;--cream-dim:#cabfe6;--pink:#ff3d8b;--cyan:#2bd6e6;--line:rgba(255,255,255,.13);
+  --display:"Fraunces",Georgia,serif;--body:"Hanken Grotesk",system-ui,sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);color:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;
+  background:radial-gradient(900px 600px at 86% -8%,rgba(255,61,139,.28),transparent 60%),
+    radial-gradient(820px 700px at -5% 18%,rgba(43,214,230,.18),transparent 55%),
+    linear-gradient(160deg,var(--navy),var(--purple));background-attachment:fixed;min-height:100vh}
+a{color:var(--cyan)}
+header{position:sticky;top:0;z-index:10;backdrop-filter:blur(12px);background:rgba(20,16,67,.7);border-bottom:1px solid var(--line)}
+nav{max-width:820px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--display);font-weight:900;font-size:1.25rem;color:var(--cream)}
+.brand .t{width:32px;height:32px;background:var(--cream);color:var(--navy);border-radius:8px;display:grid;place-items:center;
+  font-family:var(--display);font-weight:900;box-shadow:0 3px 0 0 #c2a96e}
+.lang select{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);
+  border:1px solid var(--line);border-radius:999px;color:var(--cream);font-family:var(--body);
+  font-weight:800;font-size:.78rem;padding:7px 30px 7px 14px;cursor:pointer;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23cabfe6' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 8px center;background-size:14px;transition:border-color .2s}
+.lang select:hover{border-color:var(--pink)}
+.lang select option{background:var(--navy);color:var(--cream)}
+main{max-width:820px;margin:0 auto;padding:56px 24px 90px}
+h1{font-family:var(--display);font-weight:900;font-size:clamp(2rem,5vw,2.8rem);letter-spacing:-.02em;margin-bottom:8px}
+.updated{color:var(--cream-dim);font-size:.9rem;margin-bottom:14px}
+.note{background:rgba(255,61,139,.1);border:1px solid rgba(255,61,139,.3);border-radius:14px;padding:16px 18px;font-size:.9rem;color:var(--cream-dim);margin:18px 0 36px}
+h2{font-family:var(--display);font-weight:600;font-size:1.4rem;margin:34px 0 10px;color:#fff}
+p,li{color:#e9e3f6;font-size:1rem;margin-bottom:10px}
+ul{padding-left:22px;margin-bottom:10px}
+.back{display:inline-block;margin-top:40px;color:var(--cyan);font-weight:700}
+[class^="lang-"]{display:none}
+.lang-tr{display:block}
+footer{max-width:820px;margin:0 auto;padding:24px;border-top:1px solid var(--line);color:var(--cream-dim);font-size:.82rem}
+ol{padding-left:22px;margin-bottom:10px}
+.box{background:rgba(43,214,230,.08);border:1px solid rgba(43,214,230,.3);border-radius:14px;padding:16px 20px;margin:14px 0}
+</style>
+</head>
+<body>
+<header>
+  <nav>
+    <a class="brand" href="/"><img src="../harfogram_logo_cinzel.svg" alt="Harfogram" style="height:34px;width:auto;border-radius:9px;" /><span>Harfogram</span></a>
+    <div class="lang">
+      <select id="lang-select" onchange="setLang(this.value)" aria-label="Language">
+        <option value="tr">TR · Türkçe</option>
+        <option value="en">EN · English</option>
+        <option value="de">DE · Deutsch</option>
+        <option value="fr">FR · Français</option>
+        <option value="es">ES · Español</option>
+        <option value="pt">PT · Português</option>
+        <option value="ru">RU · Русский</option>
+        <option value="it">IT · Italiano</option>
+        <option value="pl">PL · Polski</option>
+        <option value="id">ID · Bahasa Indonesia</option>
+        <option value="uk">UK · Українська</option>
+        <option value="nl">NL · Nederlands</option>
+        <option value="sv">SV · Svenska</option>
+        <option value="nb">NB · Norsk</option>
+        <option value="da">DA · Dansk</option>
+        <option value="ro">RO · Română</option>
+      </select>
+    </div>
+  </nav>
+</header>
+<main>
+
+<div class="lang-tr">
+    <h1>Hesap ve Veri Silme</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Bu sayfa, Gurcan Studio tarafından geliştirilen <strong>Harfogram</strong> kelime oyununda oyun hesabınızın ve ilişkili verilerinizin silinmesini nasıl talep edeceğinizi açıklar.</p>
+    <h2>1. Uygulama içinden silme (önerilen)</h2>
+    <div class="box"><ol><li>Harfogram’ı açın.</li><li>Şu menüye gidin: <strong>Ayarlar → Hakkında → Gizlilik &amp; Hesap → Hesabımı Sil</strong></li><li>Onay penceresinde silmeyi onaylayın.</li></ol><p>Silme hemen başlar ve geri alınamaz. Ardından oyun yeni, boş bir misafir hesabıyla açılır.</p></div>
+    <h2>2. E-postayla silme talebi</h2>
+    <p>Uygulamaya erişemiyorsanız <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> adresine “Hesap silme” konulu bir e-posta gönderin ve oyundaki <strong>oyuncu adınızı</strong> yazın. Hesabın size ait olduğunu doğruladıktan sonra en geç <strong>30 gün</strong> içinde hesabınızı ve verilerinizi sileriz.</p>
+    <h2>Silinen veriler</h2>
+    <ul><li>Oyun hesabınız ve hesap kimliğiniz</li><li>Oyuncu adınız</li><li>Oyun ilerlemeniz: puanlar, istatistikler, seviye, altın, başarımlar, Battle Pass ilerlemesi, sahip olduğunuz öğeler ve ayarlar</li><li>Liderlik tablolarındaki kayıtlarınız</li><li>Bildirim jetonunuz</li><li>Oyun içi olay kayıtları, çökme raporları ve gönderdiğiniz geri bildirimler</li><li>Uygulama içinden silmede: cihazınızdaki oyun verileri</li></ul>
+    <h2>Saklanan veriler ve süreler</h2>
+    <ul><li>Silme oyun sunucumuzda hemen başlar; verilerin yardımcı sistemlerden ve hizmet sağlayıcılarımızdan tamamen kaldırılması birkaç gün sürebilir.</li><li>Uygulama içi satın almaların ödeme kayıtları Apple ve Google tarafından, kendi politikalarına ve yasal yükümlülüklerine göre tutulur; bunları biz silemeyiz.</li><li>Reklam ortaklarının işlediği veriler kendi saklama politikalarına tabidir. Reklam kimliğinizi cihazınızın ayarlarından sıfırlayabilirsiniz.</li><li>Silme talebi için gönderdiğiniz e-posta, talep sonuçlandıktan sonra silinir.</li></ul>
+    <p>Uygulamayı cihazınızdan kaldırmak hesabınızı silmez; hesap sunucuda kalır ve yeniden giriş yapılırsa geri yüklenebilir.</p>
+    <p>Ayrıntılar için <a href="/privacy/">Gizlilik Politikası</a>’na bakın.</p>
+    <a class="back" href="/">← Ana sayfaya dön</a>
+</div>
+
+<div class="lang-en">
+    <h1>Account & Data Deletion</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>This page explains how to request deletion of your game account and associated data in <strong>Harfogram</strong>, the word game developed by Gurcan Studio.</p>
+    <h2>1. Delete in the app (recommended)</h2>
+    <div class="box"><ol><li>Open Harfogram.</li><li>Go to: <strong>Settings → About → Privacy &amp; Account → Delete My Account</strong></li><li>Confirm the deletion in the dialog.</li></ol><p>Deletion starts immediately and cannot be undone. The game then opens with a new, empty guest account.</p></div>
+    <h2>2. Request deletion by email</h2>
+    <p>If you can no longer access the app, email <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> with the subject “Account deletion” and include your in-game <strong>player name</strong>. After confirming that the account is yours, we delete your account and data within <strong>30 days</strong>.</p>
+    <h2>Data that is deleted</h2>
+    <ul><li>Your game account and account identifier</li><li>Your player name</li><li>Your game progress: scores, statistics, level, gold, achievements, Battle Pass progress, items you own and settings</li><li>Your leaderboard entries</li><li>Your notification token</li><li>In-game event records, crash reports and feedback you sent</li><li>When deleting in the app: the game data on your device</li></ul>
+    <h2>Data that is kept, and for how long</h2>
+    <ul><li>Deletion starts on our game server immediately; complete removal from supporting systems and our service providers may take a few days.</li><li>Payment records of in-app purchases are kept by Apple and Google under their own policies and legal obligations; we cannot delete them.</li><li>Data processed by advertising partners is subject to their own retention policies. You can reset your advertising ID in your device settings.</li><li>The email you send to request deletion is deleted once the request is completed.</li></ul>
+    <p>Uninstalling the app does not delete your account; it stays on the server and can be restored if you sign in again.</p>
+    <p>For details, see the <a href="/privacy/">Privacy Policy</a>.</p>
+    <a class="back" href="/">← Back to home</a>
+</div>
+
+<div class="lang-de">
+    <h1>Konto- und Datenlöschung</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Auf dieser Seite erfährst du, wie du die Löschung deines Spielkontos und der zugehörigen Daten in <strong>Harfogram</strong>, dem Wortspiel von Gurcan Studio, beantragst.</p>
+    <h2>1. Löschen in der App (empfohlen)</h2>
+    <div class="box"><ol><li>Öffne Harfogram.</li><li>Gehe zu: <strong>Einstellungen → Über → Datenschutz &amp; Konto → Mein Konto löschen</strong></li><li>Bestätige die Löschung im Dialog.</li></ol><p>Die Löschung beginnt sofort und kann nicht rückgängig gemacht werden. Danach startet das Spiel mit einem neuen, leeren Gastkonto.</p></div>
+    <h2>2. Löschung per E-Mail beantragen</h2>
+    <p>Wenn du keinen Zugriff mehr auf die App hast, schreibe an <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> mit dem Betreff „Kontolöschung“ und gib deinen <strong>Spielernamen</strong> im Spiel an. Nachdem wir bestätigt haben, dass das Konto dir gehört, löschen wir dein Konto und deine Daten innerhalb von <strong>30 Tagen</strong>.</p>
+    <h2>Gelöschte Daten</h2>
+    <ul><li>Dein Spielkonto und deine Konto-ID</li><li>Dein Spielername</li><li>Dein Spielfortschritt: Punkte, Statistiken, Level, Gold, Erfolge, Battle-Pass-Fortschritt, eigene Gegenstände und Einstellungen</li><li>Deine Ranglisteneinträge</li><li>Dein Benachrichtigungstoken</li><li>Spielereignis-Aufzeichnungen, Absturzberichte und von dir gesendetes Feedback</li><li>Bei Löschung in der App: die Spieldaten auf deinem Gerät</li></ul>
+    <h2>Aufbewahrte Daten und Fristen</h2>
+    <ul><li>Die Löschung beginnt sofort auf unserem Spielserver; die vollständige Entfernung aus unterstützenden Systemen und bei unseren Dienstleistern kann einige Tage dauern.</li><li>Zahlungsbelege von In-App-Käufen werden von Apple und Google gemäß ihren eigenen Richtlinien und gesetzlichen Pflichten aufbewahrt; wir können sie nicht löschen.</li><li>Von Werbepartnern verarbeitete Daten unterliegen deren eigenen Aufbewahrungsrichtlinien. Deine Werbe-ID kannst du in den Geräteeinstellungen zurücksetzen.</li><li>Die E-Mail mit deinem Löschantrag wird gelöscht, sobald der Antrag abgeschlossen ist.</li></ul>
+    <p>Das Deinstallieren der App löscht dein Konto nicht; es bleibt auf dem Server und kann bei erneuter Anmeldung wiederhergestellt werden.</p>
+    <p>Details findest du in der <a href="/privacy/">Datenschutzerklärung</a>.</p>
+    <a class="back" href="/">← Zur Startseite</a>
+</div>
+
+<div class="lang-fr">
+    <h1>Suppression du compte et des données</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Cette page explique comment demander la suppression de ton compte de jeu et des données associées dans <strong>Harfogram</strong>, le jeu de mots développé par Gurcan Studio.</p>
+    <h2>1. Supprimer depuis l’application (recommandé)</h2>
+    <div class="box"><ol><li>Ouvre Harfogram.</li><li>Va dans : <strong>Paramètres → À propos → Confidentialité &amp; Compte → Supprimer mon compte</strong></li><li>Confirme la suppression dans la fenêtre.</li></ol><p>La suppression commence immédiatement et est irréversible. Le jeu s’ouvre ensuite avec un nouveau compte invité vide.</p></div>
+    <h2>2. Demander la suppression par e-mail</h2>
+    <p>Si tu n’as plus accès à l’application, écris à <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> avec l’objet « Suppression de compte » en indiquant ton <strong>nom de joueur</strong> dans le jeu. Après avoir vérifié que le compte t’appartient, nous supprimons ton compte et tes données sous <strong>30 jours</strong>.</p>
+    <h2>Données supprimées</h2>
+    <ul><li>Ton compte de jeu et son identifiant</li><li>Ton nom de joueur</li><li>Ta progression : scores, statistiques, niveau, or, succès, progression du Battle Pass, objets possédés et réglages</li><li>Tes entrées dans les classements</li><li>Ton jeton de notification</li><li>Les enregistrements d’événements de jeu, rapports de plantage et commentaires envoyés</li><li>En cas de suppression dans l’application : les données de jeu sur ton appareil</li></ul>
+    <h2>Données conservées et durées</h2>
+    <ul><li>La suppression commence immédiatement sur notre serveur de jeu ; l’effacement complet des systèmes annexes et chez nos prestataires peut prendre quelques jours.</li><li>Les justificatifs de paiement des achats intégrés sont conservés par Apple et Google selon leurs propres règles et obligations légales ; nous ne pouvons pas les supprimer.</li><li>Les données traitées par les partenaires publicitaires sont soumises à leurs propres durées de conservation. Tu peux réinitialiser ton identifiant publicitaire dans les réglages de ton appareil.</li><li>L’e-mail envoyé pour demander la suppression est effacé une fois la demande traitée.</li></ul>
+    <p>Désinstaller l’application ne supprime pas ton compte ; il reste sur le serveur et peut être restauré si tu te reconnectes.</p>
+    <p>Pour plus de détails, consulte la <a href="/privacy/">Politique de confidentialité</a>.</p>
+    <a class="back" href="/">← Retour à l’accueil</a>
+</div>
+
+<div class="lang-es">
+    <h1>Eliminación de cuenta y datos</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Esta página explica cómo solicitar la eliminación de tu cuenta de juego y de los datos asociados en <strong>Harfogram</strong>, el juego de palabras desarrollado por Gurcan Studio.</p>
+    <h2>1. Eliminar desde la app (recomendado)</h2>
+    <div class="box"><ol><li>Abre Harfogram.</li><li>Ve a: <strong>Ajustes → Acerca de → Privacidad y Cuenta → Eliminar Mi Cuenta</strong></li><li>Confirma la eliminación en el cuadro de diálogo.</li></ol><p>La eliminación empieza de inmediato y no se puede deshacer. Después el juego se abre con una cuenta de invitado nueva y vacía.</p></div>
+    <h2>2. Solicitar la eliminación por correo</h2>
+    <p>Si ya no puedes acceder a la app, escribe a <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> con el asunto «Eliminación de cuenta» e indica tu <strong>nombre de jugador</strong> en el juego. Tras confirmar que la cuenta es tuya, eliminamos tu cuenta y tus datos en un plazo de <strong>30 días</strong>.</p>
+    <h2>Datos que se eliminan</h2>
+    <ul><li>Tu cuenta de juego y su identificador</li><li>Tu nombre de jugador</li><li>Tu progreso: puntuaciones, estadísticas, nivel, oro, logros, progreso del Battle Pass, objetos que posees y ajustes</li><li>Tus entradas en las clasificaciones</li><li>Tu token de notificaciones</li><li>Registros de eventos del juego, informes de errores y comentarios enviados</li><li>Al eliminar desde la app: los datos del juego en tu dispositivo</li></ul>
+    <h2>Datos que se conservan y plazos</h2>
+    <ul><li>La eliminación empieza de inmediato en nuestro servidor de juego; la supresión completa de los sistemas auxiliares y de nuestros proveedores puede tardar unos días.</li><li>Los registros de pago de las compras dentro de la app los conservan Apple y Google según sus propias políticas y obligaciones legales; no podemos eliminarlos.</li><li>Los datos tratados por los socios publicitarios se rigen por sus propias políticas de conservación. Puedes restablecer tu ID de publicidad en los ajustes del dispositivo.</li><li>El correo que envíes para solicitar la eliminación se borra una vez completada la solicitud.</li></ul>
+    <p>Desinstalar la app no elimina tu cuenta; permanece en el servidor y puede restaurarse si vuelves a iniciar sesión.</p>
+    <p>Para más detalles, consulta la <a href="/privacy/">Política de privacidad</a>.</p>
+    <a class="back" href="/">← Volver al inicio</a>
+</div>
+
+<div class="lang-pt">
+    <h1>Exclusão de conta e dados</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Esta página explica como solicitar a exclusão da sua conta de jogo e dos dados associados no <strong>Harfogram</strong>, o jogo de palavras desenvolvido pela Gurcan Studio.</p>
+    <h2>1. Excluir pelo app (recomendado)</h2>
+    <div class="box"><ol><li>Abra o Harfogram.</li><li>Vá em: <strong>Configurações → Sobre → Privacidade e Conta → Excluir Minha Conta</strong></li><li>Confirme a exclusão na janela.</li></ol><p>A exclusão começa imediatamente e não pode ser desfeita. Depois o jogo abre com uma conta de convidado nova e vazia.</p></div>
+    <h2>2. Solicitar a exclusão por e-mail</h2>
+    <p>Se não tiver mais acesso ao app, envie um e-mail para <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> com o assunto “Exclusão de conta” e informe seu <strong>nome de jogador</strong> no jogo. Depois de confirmar que a conta é sua, excluímos sua conta e seus dados em até <strong>30 dias</strong>.</p>
+    <h2>Dados excluídos</h2>
+    <ul><li>Sua conta de jogo e o identificador da conta</li><li>Seu nome de jogador</li><li>Seu progresso: pontuações, estatísticas, nível, ouro, conquistas, progresso do Battle Pass, itens que você possui e configurações</li><li>Seus registros nas classificações</li><li>Seu token de notificações</li><li>Registros de eventos do jogo, relatórios de erros e comentários enviados</li><li>Na exclusão pelo app: os dados do jogo no seu dispositivo</li></ul>
+    <h2>Dados mantidos e prazos</h2>
+    <ul><li>A exclusão começa imediatamente no nosso servidor de jogo; a remoção completa dos sistemas auxiliares e dos nossos prestadores de serviço pode levar alguns dias.</li><li>Os registros de pagamento das compras no app são mantidos pela Apple e pelo Google conforme suas próprias políticas e obrigações legais; não podemos excluí-los.</li><li>Os dados tratados por parceiros de publicidade seguem as políticas de retenção deles. Você pode redefinir seu ID de publicidade nas configurações do dispositivo.</li><li>O e-mail enviado para solicitar a exclusão é apagado quando a solicitação é concluída.</li></ul>
+    <p>Desinstalar o app não exclui sua conta; ela continua no servidor e pode ser restaurada se você entrar novamente.</p>
+    <p>Para mais detalhes, veja a <a href="/privacy/">Política de Privacidade</a>.</p>
+    <a class="back" href="/">← Voltar ao início</a>
+</div>
+
+<div class="lang-ru">
+    <h1>Удаление аккаунта и данных</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>На этой странице описано, как запросить удаление игрового аккаунта и связанных с ним данных в <strong>Harfogram</strong> — словесной игре от Gurcan Studio.</p>
+    <h2>1. Удаление в приложении (рекомендуется)</h2>
+    <div class="box"><ol><li>Откройте Harfogram.</li><li>Перейдите: <strong>Настройки → О приложении → Конфиденциальность и аккаунт → Удалить мой аккаунт</strong></li><li>Подтвердите удаление в окне.</li></ol><p>Удаление начинается сразу и необратимо. После этого игра откроется с новым пустым гостевым аккаунтом.</p></div>
+    <h2>2. Запрос на удаление по электронной почте</h2>
+    <p>Если у вас больше нет доступа к приложению, напишите на <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> с темой «Удаление аккаунта» и укажите своё <strong>имя игрока</strong>. После подтверждения, что аккаунт принадлежит вам, мы удалим аккаунт и данные в течение <strong>30 дней</strong>.</p>
+    <h2>Какие данные удаляются</h2>
+    <ul><li>Ваш игровой аккаунт и его идентификатор</li><li>Ваше имя игрока</li><li>Игровой прогресс: очки, статистика, уровень, золото, достижения, прогресс Battle Pass, ваши предметы и настройки</li><li>Ваши записи в рейтингах</li><li>Ваш токен уведомлений</li><li>Записи игровых событий, отчёты о сбоях и отправленные отзывы</li><li>При удалении в приложении: игровые данные на вашем устройстве</li></ul>
+    <h2>Какие данные сохраняются и как долго</h2>
+    <ul><li>Удаление на нашем игровом сервере начинается сразу; полное удаление из вспомогательных систем и у наших поставщиков услуг может занять несколько дней.</li><li>Платёжные записи покупок в приложении хранят Apple и Google согласно своим правилам и законным обязанностям; мы не можем их удалить.</li><li>Данные, обрабатываемые рекламными партнёрами, хранятся по их собственным правилам. Рекламный идентификатор можно сбросить в настройках устройства.</li><li>Письмо с запросом на удаление удаляется после выполнения запроса.</li></ul>
+    <p>Удаление приложения с устройства не удаляет аккаунт: он остаётся на сервере и может быть восстановлен при повторном входе.</p>
+    <p>Подробнее — в <a href="/privacy/">Политике конфиденциальности</a>.</p>
+    <a class="back" href="/">← На главную</a>
+</div>
+
+<div class="lang-it">
+    <h1>Eliminazione dell’account e dei dati</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Questa pagina spiega come richiedere l’eliminazione del tuo account di gioco e dei dati associati in <strong>Harfogram</strong>, il gioco di parole sviluppato da Gurcan Studio.</p>
+    <h2>1. Eliminare dall’app (consigliato)</h2>
+    <div class="box"><ol><li>Apri Harfogram.</li><li>Vai su: <strong>Impostazioni → Informazioni → Privacy e Account → Elimina il Mio Account</strong></li><li>Conferma l’eliminazione nella finestra.</li></ol><p>L’eliminazione inizia subito e non può essere annullata. Il gioco si riapre poi con un nuovo account ospite vuoto.</p></div>
+    <h2>2. Richiedere l’eliminazione via e-mail</h2>
+    <p>Se non hai più accesso all’app, scrivi a <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> con oggetto “Eliminazione account” indicando il tuo <strong>nome giocatore</strong>. Dopo aver verificato che l’account è tuo, eliminiamo account e dati entro <strong>30 giorni</strong>.</p>
+    <h2>Dati eliminati</h2>
+    <ul><li>Il tuo account di gioco e il relativo identificativo</li><li>Il tuo nome giocatore</li><li>I tuoi progressi: punteggi, statistiche, livello, oro, obiettivi, progressi del Battle Pass, oggetti posseduti e impostazioni</li><li>Le tue voci nelle classifiche</li><li>Il tuo token per le notifiche</li><li>Registrazioni degli eventi di gioco, segnalazioni di arresti anomali e feedback inviati</li><li>Con l’eliminazione dall’app: i dati di gioco sul tuo dispositivo</li></ul>
+    <h2>Dati conservati e tempi</h2>
+    <ul><li>L’eliminazione inizia subito sul nostro server di gioco; la rimozione completa dai sistemi di supporto e dai nostri fornitori può richiedere alcuni giorni.</li><li>Le ricevute di pagamento degli acquisti in-app sono conservate da Apple e Google secondo le proprie norme e obblighi di legge; non possiamo eliminarle.</li><li>I dati trattati dai partner pubblicitari sono soggetti alle loro norme di conservazione. Puoi reimpostare l’ID pubblicità nelle impostazioni del dispositivo.</li><li>L’e-mail inviata per richiedere l’eliminazione viene cancellata a richiesta completata.</li></ul>
+    <p>Disinstallare l’app non elimina l’account: resta sul server e può essere ripristinato se accedi di nuovo.</p>
+    <p>Per i dettagli, consulta l’<a href="/privacy/">Informativa sulla privacy</a>.</p>
+    <a class="back" href="/">← Torna alla home</a>
+</div>
+
+<div class="lang-pl">
+    <h1>Usuwanie konta i danych</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Na tej stronie wyjaśniamy, jak poprosić o usunięcie konta gry i powiązanych danych w <strong>Harfogram</strong> — grze słownej od Gurcan Studio.</p>
+    <h2>1. Usunięcie w aplikacji (zalecane)</h2>
+    <div class="box"><ol><li>Otwórz Harfogram.</li><li>Przejdź do: <strong>Ustawienia → O aplikacji → Prywatność i Konto → Usuń Moje Konto</strong></li><li>Potwierdź usunięcie w oknie.</li></ol><p>Usuwanie zaczyna się od razu i nie można go cofnąć. Następnie gra uruchomi się z nowym, pustym kontem gościa.</p></div>
+    <h2>2. Prośba o usunięcie e-mailem</h2>
+    <p>Jeśli nie masz już dostępu do aplikacji, napisz na <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> z tematem „Usunięcie konta” i podaj swoją <strong>nazwę gracza</strong>. Po potwierdzeniu, że konto należy do Ciebie, usuniemy konto i dane w ciągu <strong>30 dni</strong>.</p>
+    <h2>Usuwane dane</h2>
+    <ul><li>Twoje konto gry i jego identyfikator</li><li>Twoja nazwa gracza</li><li>Twoje postępy: wyniki, statystyki, poziom, złoto, osiągnięcia, postęp Battle Pass, posiadane przedmioty i ustawienia</li><li>Twoje wpisy w rankingach</li><li>Twój token powiadomień</li><li>Zapisy zdarzeń w grze, raporty awarii i przesłane opinie</li><li>Przy usuwaniu w aplikacji: dane gry na Twoim urządzeniu</li></ul>
+    <h2>Przechowywane dane i okresy</h2>
+    <ul><li>Usuwanie na naszym serwerze gry zaczyna się od razu; pełne usunięcie z systemów pomocniczych i u naszych dostawców może potrwać kilka dni.</li><li>Potwierdzenia płatności za zakupy w aplikacji przechowują Apple i Google zgodnie ze swoimi zasadami i obowiązkami prawnymi; nie możemy ich usunąć.</li><li>Dane przetwarzane przez partnerów reklamowych podlegają ich własnym zasadom przechowywania. Identyfikator reklamowy możesz zresetować w ustawieniach urządzenia.</li><li>E-mail z prośbą o usunięcie jest usuwany po zakończeniu sprawy.</li></ul>
+    <p>Odinstalowanie aplikacji nie usuwa konta; pozostaje ono na serwerze i może zostać przywrócone po ponownym zalogowaniu.</p>
+    <p>Szczegóły znajdziesz w <a href="/privacy/">Polityce prywatności</a>.</p>
+    <a class="back" href="/">← Wróć na stronę główną</a>
+</div>
+
+<div class="lang-id">
+    <h1>Penghapusan Akun dan Data</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Halaman ini menjelaskan cara meminta penghapusan akun game dan data terkait di <strong>Harfogram</strong>, game kata yang dikembangkan oleh Gurcan Studio.</p>
+    <h2>1. Hapus dari aplikasi (disarankan)</h2>
+    <div class="box"><ol><li>Buka Harfogram.</li><li>Buka menu: <strong>Pengaturan → Tentang → Privasi &amp; Akun → Hapus Akunku</strong></li><li>Konfirmasi penghapusan di jendela dialog.</li></ol><p>Penghapusan langsung dimulai dan tidak dapat dibatalkan. Setelah itu game terbuka dengan akun tamu baru yang kosong.</p></div>
+    <h2>2. Minta penghapusan lewat email</h2>
+    <p>Jika Anda tidak bisa lagi mengakses aplikasi, kirim email ke <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> dengan subjek “Penghapusan akun” dan sertakan <strong>nama pemain</strong> Anda di game. Setelah memastikan akun itu milik Anda, kami menghapus akun dan data Anda dalam <strong>30 hari</strong>.</p>
+    <h2>Data yang dihapus</h2>
+    <ul><li>Akun game dan ID akun Anda</li><li>Nama pemain Anda</li><li>Progres game: skor, statistik, level, emas, pencapaian, progres Battle Pass, item yang Anda miliki, dan pengaturan</li><li>Entri Anda di papan peringkat</li><li>Token notifikasi Anda</li><li>Catatan peristiwa dalam game, laporan error, dan masukan yang Anda kirim</li><li>Jika dihapus dari aplikasi: data game di perangkat Anda</li></ul>
+    <h2>Data yang disimpan dan jangka waktunya</h2>
+    <ul><li>Penghapusan langsung dimulai di server game kami; penghapusan penuh dari sistem pendukung dan penyedia layanan kami bisa memakan waktu beberapa hari.</li><li>Catatan pembayaran pembelian dalam aplikasi disimpan oleh Apple dan Google sesuai kebijakan dan kewajiban hukum mereka; kami tidak dapat menghapusnya.</li><li>Data yang diproses mitra iklan tunduk pada kebijakan penyimpanan mereka sendiri. Anda dapat mengatur ulang ID iklan di pengaturan perangkat.</li><li>Email permintaan penghapusan yang Anda kirim dihapus setelah permintaan selesai.</li></ul>
+    <p>Menghapus instalan aplikasi tidak menghapus akun Anda; akun tetap ada di server dan dapat dipulihkan jika Anda masuk lagi.</p>
+    <p>Untuk detailnya, lihat <a href="/privacy/">Kebijakan Privasi</a>.</p>
+    <a class="back" href="/">← Kembali ke beranda</a>
+</div>
+
+<div class="lang-uk">
+    <h1>Видалення облікового запису й даних</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>На цій сторінці пояснено, як надіслати запит на видалення ігрового облікового запису та пов’язаних даних у <strong>Harfogram</strong> — словесній грі від Gurcan Studio.</p>
+    <h2>1. Видалення в застосунку (рекомендовано)</h2>
+    <div class="box"><ol><li>Відкрийте Harfogram.</li><li>Перейдіть: <strong>Налаштування → Про застосунок → Конфіденційність і обліковий запис → Видалити мій обліковий запис</strong></li><li>Підтвердьте видалення у вікні.</li></ol><p>Видалення починається одразу й не може бути скасоване. Після цього гра відкриється з новим порожнім гостьовим обліковим записом.</p></div>
+    <h2>2. Запит на видалення електронною поштою</h2>
+    <p>Якщо у вас більше немає доступу до застосунку, напишіть на <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> з темою «Видалення облікового запису» та вкажіть своє <strong>ім’я гравця</strong>. Після підтвердження, що обліковий запис належить вам, ми видалимо його та дані протягом <strong>30 днів</strong>.</p>
+    <h2>Дані, що видаляються</h2>
+    <ul><li>Ваш ігровий обліковий запис та його ідентифікатор</li><li>Ваше ім’я гравця</li><li>Ігровий прогрес: очки, статистика, рівень, золото, досягнення, прогрес Battle Pass, ваші предмети та налаштування</li><li>Ваші записи в рейтингах</li><li>Ваш токен сповіщень</li><li>Записи ігрових подій, звіти про збої та надіслані відгуки</li><li>Під час видалення в застосунку: ігрові дані на вашому пристрої</li></ul>
+    <h2>Дані, що зберігаються, і строки</h2>
+    <ul><li>Видалення на нашому ігровому сервері починається одразу; повне видалення з допоміжних систем і в наших постачальників послуг може тривати кілька днів.</li><li>Платіжні записи покупок у застосунку зберігають Apple і Google відповідно до власних правил і юридичних обов’язків; ми не можемо їх видалити.</li><li>Дані, які обробляють рекламні партнери, зберігаються за їхніми власними правилами. Рекламний ідентифікатор можна скинути в налаштуваннях пристрою.</li><li>Лист із запитом на видалення видаляється після виконання запиту.</li></ul>
+    <p>Видалення застосунку з пристрою не видаляє обліковий запис: він лишається на сервері й може бути відновлений, якщо ви знову ввійдете.</p>
+    <p>Докладніше — у <a href="/privacy/">Політиці конфіденційності</a>.</p>
+    <a class="back" href="/">← На головну</a>
+</div>
+
+<div class="lang-nl">
+    <h1>Account- en gegevensverwijdering</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Op deze pagina lees je hoe je verwijdering aanvraagt van je spelaccount en de bijbehorende gegevens in <strong>Harfogram</strong>, het woordspel van Gurcan Studio.</p>
+    <h2>1. Verwijderen in de app (aanbevolen)</h2>
+    <div class="box"><ol><li>Open Harfogram.</li><li>Ga naar: <strong>Instellingen → Over → Privacy &amp; Account → Mijn account verwijderen</strong></li><li>Bevestig de verwijdering in het venster.</li></ol><p>De verwijdering start meteen en kan niet ongedaan worden gemaakt. Daarna opent het spel met een nieuw, leeg gastaccount.</p></div>
+    <h2>2. Verwijdering aanvragen per e-mail</h2>
+    <p>Heb je geen toegang meer tot de app, mail dan naar <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> met als onderwerp “Account verwijderen” en vermeld je <strong>spelersnaam</strong>. Nadat we hebben bevestigd dat het account van jou is, verwijderen we je account en gegevens binnen <strong>30 dagen</strong>.</p>
+    <h2>Gegevens die worden verwijderd</h2>
+    <ul><li>Je spelaccount en account-ID</li><li>Je spelersnaam</li><li>Je spelvoortgang: scores, statistieken, niveau, goud, prestaties, Battle Pass-voortgang, items die je bezit en instellingen</li><li>Je vermeldingen in de ranglijsten</li><li>Je meldingstoken</li><li>Registraties van spelgebeurtenissen, crashrapporten en verstuurde feedback</li><li>Bij verwijderen in de app: de spelgegevens op je apparaat</li></ul>
+    <h2>Gegevens die worden bewaard en termijnen</h2>
+    <ul><li>De verwijdering start meteen op onze spelserver; volledige verwijdering uit ondersteunende systemen en bij onze dienstverleners kan enkele dagen duren.</li><li>Betalingsgegevens van in-app-aankopen worden door Apple en Google bewaard volgens hun eigen beleid en wettelijke verplichtingen; wij kunnen ze niet verwijderen.</li><li>Gegevens die advertentiepartners verwerken, vallen onder hun eigen bewaarbeleid. Je advertentie-ID kun je resetten in de instellingen van je apparaat.</li><li>De e-mail met je verwijderverzoek wordt verwijderd zodra het verzoek is afgehandeld.</li></ul>
+    <p>De app verwijderen van je apparaat verwijdert je account niet; het blijft op de server en kan worden hersteld als je opnieuw inlogt.</p>
+    <p>Zie voor details het <a href="/privacy/">Privacybeleid</a>.</p>
+    <a class="back" href="/">← Terug naar de startpagina</a>
+</div>
+
+<div class="lang-sv">
+    <h1>Radera konto och data</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>På den här sidan förklarar vi hur du begär radering av ditt spelkonto och tillhörande data i <strong>Harfogram</strong>, ordspelet från Gurcan Studio.</p>
+    <h2>1. Radera i appen (rekommenderas)</h2>
+    <div class="box"><ol><li>Öppna Harfogram.</li><li>Gå till: <strong>Inställningar → Om → Integritet &amp; konto → Radera mitt konto</strong></li><li>Bekräfta raderingen i dialogrutan.</li></ol><p>Raderingen börjar direkt och kan inte ångras. Därefter startar spelet med ett nytt, tomt gästkonto.</p></div>
+    <h2>2. Begär radering via e-post</h2>
+    <p>Om du inte längre kommer åt appen, mejla <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> med ämnet ”Radera konto” och ange ditt <strong>spelarnamn</strong>. När vi har bekräftat att kontot är ditt raderar vi kontot och dina uppgifter inom <strong>30 dagar</strong>.</p>
+    <h2>Uppgifter som raderas</h2>
+    <ul><li>Ditt spelkonto och konto-ID</li><li>Ditt spelarnamn</li><li>Dina framsteg: poäng, statistik, nivå, guld, prestationer, Battle Pass-framsteg, föremål du äger och inställningar</li><li>Dina poster på topplistorna</li><li>Din aviseringstoken</li><li>Registrerade spelhändelser, kraschrapporter och feedback du skickat</li><li>Vid radering i appen: speldata på din enhet</li></ul>
+    <h2>Uppgifter som sparas och hur länge</h2>
+    <ul><li>Raderingen börjar direkt på vår spelserver; fullständig borttagning från stödsystem och hos våra tjänsteleverantörer kan ta några dagar.</li><li>Betalningsuppgifter för köp i appen sparas av Apple och Google enligt deras egna regler och rättsliga skyldigheter; vi kan inte radera dem.</li><li>Uppgifter som annonspartner behandlar omfattas av deras egna lagringsregler. Du kan återställa ditt annons-ID i enhetens inställningar.</li><li>Mejlet med din raderingsbegäran raderas när begäran är slutförd.</li></ul>
+    <p>Att avinstallera appen raderar inte ditt konto; det finns kvar på servern och kan återställas om du loggar in igen.</p>
+    <p>Läs mer i <a href="/privacy/">integritetspolicyn</a>.</p>
+    <a class="back" href="/">← Tillbaka till startsidan</a>
+</div>
+
+<div class="lang-nb">
+    <h1>Sletting av konto og data</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Denne siden forklarer hvordan du ber om sletting av spillkontoen din og tilhørende data i <strong>Harfogram</strong>, ordspillet fra Gurcan Studio.</p>
+    <h2>1. Slett i appen (anbefalt)</h2>
+    <div class="box"><ol><li>Åpne Harfogram.</li><li>Gå til: <strong>Innstillinger → Om → Personvern &amp; konto → Slett kontoen min</strong></li><li>Bekreft slettingen i dialogboksen.</li></ol><p>Slettingen starter med en gang og kan ikke angres. Deretter åpnes spillet med en ny, tom gjestekonto.</p></div>
+    <h2>2. Be om sletting via e-post</h2>
+    <p>Hvis du ikke lenger har tilgang til appen, send e-post til <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> med emnet «Slett konto» og oppgi <strong>spillernavnet</strong> ditt. Når vi har bekreftet at kontoen er din, sletter vi kontoen og opplysningene dine innen <strong>30 dager</strong>.</p>
+    <h2>Opplysninger som slettes</h2>
+    <ul><li>Spillkontoen din og konto-ID-en</li><li>Spillernavnet ditt</li><li>Fremgangen din: poeng, statistikk, nivå, gull, prestasjoner, Battle Pass-fremgang, gjenstander du eier og innstillinger</li><li>Oppføringene dine på resultatlistene</li><li>Varslingstokenet ditt</li><li>Registrerte spillhendelser, krasjrapporter og tilbakemeldinger du har sendt</li><li>Ved sletting i appen: spilldataene på enheten din</li></ul>
+    <h2>Opplysninger som lagres, og hvor lenge</h2>
+    <ul><li>Slettingen starter med en gang på spillserveren vår; fullstendig fjerning fra støttesystemer og hos tjenesteleverandørene våre kan ta noen dager.</li><li>Betalingsopplysninger for kjøp i appen lagres av Apple og Google etter deres egne retningslinjer og lovpålagte plikter; vi kan ikke slette dem.</li><li>Opplysninger som annonsepartnere behandler, følger deres egne lagringsregler. Du kan tilbakestille annonse-ID-en i enhetsinnstillingene.</li><li>E-posten med slettingsforespørselen din slettes når forespørselen er fullført.</li></ul>
+    <p>Å avinstallere appen sletter ikke kontoen din; den blir liggende på serveren og kan gjenopprettes hvis du logger inn igjen.</p>
+    <p>Se <a href="/privacy/">personvernerklæringen</a> for detaljer.</p>
+    <a class="back" href="/">← Tilbake til forsiden</a>
+</div>
+
+<div class="lang-da">
+    <h1>Sletning af konto og data</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Denne side forklarer, hvordan du anmoder om sletning af din spilkonto og tilhørende data i <strong>Harfogram</strong>, ordspillet fra Gurcan Studio.</p>
+    <h2>1. Slet i appen (anbefalet)</h2>
+    <div class="box"><ol><li>Åbn Harfogram.</li><li>Gå til: <strong>Indstillinger → Om → Privatliv &amp; konto → Slet min konto</strong></li><li>Bekræft sletningen i dialogboksen.</li></ol><p>Sletningen starter med det samme og kan ikke fortrydes. Derefter åbner spillet med en ny, tom gæstekonto.</p></div>
+    <h2>2. Anmod om sletning via e-mail</h2>
+    <p>Hvis du ikke længere har adgang til appen, så skriv til <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> med emnet “Slet konto”, og oplys dit <strong>spillernavn</strong>. Når vi har bekræftet, at kontoen er din, sletter vi kontoen og dine oplysninger inden for <strong>30 dage</strong>.</p>
+    <h2>Oplysninger, der slettes</h2>
+    <ul><li>Din spilkonto og konto-id</li><li>Dit spillernavn</li><li>Dine fremskridt: point, statistik, niveau, guld, præstationer, Battle Pass-fremskridt, genstande du ejer og indstillinger</li><li>Dine poster på ranglisterne</li><li>Dit notifikationstoken</li><li>Registrerede spilhændelser, nedbrudsrapporter og feedback, du har sendt</li><li>Ved sletning i appen: spildataene på din enhed</li></ul>
+    <h2>Oplysninger, der gemmes, og hvor længe</h2>
+    <ul><li>Sletningen starter med det samme på vores spilserver; fuldstændig fjernelse fra understøttende systemer og hos vores tjenesteudbydere kan tage nogle dage.</li><li>Betalingsoplysninger for køb i appen opbevares af Apple og Google efter deres egne regler og lovpligtige forpligtelser; vi kan ikke slette dem.</li><li>Oplysninger, som annoncepartnere behandler, følger deres egne opbevaringsregler. Du kan nulstille dit annonce-id i enhedens indstillinger.</li><li>E-mailen med din anmodning om sletning slettes, når anmodningen er afsluttet.</li></ul>
+    <p>At afinstallere appen sletter ikke din konto; den bliver på serveren og kan gendannes, hvis du logger ind igen.</p>
+    <p>Se <a href="/privacy/">privatlivspolitikken</a> for detaljer.</p>
+    <a class="back" href="/">← Tilbage til forsiden</a>
+</div>
+
+<div class="lang-ro">
+    <h1>Ștergerea contului și a datelor</h1>
+    <p class="updated">Harfogram · Gurcan Studio</p>
+    <p>Această pagină explică cum poți solicita ștergerea contului de joc și a datelor asociate în <strong>Harfogram</strong>, jocul de cuvinte dezvoltat de Gurcan Studio.</p>
+    <h2>1. Ștergere din aplicație (recomandat)</h2>
+    <div class="box"><ol><li>Deschide Harfogram.</li><li>Mergi la: <strong>Setări → Despre → Confidențialitate și cont → Șterge-mi contul</strong></li><li>Confirmă ștergerea în fereastră.</li></ol><p>Ștergerea începe imediat și nu poate fi anulată. Apoi jocul se deschide cu un cont de invitat nou și gol.</p></div>
+    <h2>2. Solicitare de ștergere prin e-mail</h2>
+    <p>Dacă nu mai ai acces la aplicație, scrie la <a href="mailto:info@harfogram.com?subject=Harfogram%20-%20Account%20deletion">info@harfogram.com</a> cu subiectul „Ștergere cont” și menționează <strong>numele tău de jucător</strong>. După ce confirmăm că contul îți aparține, îți ștergem contul și datele în cel mult <strong>30 de zile</strong>.</p>
+    <h2>Date care se șterg</h2>
+    <ul><li>Contul tău de joc și identificatorul contului</li><li>Numele tău de jucător</li><li>Progresul tău: scoruri, statistici, nivel, aur, realizări, progresul Battle Pass, obiectele deținute și setările</li><li>Înregistrările tale din clasamente</li><li>Tokenul tău pentru notificări</li><li>Înregistrările evenimentelor din joc, rapoartele de erori și feedbackul trimis</li><li>La ștergerea din aplicație: datele jocului de pe dispozitivul tău</li></ul>
+    <h2>Date păstrate și durate</h2>
+    <ul><li>Ștergerea începe imediat pe serverul nostru de joc; eliminarea completă din sistemele auxiliare și de la furnizorii noștri de servicii poate dura câteva zile.</li><li>Înregistrările de plată pentru achizițiile din aplicație sunt păstrate de Apple și Google conform propriilor reguli și obligații legale; nu le putem șterge.</li><li>Datele prelucrate de partenerii de publicitate sunt supuse propriilor reguli de păstrare. Îți poți reseta ID-ul de publicitate din setările dispozitivului.</li><li>E-mailul trimis pentru solicitarea ștergerii este șters după finalizarea solicitării.</li></ul>
+    <p>Dezinstalarea aplicației nu îți șterge contul; acesta rămâne pe server și poate fi restaurat dacă te conectezi din nou.</p>
+    <p>Pentru detalii, vezi <a href="/privacy/">Politica de confidențialitate</a>.</p>
+    <a class="back" href="/">← Înapoi la pagina principală</a>
+</div>
+</main>
+<footer>© <span id="year"></span> Gurcan Studio · Harfogram</footer>
+<script>
+document.getElementById('year').textContent=new Date().getFullYear();
+const LANGS=['tr','en','de','fr','es','pt','ru','it','pl','id','uk','nl','sv','nb','da','ro'];
+function setLang(l){
+  if(!LANGS.includes(l)) l='en';
+  LANGS.forEach(x=>{const el=document.querySelector('.lang-'+x); if(el) el.style.display=(x===l?'block':'none');});
+  document.documentElement.lang=l;
+  document.getElementById('lang-select').value=l;
+  localStorage.setItem('harfogram_lang',l);
+}
+function detectInitialLang(){
+  const saved=localStorage.getItem('harfogram_lang');
+  if(saved && LANGS.includes(saved)) return saved;
+  let nav=(navigator.language||'en').slice(0,2).toLowerCase();
+  if(nav==='no'||nav==='nn') nav='nb';
+  return LANGS.includes(nav) ? nav : 'en';
+}
+setLang(detectInitialLang());
+</script>
+</body>
+</html>
