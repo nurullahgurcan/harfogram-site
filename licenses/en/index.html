@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harfogram — English word meanings (CC BY-SA 4.0)</title>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; max-width: 760px; margin: 2rem auto; padding: 0 1rem; line-height: 1.55; color: #1d2433; background: #fff; }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 2rem; }
+  pre { background: #f4f6fa; padding: 1rem; overflow-x: auto; font-size: .85rem; white-space: pre-wrap; }
+  code { background: #f4f6fa; padding: 0 .25rem; }
+  @media (prefers-color-scheme: dark) { body { background: #121722; color: #e6e9ef; } pre, code { background: #1c2333; } a { color: #8cb4ff; } }
+</style>
+</head>
+<body>
+<h1>Harfogram — English word meanings</h1>
+
+<p>When an English word is played in the game <strong>Harfogram</strong>, a short meaning of the word is shown.
+These meanings come from the file below, which is an adapted database built from two sources:</p>
+<ul>
+  <li><a href="https://github.com/globalwordnet/english-wordnet">Open English WordNet</a>, 2025 edition —
+      licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>.</li>
+  <li><a href="https://en.wiktionary.org">Wiktionary</a> (English edition), by the Wiktionary contributors, as extracted by
+      <a href="https://kaikki.org">kaikki.org</a> / <a href="https://github.com/tatuylonen/wiktextract">wiktextract</a>
+      (data of 2026-10-25) — licensed under <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.</li>
+</ul>
+<p>Because it contains Wiktionary text, the adapted file is published here under the
+<strong><a href="https://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0</a></strong>
+license. You may share and adapt it under the same terms. The rest of the application is a separate work and is not covered by this license.</p>
+
+<h2>Files</h2>
+<ul>
+  <li><a href="meanings_en.txt">meanings_en.txt</a> — one word per line, sorted:
+      <code>WORD&lt;TAB&gt;meaning1[&lt;TAB&gt;meaning2]</code>. A meaning written as <code>@BASE/pos</code>
+      means "inflected form of BASE"; the game shows BASE's meaning of that part of speech.</li>
+</ul>
+
+<h2>Changes made — 2026-10-30</h2>
+<ol>
+  <li>Only words of the game's English word list (the public-domain ENABLE list) were kept. For each word at most two meanings were selected: Open English WordNet first (the most frequent sense of the two most common parts of speech); for words not in WordNet, Wiktionary senses, preferring senses not marked obsolete, archaic, rare or dated.</li>
+  <li>Proper nouns were not used. Wiktionary entries written only with a capital letter (e.g. <em>Torah</em>) were used for nouns and adjectives when no lowercase entry exists.</li>
+  <li>Inflected forms ("plural of house", regular <em>-s/-ed/-ing/-er/-est</em> forms) were replaced by a reference to the base word.</li>
+  <li>Definitions were shortened to about 110 characters (cut at a semicolon or a word boundary, marked with "..."), the first letter was lowercased, and a part-of-speech label (<code>n.</code>, <code>v.</code>, <code>adj.</code>, <code>adv.</code>…) was added. Typographic characters were replaced by plain equivalents.</li>
+  <li>About 160 very common function words and two-letter words that the sources lack or describe only as abbreviations were given short original definitions written by Gurcan Studio.</li>
+</ol>
+
+<p>Gurcan Studio — <a href="mailto:info@harfogram.com">info@harfogram.com</a></p>
+</body>
+</html>
