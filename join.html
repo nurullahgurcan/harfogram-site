@@ -1,9 +1,24 @@
 <!doctype html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Harfogram</title>
+<!--
+  Davet sayfası — uygulamadaki davet linkleri buraya gelir (ShareManager.inviteLinkBase):
+    ?ref=<PlayFabId>   "Davet Et, Kazan" (ikiniz de altın)
+    ?room=<oda kodu>   özel oda daveti
+  Uygulama kuruluysa link doğrudan uygulamayı açar (App Links / Universal Links), bu sayfa yalnızca
+  uygulaması olmayan için.
+  Android: Play linkine referrer=utm_source=invite|room&utm_medium=referral&ref=…&room=… eklenir —
+    Play kurulumdan sonra bunu uygulamaya verir (InstallReferrer.cs): davet kodu kendiliğinden gelir,
+    oda davetine 30 dk içinde kurulursa odaya katılınır.
+  iPhone: karşılığı yok — "Kodu Kopyala ve App Store'a Git" kodu panoya kopyalar; giriş ekranında
+    "Davet kodun var mı?" → "Panodan yapıştır" (LoginPanel). App Store linkinde ct=invite|room
+    (App Store Connect → Kampanyalar).
+  Metinler 16 dilde (tarayıcı diline göre, yoksa İngilizce). Uygulamadaki ifadelerle aynı tutulmalı:
+  login_referral_label ve login_referral_paste.
+-->
 <style>
   :root { color-scheme: dark; }
   * { box-sizing: border-box; }
@@ -16,7 +31,7 @@
     background: #0D1117;
     color: #E6EDF3;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    padding: 24px;
+    padding: 24px 16px;
   }
   .card {
     max-width: 420px;
@@ -34,7 +49,7 @@
     color: #A9B4C4;
     margin: 0 0 24px;
   }
-  #roomNote, #refNote {
+  .note {
     display: none;
     background: rgba(77, 179, 255, 0.10);
     border: 1px solid rgba(77, 179, 255, 0.35);
@@ -42,17 +57,29 @@
     padding: 14px 16px;
     margin-bottom: 24px;
     font-size: 14px;
+    line-height: 1.5;
     color: #E6EDF3;
   }
+  .code {
+    display: block;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #A9B4C4;
+    word-break: break-all;
+  }
+  .code strong { color: #E6EDF3; letter-spacing: 0.5px; }
   .btn {
     display: block;
     width: 100%;
     padding: 16px;
     margin-bottom: 12px;
     border-radius: 14px;
+    border: 0;
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
     transition: opacity 0.15s;
   }
   .btn:active { opacity: 0.8; }
@@ -68,61 +95,220 @@
 <body>
   <div class="card">
     <h1>Harfogram</h1>
-    <p>Kelime yerleştirme oyunu — arkadaşınla oyna, kelimeler üret, en yüksek puanı topla!</p>
+    <p id="tagline"></p>
 
-    <div id="roomNote">
-      🎮 Bir oda daveti aldın! Oyunu indirip açtıktan sonra <strong>bu linke tekrar dokun</strong>,
-      otomatik olarak odaya katılacaksın.
-    </div>
-    <div id="refNote">
-      🎁 Bir davet koduyla geldin! Uygulamayı ilk açtığında çıkan ekranda
-      <strong>"Davet kodun var mı?"</strong> alanına bu kodu yapıştır: <strong id="refCode"></strong>
+    <div id="note" class="note">
+      <span id="noteText"></span>
+      <span id="codeLine" class="code hidden"><span id="codeLabel"></span> <strong id="code"></strong></span>
     </div>
 
-    <a id="androidBtn" class="btn btn-primary hidden"
-       href="https://play.google.com/store/apps/details?id=com.gurcanstudio.harfogram">
-      Google Play'den İndir
-    </a>
-    <a id="iosBtn" class="btn btn-primary hidden"
-       href="https://apps.apple.com/app/harfogram/id6776008958">
-      App Store'dan İndir
-    </a>
-    <a id="androidBtnSecondary" class="btn btn-secondary hidden"
-       href="https://play.google.com/store/apps/details?id=com.gurcanstudio.harfogram">
-      Android için indir
-    </a>
-    <a id="iosBtnSecondary" class="btn btn-secondary hidden"
-       href="https://apps.apple.com/app/harfogram/id6776008958">
-      iOS için indir
-    </a>
+    <a id="primaryBtn" class="btn btn-primary" href="#"></a>
+    <a id="secondaryBtn" class="btn btn-secondary" href="#"></a>
   </div>
 
   <script>
     (function () {
+      var PLAY = "https://play.google.com/store/apps/details?id=com.gurcanstudio.harfogram";
+      var APP_STORE = "https://apps.apple.com/app/harfogram/id6776008958";
+      var APPLE_PT = "128976157";
+
+      var T = {
+        tr: { tag: "Kelime yerleştirme oyunu — arkadaşınla oyna, kelimeler üret, en yüksek puanı topla!",
+              roomA: "Bir oda daveti aldın! Oyunu kurup aç — odaya kendiliğinden katılırsın. Olmazsa bu linke tekrar dokun.",
+              roomI: "Bir oda daveti aldın! Oyunu kurup açtıktan sonra bu linke tekrar dokun, odaya katılırsın.",
+              refA: "Arkadaşın seni davet etti! Oyunu indir, ilk maçını bitirince ikiniz de altın kazanın. Davet kodun kendiliğinden gelir.",
+              refI: "Arkadaşın seni davet etti! Aşağıdaki düğme davet kodunu kopyalar. Oyunu açınca giriş ekranında „Davet kodun var mı?” → „Panodan yapıştır”a dokun. İlk maçını bitirince ikiniz de altın kazanın.",
+              code: "Davet kodu:", play: "Google Play'den İndir", store: "App Store'dan İndir",
+              copyGo: "Kodu Kopyala ve App Store'a Git", android: "Android için indir", iphone: "iPhone için indir" },
+        en: { tag: "A word placement game — play with friends, build words, score the most points!",
+              roomA: "You got a room invite! Install and open the game — you'll join the room automatically. If not, tap this link again.",
+              roomI: "You got a room invite! After installing and opening the game, tap this link again to join the room.",
+              refA: "Your friend invited you! Download the game; when you finish your first match, you both earn gold. Your invite code comes along automatically.",
+              refI: "Your friend invited you! The button below copies your invite code. When you open the game, tap “Have an invite code?” → “Paste from clipboard” on the first screen. Finish your first match and you both earn gold.",
+              code: "Invite code:", play: "Get it on Google Play", store: "Download on the App Store",
+              copyGo: "Copy Code & Open App Store", android: "Download for Android", iphone: "Download for iPhone" },
+        de: { tag: "Ein Wortlegespiel — spiel mit Freunden, bilde Wörter, hol die meisten Punkte!",
+              roomA: "Du wurdest in einen Raum eingeladen! Installiere und öffne das Spiel — du trittst dem Raum automatisch bei. Falls nicht, tippe erneut auf diesen Link.",
+              roomI: "Du wurdest in einen Raum eingeladen! Tippe nach dem Installieren und Öffnen erneut auf diesen Link, um dem Raum beizutreten.",
+              refA: "Dein Freund hat dich eingeladen! Lade das Spiel herunter; nach deinem ersten Match bekommt ihr beide Gold. Dein Einladungscode wird automatisch übernommen.",
+              refI: "Dein Freund hat dich eingeladen! Der Button unten kopiert deinen Einladungscode. Tippe im Spiel auf dem ersten Bildschirm auf „Hast du einen Einladungscode?“ → „Aus Zwischenablage einfügen“. Nach deinem ersten Match bekommt ihr beide Gold.",
+              code: "Einladungscode:", play: "Bei Google Play laden", store: "Im App Store laden",
+              copyGo: "Code kopieren & App Store öffnen", android: "Für Android laden", iphone: "Für iPhone laden" },
+        fr: { tag: "Un jeu de placement de mots — joue avec tes amis, forme des mots, marque le plus de points !",
+              roomA: "Tu as reçu une invitation dans une salle ! Installe et ouvre le jeu — tu rejoindras la salle automatiquement. Sinon, touche à nouveau ce lien.",
+              roomI: "Tu as reçu une invitation dans une salle ! Après avoir installé et ouvert le jeu, touche à nouveau ce lien pour rejoindre la salle.",
+              refA: "Ton ami t'a invité ! Télécharge le jeu ; à la fin de ta première partie, vous gagnez tous les deux de l'or. Ton code d'invitation suit automatiquement.",
+              refI: "Ton ami t'a invité ! Le bouton ci-dessous copie ton code d'invitation. Dans le jeu, sur le premier écran, touche « Un code d'invitation ? » → « Coller depuis le presse-papiers ». À la fin de ta première partie, vous gagnez tous les deux de l'or.",
+              code: "Code d'invitation :", play: "Disponible sur Google Play", store: "Télécharger dans l'App Store",
+              copyGo: "Copier le code et ouvrir l'App Store", android: "Télécharger pour Android", iphone: "Télécharger pour iPhone" },
+        es: { tag: "Un juego de colocar palabras: juega con amigos, forma palabras y consigue la mayor puntuación.",
+              roomA: "¡Te han invitado a una sala! Instala y abre el juego: entrarás en la sala automáticamente. Si no, vuelve a tocar este enlace.",
+              roomI: "¡Te han invitado a una sala! Después de instalar y abrir el juego, vuelve a tocar este enlace para entrar en la sala.",
+              refA: "¡Tu amigo te ha invitado! Descarga el juego; al terminar tu primera partida, los dos ganáis oro. Tu código de invitación llega automáticamente.",
+              refI: "¡Tu amigo te ha invitado! El botón de abajo copia tu código de invitación. Al abrir el juego, en la primera pantalla toca «¿Tienes un código de invitación?» → «Pegar del portapapeles». Al terminar tu primera partida, los dos ganáis oro.",
+              code: "Código de invitación:", play: "Disponible en Google Play", store: "Descargar en la App Store",
+              copyGo: "Copiar código e ir a la App Store", android: "Descargar para Android", iphone: "Descargar para iPhone" },
+        pt: { tag: "Um jogo de colocar palavras — jogue com amigos, forme palavras e faça mais pontos!",
+              roomA: "Você recebeu um convite para uma sala! Instale e abra o jogo — você entra na sala automaticamente. Se não, toque neste link de novo.",
+              roomI: "Você recebeu um convite para uma sala! Depois de instalar e abrir o jogo, toque neste link de novo para entrar na sala.",
+              refA: "Seu amigo te convidou! Baixe o jogo; ao terminar sua primeira partida, vocês dois ganham ouro. Seu código de convite vem automaticamente.",
+              refI: "Seu amigo te convidou! O botão abaixo copia seu código de convite. Ao abrir o jogo, na primeira tela toque em “Tem um código de convite?” → “Colar da área de transferência”. Ao terminar sua primeira partida, vocês dois ganham ouro.",
+              code: "Código de convite:", play: "Disponível no Google Play", store: "Baixar na App Store",
+              copyGo: "Copiar código e abrir a App Store", android: "Baixar para Android", iphone: "Baixar para iPhone" },
+        ru: { tag: "Игра в составление слов — играй с друзьями, составляй слова, набирай больше всех очков!",
+              roomA: "Тебя пригласили в комнату! Установи и открой игру — ты войдёшь в комнату автоматически. Если нет, нажми на эту ссылку ещё раз.",
+              roomI: "Тебя пригласили в комнату! После установки и запуска игры нажми на эту ссылку ещё раз, чтобы войти в комнату.",
+              refA: "Друг пригласил тебя! Скачай игру — после твоего первого матча вы оба получите золото. Код приглашения передастся автоматически.",
+              refI: "Друг пригласил тебя! Кнопка ниже копирует код приглашения. Открыв игру, на первом экране нажми «Есть код приглашения?» → «Вставить из буфера». После твоего первого матча вы оба получите золото.",
+              code: "Код приглашения:", play: "Скачать в Google Play", store: "Загрузить в App Store",
+              copyGo: "Скопировать код и открыть App Store", android: "Скачать для Android", iphone: "Скачать для iPhone" },
+        it: { tag: "Un gioco di parole da piazzare: gioca con gli amici, forma parole e fai più punti!",
+              roomA: "Hai ricevuto un invito in una stanza! Installa e apri il gioco: entrerai nella stanza automaticamente. Altrimenti tocca di nuovo questo link.",
+              roomI: "Hai ricevuto un invito in una stanza! Dopo aver installato e aperto il gioco, tocca di nuovo questo link per entrare nella stanza.",
+              refA: "Un amico ti ha invitato! Scarica il gioco: finita la tua prima partita, guadagnate oro entrambi. Il tuo codice invito arriva in automatico.",
+              refI: "Un amico ti ha invitato! Il pulsante qui sotto copia il tuo codice invito. Aperto il gioco, nella prima schermata tocca «Hai un codice invito?» → «Incolla dagli appunti». Finita la tua prima partita, guadagnate oro entrambi.",
+              code: "Codice invito:", play: "Disponibile su Google Play", store: "Scarica su App Store",
+              copyGo: "Copia il codice e apri App Store", android: "Scarica per Android", iphone: "Scarica per iPhone" },
+        pl: { tag: "Gra w układanie słów — graj ze znajomymi, układaj słowa, zdobądź najwięcej punktów!",
+              roomA: "Masz zaproszenie do pokoju! Zainstaluj i otwórz grę — dołączysz do pokoju automatycznie. Jeśli nie, dotknij tego linku ponownie.",
+              roomI: "Masz zaproszenie do pokoju! Po zainstalowaniu i otwarciu gry dotknij tego linku ponownie, aby dołączyć do pokoju.",
+              refA: "Znajomy cię zaprosił! Pobierz grę — po twoim pierwszym meczu oboje dostaniecie złoto. Twój kod zaproszenia przejdzie automatycznie.",
+              refI: "Znajomy cię zaprosił! Przycisk poniżej kopiuje twój kod zaproszenia. Po otwarciu gry na pierwszym ekranie dotknij „Masz kod zaproszenia?” → „Wklej ze schowka”. Po twoim pierwszym meczu oboje dostaniecie złoto.",
+              code: "Kod zaproszenia:", play: "Pobierz z Google Play", store: "Pobierz z App Store",
+              copyGo: "Skopiuj kod i otwórz App Store", android: "Pobierz na Androida", iphone: "Pobierz na iPhone'a" },
+        id: { tag: "Game menyusun kata — main bareng teman, bentuk kata, kumpulkan poin tertinggi!",
+              roomA: "Kamu dapat undangan ke room! Pasang dan buka game-nya — kamu akan masuk ke room otomatis. Kalau tidak, ketuk tautan ini lagi.",
+              roomI: "Kamu dapat undangan ke room! Setelah memasang dan membuka game, ketuk tautan ini lagi untuk masuk ke room.",
+              refA: "Temanmu mengundangmu! Unduh game-nya; setelah pertandingan pertamamu selesai, kalian berdua dapat emas. Kode undanganmu terbawa otomatis.",
+              refI: "Temanmu mengundangmu! Tombol di bawah menyalin kode undanganmu. Saat membuka game, di layar pertama ketuk “Punya kode undangan?” → “Tempel dari papan klip”. Setelah pertandingan pertamamu selesai, kalian berdua dapat emas.",
+              code: "Kode undangan:", play: "Dapatkan di Google Play", store: "Unduh di App Store",
+              copyGo: "Salin Kode & Buka App Store", android: "Unduh untuk Android", iphone: "Unduh untuk iPhone" },
+        uk: { tag: "Гра зі складання слів — грай з друзями, складай слова, набирай найбільше очок!",
+              roomA: "Тебе запросили до кімнати! Встанови й відкрий гру — ти увійдеш до кімнати автоматично. Якщо ні, натисни на це посилання ще раз.",
+              roomI: "Тебе запросили до кімнати! Після встановлення й запуску гри натисни на це посилання ще раз, щоб увійти до кімнати.",
+              refA: "Друг запросив тебе! Завантаж гру — після твого першого матчу ви обидва отримаєте золото. Код запрошення передасться автоматично.",
+              refI: "Друг запросив тебе! Кнопка нижче копіює код запрошення. Відкривши гру, на першому екрані натисни «Маєш код запрошення?» → «Вставити з буфера». Після твого першого матчу ви обидва отримаєте золото.",
+              code: "Код запрошення:", play: "Завантажити з Google Play", store: "Завантажити в App Store",
+              copyGo: "Скопіювати код і відкрити App Store", android: "Завантажити для Android", iphone: "Завантажити для iPhone" },
+        nl: { tag: "Een woordleggame — speel met vrienden, maak woorden en scoor de meeste punten!",
+              roomA: "Je bent uitgenodigd voor een kamer! Installeer en open de game — je komt automatisch in de kamer. Lukt dat niet, tik dan nog een keer op deze link.",
+              roomI: "Je bent uitgenodigd voor een kamer! Tik na het installeren en openen van de game nog een keer op deze link om de kamer binnen te gaan.",
+              refA: "Je vriend heeft je uitgenodigd! Download de game; na je eerste potje krijgen jullie allebei goud. Je uitnodigingscode gaat automatisch mee.",
+              refI: "Je vriend heeft je uitgenodigd! De knop hieronder kopieert je uitnodigingscode. Tik in de game op het eerste scherm op ‘Heb je een uitnodigingscode?’ → ‘Plakken van klembord’. Na je eerste potje krijgen jullie allebei goud.",
+              code: "Uitnodigingscode:", play: "Ontdek het op Google Play", store: "Download in de App Store",
+              copyGo: "Code kopiëren en App Store openen", android: "Downloaden voor Android", iphone: "Downloaden voor iPhone" },
+        sv: { tag: "Ett ordläggningsspel — spela med vänner, bilda ord och ta flest poäng!",
+              roomA: "Du har bjudits in till ett rum! Installera och öppna spelet — du går med i rummet automatiskt. Annars trycker du på länken igen.",
+              roomI: "Du har bjudits in till ett rum! Tryck på länken igen när du har installerat och öppnat spelet för att gå med i rummet.",
+              refA: "Din vän har bjudit in dig! Ladda ner spelet; när du har spelat klart din första match får ni båda guld. Din inbjudningskod följer med automatiskt.",
+              refI: "Din vän har bjudit in dig! Knappen nedan kopierar din inbjudningskod. När du öppnar spelet trycker du på ”Har du en inbjudningskod?” → ”Klistra in från urklipp” på första skärmen. När du har spelat klart din första match får ni båda guld.",
+              code: "Inbjudningskod:", play: "Ladda ned på Google Play", store: "Hämta i App Store",
+              copyGo: "Kopiera koden och öppna App Store", android: "Ladda ner för Android", iphone: "Ladda ner för iPhone" },
+        nb: { tag: "Et ordleggingsspill — spill med venner, lag ord og få flest poeng!",
+              roomA: "Du er invitert til et rom! Installer og åpne spillet — du blir med i rommet automatisk. Hvis ikke, trykker du på lenken igjen.",
+              roomI: "Du er invitert til et rom! Trykk på lenken igjen etter at du har installert og åpnet spillet for å bli med i rommet.",
+              refA: "Vennen din har invitert deg! Last ned spillet; når du har fullført din første kamp, får dere begge gull. Invitasjonskoden din følger med automatisk.",
+              refI: "Vennen din har invitert deg! Knappen nedenfor kopierer invitasjonskoden din. Når du åpner spillet, trykker du på «Har du en invitasjonskode?» → «Lim inn fra utklippstavlen» på første skjerm. Når du har fullført din første kamp, får dere begge gull.",
+              code: "Invitasjonskode:", play: "Last ned på Google Play", store: "Last ned i App Store",
+              copyGo: "Kopier koden og åpne App Store", android: "Last ned for Android", iphone: "Last ned for iPhone" },
+        da: { tag: "Et ordlægningsspil — spil med venner, dan ord og få flest point!",
+              roomA: "Du er inviteret til et rum! Installer og åbn spillet — du kommer automatisk med i rummet. Ellers trykker du på linket igen.",
+              roomI: "Du er inviteret til et rum! Tryk på linket igen, når du har installeret og åbnet spillet, for at komme med i rummet.",
+              refA: "Din ven har inviteret dig! Hent spillet; når du har spillet din første kamp færdig, får I begge guld. Din invitationskode følger automatisk med.",
+              refI: "Din ven har inviteret dig! Knappen nedenfor kopierer din invitationskode. Når du åbner spillet, trykker du på »Har du en invitationskode?« → »Indsæt fra udklipsholder« på første skærm. Når du har spillet din første kamp færdig, får I begge guld.",
+              code: "Invitationskode:", play: "Hent den på Google Play", store: "Hent i App Store",
+              copyGo: "Kopiér koden og åbn App Store", android: "Hent til Android", iphone: "Hent til iPhone" },
+        ro: { tag: "Un joc de așezat cuvinte — joacă cu prietenii, formează cuvinte și strânge cele mai multe puncte!",
+              roomA: "Ai primit o invitație într-o cameră! Instalează și deschide jocul — intri automat în cameră. Dacă nu, atinge din nou acest link.",
+              roomI: "Ai primit o invitație într-o cameră! După ce instalezi și deschizi jocul, atinge din nou acest link ca să intri în cameră.",
+              refA: "Prietenul tău te-a invitat! Descarcă jocul; după primul tău meci, primiți amândoi aur. Codul de invitație vine automat.",
+              refI: "Prietenul tău te-a invitat! Butonul de mai jos copiază codul de invitație. Când deschizi jocul, pe primul ecran atinge „Ai un cod de invitație?” → „Lipește din clipboard”. După primul tău meci, primiți amândoi aur.",
+              code: "Cod de invitație:", play: "Descarcă de pe Google Play", store: "Descarcă din App Store",
+              copyGo: "Copiază codul și deschide App Store", android: "Descarcă pentru Android", iphone: "Descarcă pentru iPhone" }
+      };
+
+      var nav = (navigator.language || "en").toLowerCase();
+      var lang = nav.slice(0, 2);
+      if (lang === "no" || lang === "nn") lang = "nb";
+      if (!T[lang]) lang = "en";
+      var L = T[lang];
+      document.documentElement.lang = lang;
+
       var ua = navigator.userAgent || "";
       var isAndroid = /Android/i.test(ua);
-      var isIOS = /iPhone|iPad|iPod/i.test(ua);
+      var isIOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
 
-      if (isAndroid) {
-        document.getElementById("androidBtn").classList.remove("hidden");
-        document.getElementById("iosBtnSecondary").classList.remove("hidden");
-      } else if (isIOS) {
-        document.getElementById("iosBtn").classList.remove("hidden");
-        document.getElementById("androidBtnSecondary").classList.remove("hidden");
-      } else {
-        document.getElementById("androidBtn").classList.remove("hidden");
-        document.getElementById("iosBtn").classList.remove("hidden");
+      var params = new URLSearchParams(location.search);
+      function clean(v) { return v && /^[A-Za-z0-9-]{1,40}$/.test(v) ? v : null; }
+      var room = clean(params.get("room"));
+      var ref = clean(params.get("ref"));
+
+      var referrer = "utm_source=" + (room ? "room" : ref ? "invite" : "join") + "&utm_medium=referral"
+                   + (ref ? "&ref=" + ref : "") + (room ? "&room=" + room : "");
+      var playUrl = PLAY + "&referrer=" + encodeURIComponent(referrer);
+      var storeUrl = APP_STORE + "?mt=8&ct=" + (room ? "room" : ref ? "invite" : "join") + "&pt=" + APPLE_PT;
+
+      document.getElementById("tagline").textContent = L.tag;
+
+      var note = room ? (isIOS ? L.roomI : L.roomA) : ref ? (isIOS ? L.refI : L.refA) : null;
+      if (note) {
+        document.getElementById("note").style.display = "block";
+        document.getElementById("noteText").textContent = note;
+      }
+      // Kod iPhone'da (ve masaüstünde) görünür — panoya kopyalanamazsa elle yazılabilsin.
+      if (ref && !room && !isAndroid) {
+        document.getElementById("codeLine").classList.remove("hidden");
+        document.getElementById("codeLabel").textContent = L.code;
+        document.getElementById("code").textContent = ref;
       }
 
-      var params = new URLSearchParams(window.location.search);
-      var room = params.get("room");
-      var ref = params.get("ref");
+      var primary = document.getElementById("primaryBtn");
+      var secondary = document.getElementById("secondaryBtn");
 
-      if (room) {
-        document.getElementById("roomNote").style.display = "block";
-      } else if (ref) {
-        document.getElementById("refNote").style.display = "block";
-        document.getElementById("refCode").textContent = ref;
+      function copyThenGo(text, url) {
+        function go() { location.href = url; }
+        try {
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(text).then(go, function () { legacyCopy(text); go(); });
+            return;
+          }
+        } catch (e) { /* aşağıdaki yedek */ }
+        legacyCopy(text);
+        go();
+      }
+      function legacyCopy(text) {
+        var ta = document.createElement("textarea");
+        ta.value = text;
+        ta.setAttribute("readonly", "");
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        ta.setSelectionRange(0, text.length);
+        try { document.execCommand("copy"); } catch (e) { /* kod sayfada görünüyor */ }
+        document.body.removeChild(ta);
+      }
+
+      if (isIOS) {
+        primary.href = storeUrl;
+        if (ref && !room) {
+          primary.textContent = L.copyGo;
+          primary.addEventListener("click", function (e) { e.preventDefault(); copyThenGo(ref, storeUrl); });
+        } else {
+          primary.textContent = L.store;
+        }
+        secondary.href = playUrl;
+        secondary.textContent = L.android;
+      } else if (isAndroid) {
+        primary.href = playUrl;
+        primary.textContent = L.play;
+        secondary.href = storeUrl;
+        secondary.textContent = L.iphone;
+      } else {
+        primary.href = playUrl;
+        primary.textContent = L.play;
+        secondary.href = storeUrl;
+        secondary.textContent = L.store;
       }
     })();
   </script>
