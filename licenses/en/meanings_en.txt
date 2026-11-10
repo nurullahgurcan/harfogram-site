@@ -5705,7 +5705,7 @@ ANORTHOSITIC	adj. composed of anorthosite
 ANOSMIA	n. absence of the sense of smell (as by damage to olfactory nasal tissue or the olfactory nerve or by...
 ANOSMIAS	@ANOSMIA/n
 ANOSMIC	adj. relating to an impairment or loss of the sense of smell	adj. having impaired sense of smell
-ANOTHER	adj. any of various alternatives; some other; entity, singular, other pronoun; quantifier, singular, another
+ANOTHER	adj. any of various alternatives; some other
 ANOVULAR	adj. synonym of anovulatory
 ANOVULATORY	adj. not ovulatory; characterized by anovulation (a lack of ovulation)
 ANOXEMIA	n. abnormally low oxygen content in arterial blood
@@ -6737,7 +6737,7 @@ ANXIOUS	adj. eagerly desirous	adj. causing or fraught with or showing anxiety
 ANXIOUSLY	adv. with anxiety or apprehension
 ANXIOUSNESS	n. (psychiatry) a relatively permanent state of worry and nervousness occurring in a variety of mental...	n. a feeling of mild anxiety about possible developments
 ANXIOUSNESSES	@ANXIOUSNESS/n
-ANY	adj. one or some or every or all without specification; entity, elective existential pronoun	adv. to any degree or extent
+ANY	adj. one or some or every or all without specification	adv. to any degree or extent
 ANYBODIES	@ANYBODY/n
 ANYBODY	pron. any person
 ANYHOW	adv. used to indicate that a statement explains or supports a previous statement	adv. in any way whatsoever
@@ -9509,7 +9509,7 @@ AUGEND	n. a number to which another number (the addend) is added
 AUGENDS	@AUGEND/n
 AUGER	n. a long flexible steel coil for dislodging stoppages in curved pipes	n. hand tool for boring holes
 AUGERS	@AUGER/n
-AUGHT	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+AUGHT	n. a quantity of no importance
 AUGHTS	@AUGHT/n
 AUGITE	n. dark-green to black glassy mineral of the pyroxene group containing large amounts of aluminum and iron and...
 AUGITES	@AUGITE/n
@@ -45737,7 +45737,7 @@ DYSTROPHY	n. any of several hereditary diseases of the muscular system character
 DYSURIA	n. painful or difficult urination
 DYSURIAS	@DYSURIA/n
 DYSURIC	adj. pertaining to, or afflicted with, dysuria
-EACH	adj. (used of count nouns) every one considered individually; quantifier, singular, universal pronoun	adv. to or from every one of two or more (considered individually)
+EACH	adj. (used of count nouns) every one considered individually	adv. to or from every one of two or more (considered individually)
 EAGER	adj. having or showing keen interest or intense desire or impatient expectancy	n. a high wave (often dangerous) caused by tidal flow (as by colliding tidal currents or in a narrow estuary)
 EAGERER	@EAGER/a
 EAGEREST	@EAGER/a
@@ -50511,7 +50511,7 @@ ETAS	@ETA/n
 ETATISM	n. synonym of statism, sometimes (derogatory) with specific distinctions derived from Mises's political theories
 ETATISMS	@ETATISM/n
 ETATIST	n. alternative form of etatiste
-ETCETERA	n. additional unspecified odds and ends; more of the same; entity, other pronoun; pronoun, entity	adv. continuing in the same way
+ETCETERA	n. additional unspecified odds and ends; more of the same	adv. continuing in the same way
 ETCETERAS	@ETCETERA/n
 ETCH	v. make an etching of	v. cause to stand out or be clearly defined or visible
 ETCHANT	n. an acid or corrosive chemical used in etching
@@ -51123,10 +51123,10 @@ EVERYDAYNESSES	@EVERYDAYNESS/n
 EVERYMAN	n. the ordinary person
 EVERYMEN	@EVERYMAN/n
 EVERYONE	pron. every person
-EVERYPLACE	adv. to or in any or all places; pronoun, location; quantifier: universal
+EVERYPLACE	adv. to or in any or all places
 EVERYTHING	pron. all things
 EVERYWAY	adv. in every way, however possible	adv. in every direction
-EVERYWHERE	adv. to or in any or all places; pronoun, location; quantifier: universal
+EVERYWHERE	adv. to or in any or all places
 EVERYWOMAN	n. the ordinary woman
 EVERYWOMEN	@EVERYWOMAN/n
 EVES	@EVE/n
@@ -74034,7 +74034,7 @@ INDITES	@INDITE/v
 INDITING	@INDITE/v
 INDIUM	n. a rare soft silvery metallic element; occurs in small quantities in sphalerite
 INDIUMS	@INDIUM/n
-INDIVIDUAL	adj. being or characteristic of a single thing or person	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular
+INDIVIDUAL	adj. being or characteristic of a single thing or person	n. a human being
 INDIVIDUALISE	v. make or mark or treat as individual	v. make personal or more personal
 INDIVIDUALISED	@INDIVIDUALISE/v	adj. made for or directed or adjusted to a particular individual
 INDIVIDUALISES	@INDIVIDUALISE/v
@@ -94084,7 +94084,7 @@ MORSELS	@MORSEL/n
 MORT	n. death; especially, the death of game in hunting	n. a note sounded on a horn at the death of a deer
 MORTADELLA	n. a smooth-textured Italian pork sausage with lumps of fat, flavoured with spices; eaten cold
 MORTADELLAS	@MORTADELLA/n
-MORTAL	adj. subject to death	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular
+MORTAL	adj. subject to death	n. a human being
 MORTALITIES	@MORTALITY/n
 MORTALITY	n. the quality or state of being mortal	n. the ratio of deaths in an area to the population of that area; expressed per 1000 per year
 MORTALLY	adv. in such a manner that death ensues (also in reference to hatred, jealousy, fear, etc.)
@@ -95886,7 +95886,7 @@ NACRE	n. the iridescent internal layer of a mollusk shell
 NACRED	adj. resembling mother-of-pearl
 NACREOUS	adj. consisting of or resembling mother-of-pearl	adj. having a play of lustrous rainbow colors
 NACRES	@NACRE/n
-NADA	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+NADA	n. a quantity of no importance
 NADAS	@NADA/n
 NADIR	n. an extreme state of adversity; the lowest point of anything	n. the point below the observer that is directly opposite the zenith on the imaginary sphere against which...
 NADIRAL	adj. of, pertaining to or situated at a nadir
@@ -96295,7 +96295,7 @@ NATUROPATHIC	adj. relating to naturopathy or to naturopaths
 NATUROPATHIES	@NATUROPATHY/n
 NATUROPATHS	@NATUROPATH/n
 NATUROPATHY	n. a method of treating disease using food and exercise and heat to assist the natural healing process
-NAUGHT	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular	n. complete failure
+NAUGHT	n. a quantity of no importance	n. complete failure
 NAUGHTIER	@NAUGHTY/a
 NAUGHTIEST	@NAUGHTY/a
 NAUGHTILY	adv. in a disobedient or naughty way
@@ -96677,7 +96677,7 @@ NEIGHED	@NEIGH/v
 NEIGHING	@NEIGH/v
 NEIGHS	@NEIGH/n
 NEIST	adj. alternative form of next	adv. alternative form of next
-NEITHER	adj. not either; not one or the other; entity, dual, negative pronoun; quantifier, dual, negative
+NEITHER	adj. not either; not one or the other
 NEKTON	n. the aggregate of actively swimming animals in a body of water ranging from microscopic organisms to whales
 NEKTONIC	adj. swimming independently of currents
 NEKTONS	@NEKTON/n
@@ -97521,7 +97521,7 @@ NIHILISTS	@NIHILIST/n
 NIHILITIES	@NIHILITY/n
 NIHILITY	n. the state of nonexistence
 NIHILS	@NIHIL/n
-NIL	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+NIL	n. a quantity of no importance
 NILGAI	n. large Indian antelope; male is blue-grey with white markings; female is brownish with no horns
 NILGAIS	@NILGAI/n
 NILGAU	n. alternative form of nilgai
@@ -97712,7 +97712,7 @@ NITWIT	n. a stupid incompetent person
 NITWITS	@NITWIT/n
 NIVAL	adj. abounding with snow; snowy; snow-covered (now especially in reference to plant habitats)	adj. found or thriving in snowy conditions
 NIVEOUS	adj. snowy; resembling snow
-NIX	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular	v. command against
+NIX	n. a quantity of no importance	v. command against
 NIXE	n. alternative spelling of nixie ("female water-elf")
 NIXED	@NIX/v
 NIXES	@NIX/n
@@ -98470,7 +98470,7 @@ NONDRIVERS	@NONDRIVER/n
 NONDRUG	adj. not of or pertaining to drugs	n. any substance that is not a drug
 NONDURABLE	adj. providing useful services for only one period, especially a year	n. a nondurable good
 NONDURABLES	@NONDURABLE/n
-NONE	n. a canonical hour that is the ninth hour of the day counting from sunrise	adj. not any; entity, negative pronoun
+NONE	n. a canonical hour that is the ninth hour of the day counting from sunrise	adj. not any
 NONEARNING	adj. not earning
 NONECCLESIASTICAL	adj. not ecclesiastical
 NONECONOMIC	adj. not of an economic nature
@@ -99698,7 +99698,7 @@ NOTEWORTHINESS	n. the quality or state of being noteworthy
 NOTEWORTHINESSES	@NOTEWORTHINESS/n
 NOTEWORTHY	adj. worthy of attention
 NOTHER	pron. neither	adj. neither
-NOTHING	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular	adv. in no respect; to no degree
+NOTHING	n. a quantity of no importance	adv. in no respect; to no degree
 NOTHINGNESS	n. the state of nonexistence	n. empty rhetoric or insincere or exaggerated talk
 NOTHINGNESSES	@NOTHINGNESS/n
 NOTHINGS	@NOTHING/n	n. inconsequential conversation
@@ -99957,7 +99957,7 @@ NUKE	v. strike at with firepower or bombs	n. the warhead of a missile designed t
 NUKED	@NUKE/v
 NUKES	@NUKE/n
 NUKING	@NUKE/v
-NULL	adj. lacking any legal or binding force	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+NULL	adj. lacking any legal or binding force	n. a quantity of no importance
 NULLAH	n. a ravine or gully in southern Asia
 NULLAHS	@NULLAH/n
 NULLED	adj. turned so as to resemble nulled work	@NULL/v
@@ -102674,7 +102674,7 @@ OTALGIAS	@OTALGIA/n
 OTALGIC	adj. of or pertaining to otalgia	n. a cure for otalgia
 OTALGIES	@OTALGY/n
 OTALGY	n. archaic form of otalgia
-OTHER	adj. not the same one or ones already mentioned or implied; quantifier, other	adj. recently past
+OTHER	adj. not the same one or ones already mentioned or implied	adj. recently past
 OTHERGUESS	adj. of another kind; different	adv. in another way
 OTHERNESS	n. the quality of being not alike; being distinct or different from that otherwise experienced or known
 OTHERNESSES	@OTHERNESS/n
@@ -109878,7 +109878,7 @@ PERSISTS	@PERSIST/v
 PERSNICKETINESS	n. the state or condition of being persnickety
 PERSNICKETINESSES	@PERSNICKETINESS/n
 PERSNICKETY	adj. (used colloquially) overly conceited or arrogant	adj. characterized by excessive precision and attention to trivial details
-PERSON	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular	n. a human body (usually including the clothing)
+PERSON	n. a human being	n. a human body (usually including the clothing)
 PERSONA	n. an actor's portrayal of someone in a play	n. (Jungian psychology) a personal facade that one presents to the world
 PERSONABLE	adj. (of persons) pleasant in appearance and personality
 PERSONABLENESS	n. the complex of attributes that make a person socially attractive
@@ -141107,11 +141107,11 @@ SOMBREROS	@SOMBRERO/n
 SOMBROUS	adj. gloomy; sombre
 SOME	adj. (quantifier) used with either mass nouns or plural count nouns to indicate an unspecified number or quantity	adv. (of quantities) imprecise but fairly close to correct
 SOMEBODIES	@SOMEBODY/n
-SOMEBODY	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular
+SOMEBODY	n. a human being
 SOMEDAY	adv. some unspecified time in the future
 SOMEDEAL	pron. some part; a portion, something; some	adv. in some measure or degree; somewhat, partly, partially
 SOMEHOW	adv. in some unspecified way or manner; or by some unspecified means	adv. for some unspecified reason
-SOMEONE	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular
+SOMEONE	n. a human being
 SOMEONES	@SOMEONE/n
 SOMEPLACE	adv. in or at or to some place
 SOMERSAULT	n. an acrobatic feat in which the feet roll over the head (either forward or backward) and return	v. do a somersault
@@ -141508,7 +141508,7 @@ SOUGHS	@SOUGH/v
 SOUGHT	adj. that is looked for	@SEEK/v
 SOUK	n. an open-air market in an Arabian city
 SOUKS	@SOUK/n
-SOUL	n. the immaterial part of a person; the actuating cause of an individual life	n. a human being; person, singular, assertive existential pronoun; pronoun, person, singular
+SOUL	n. the immaterial part of a person; the actuating cause of an individual life	n. a human being
 SOULED	adj. furnished with a soul	@SOUL/v
 SOULFUL	adj. full of or expressing deep emotion
 SOULFULLY	adv. in a soulful manner
@@ -147344,7 +147344,7 @@ SUCCUSS	@SUCCUS/n	v. shake; especially (a patient to detect fluids or air in the
 SUCCUSSED	@SUCCUSS/v
 SUCCUSSES	@SUCCUSS/v
 SUCCUSSING	@SUCCUSS/v
-SUCH	adj. of so extreme a degree or extent; demonstrative, other pronoun; demonstrative determiner, kind	adv. to so extreme a degree
+SUCH	adj. of so extreme a degree or extent	adv. to so extreme a degree
 SUCHLIKE	adj. of the same kind
 SUCHNESS	n. the natural state of a person or thing; quality; character or worth	n. existence per se
 SUCHNESSES	@SUCHNESS/n
@@ -152932,7 +152932,7 @@ THERAPISTS	@THERAPIST/n
 THERAPSID	n. probably warm-blooded; considered direct ancestor of mammals
 THERAPSIDS	@THERAPSID/n
 THERAPY	n. (medicine) the act of caring for someone (as by medication or remedial training etc.)
-THERE	adv. in or at that place or location	n. a location other than here; that place; location, medial pronoun; demonstrative pronoun, location
+THERE	adv. in or at that place or location	n. a location other than here; that place
 THEREABOUT	adv. near that time or date	adv. near that place
 THEREABOUTS	adv. near that time or date	@THEREABOUT/r
 THEREAFTER	adv. from that time on
@@ -168186,7 +168186,7 @@ WHARVES	@WHARF/n
 WHAT	pron. which thing or things; used in questions
 WHATCHAMACALLIT	n. something unspecified whose name is either forgotten or not known
 WHATCHAMACALLITS	@WHATCHAMACALLIT/n
-WHATEVER	adj. one or some or every or all without specification; entity, elective existential pronoun
+WHATEVER	adj. one or some or every or all without specification
 WHATNESS	n. essence; quiddity	n. quality; quantity
 WHATNESSES	@WHATNESS/n
 WHATNOT	n. miscellaneous curios
@@ -168196,7 +168196,7 @@ WHATSIS	n. something unspecified whose name is either forgotten or not known
 WHATSISES	@WHATSIS/n
 WHATSIT	n. a thing (used in a vague way to refer to something whose name one cannot recall, or that one is...
 WHATSITS	@WHATSIT/n
-WHATSOEVER	adj. one or some or every or all without specification; entity, elective existential pronoun
+WHATSOEVER	adj. one or some or every or all without specification
 WHAUP	n. the curlew, Numenius arquata
 WHAUPS	@WHAUP/n
 WHEAL	n. a raised mark on the skin (as produced by the blow of a whip); characteristic of many allergic reactions
@@ -168297,12 +168297,12 @@ WHEREINTO	adv. into which
 WHEREOF	conj. of what	conj. of which
 WHEREON	adv. on which, on what
 WHERES	@WHERE/n
-WHERESOEVER	adv. where in the world; location, singular, elective existential pronoun
+WHERESOEVER	adv. where in the world
 WHERETHROUGH	adv. through which	adv. by means of which; whereby
 WHERETO	adv. to what; to which place, whither?	adv. to what end; wherefore?
 WHEREUNTO	adv. unto what or which; to what purpose	conj. unto which
 WHEREUPON	conj. after which; in consequence; at which point	conj. upon which
-WHEREVER	adv. where in the world; location, singular, elective existential pronoun
+WHEREVER	adv. where in the world
 WHEREWITH	adv. with which; with what	n. something with which; the means by which
 WHEREWITHAL	n. the necessary means (especially financial means)
 WHEREWITHALS	@WHEREWITHAL/n
@@ -171109,7 +171109,7 @@ ZEPPELIN	n. a large rigid dirigible designed to carry passengers or bombs
 ZEPPELINS	@ZEPPELIN/n
 ZERK	n. any of a class of types of grease nipples, or an instance thereof
 ZERKS	@ZERK/n
-ZERO	adj. indicating the absence of any or all units under consideration	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+ZERO	adj. indicating the absence of any or all units under consideration	n. a quantity of no importance
 ZEROED	@ZERO/v
 ZEROES	@ZERO/n
 ZEROING	@ZERO/v
@@ -171157,7 +171157,7 @@ ZIKKURAT	n. a rectangular tiered temple or terraced mound erected by the ancient
 ZIKKURATS	@ZIKKURAT/n
 ZIKURAT	n. a rectangular tiered temple or terraced mound erected by the ancient Assyrians and Babylonians
 ZIKURATS	@ZIKURAT/n
-ZILCH	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular
+ZILCH	n. a quantity of no importance
 ZILCHES	@ZILCH/n
 ZILL	n. one of a pair of small metallic cymbals worn on the thumb and middle finger
 ZILLAH	n. a district or local division, as of a province, in India
@@ -171211,7 +171211,7 @@ ZINKY	adj. alternative form of zincy
 ZINNIA	n. any of various plants of the genus Zinnia cultivated for their variously and brightly colored flower heads
 ZINNIAS	@ZINNIA/n
 ZINS	@ZIN/n
-ZIP	n. a quantity of no importance; thing (object:), singular, negative pronoun; pronoun, thing, singular	v. close with a zipper
+ZIP	n. a quantity of no importance	v. close with a zipper
 ZIPLESS	adj. without a zip fastener	adj. without complications and hindrances
 ZIPPED	@ZIP/v
 ZIPPER	n. a fastener for locking together two toothed edges by means of a sliding tab	v. close with a zipper
